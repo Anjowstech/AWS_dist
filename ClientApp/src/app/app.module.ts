@@ -20,7 +20,7 @@ import { DashboardreportComponent } from './dashboardreport/dashboardreport.comp
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
-
+    { path: 'Dashboardreport', component: DashboardreportComponent },
  
   ]
 }
