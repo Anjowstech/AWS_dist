@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/cartoonbasket.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+
+.card {
+  background: rgba(255, 255, 255, 0.5);
+  width: 900px;
+  height: 450px;
+  flex-direction: row;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form,
+.image {
+  width: 60%;
+}
+
+.image {
+  /*background-image: url('/ClientApp/src/assets/cartoonbasket.jpg');*/
+  background-position: center;
+  background-size: cover;
+}
+
+  .image img {
+    max-width: 110%;
+    height: 448px;
+    margin-left: auto;
+    border-radius: 5px;
+  }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+  .overlay h3 {
+    color: white;
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-weight: 700;
+    opacity: 0.6;
+  }
+
+  .overlay p {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 0.6;
+  }
+
+
+.form {
+  padding: 60px 25px;
+  display: flex;
+  flex-direction: column;
+  color: #1946a3;
+  /*align-items: center;*/
+}
+
+  .form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    position: center;
+    margin-bottom: 30px;
+  }
+
+    .form h3::after {
+      content: '';
+      width: 30px;
+      height: 3px;
+      background: 0;
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      border-radius: 5px;
+    }
+
+.fa {
+  color: #1946a3;
+  position: absolute; /* Change from absolute to relative */
+  top: 50%; /* Center the icon vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  left: 10px; /* Adjust the left position */
+  font-size: 18px;
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+  margin-top: 10px;
+}
+
+  .input-field input {
+    display: block;
+    width: 100%;
+    padding: 10px 30px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgb(182, 180, 180);
+    font-size: 15px;
+    border-radius: 5px;
+  }
+
+.form > a {
+  color: #1946a3;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 35px;
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  height: 45px;
+  background: #1946a3;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+  input[type="submit"] + p {
+    text-align: center;
+    padding: 10px 30px;
+    font-size: 14px;
+    color: #000000;
+  }
+
+    input[type="submit"] + p a {
+      text-decoration: none;
+      color: #1946a3;
+      font-weight: 500;
+    }
+
+input::placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+  text-align: center;
+}
+
+.logintitle-container {
+  text-align: center;
+}
+
+
+
+.login-container a {
+  color: #1946a3;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 55px;
+  font-weight: bold;
+}
