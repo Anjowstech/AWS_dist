@@ -4,9 +4,37 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+a.navbar-brand1 {
+  white-space: normal;
+  word-break: break-all;
+  position: absolute;
+  top: 0;
+  bottom:;
+  left: 0;
+  right: 0;
+}
+
+.mat-menu-panel {
+  background-color: white;
+  width: fit-content !important;
+  height: fit-content !important;
+}
+
+.mat-menu-item {
+  line-height: 35px;
+  height: 35px;
+}
+
+.mat-menu-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -15,4 +43,25 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.tp-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.mat-menu {
+  max-height: 50px;
+}
+
+.tp-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100px;
 }
