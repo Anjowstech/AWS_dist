@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +23,7 @@ import { DashboardreportComponent } from './dashboardreport/dashboardreport.comp
 import { CreatesupplierComponent } from './createsupplier/createsupplier.component';
 import { ShipmentComponent } from './shipment/shipment.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatTabsModule } from '@angular/material/tabs';
 import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
@@ -59,14 +60,16 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDividerModule,
     FormsModule,
     MatIconModule,
-
+    MatTabsModule,
     MatMenuModule,
     MatButtonModule,
     RouterModule.forRoot(appRoutes, { useHash: false }),
-    MatDialogModule
+    MatDialogModule,
+        BrowserAnimationsModule,
   ],
   entryComponents: [TasklistComponent, ShipmentComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
