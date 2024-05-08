@@ -1,1 +1,901 @@
-<p>taskdetailpage works!</p>
+<div class="main-box">
+  <div class="inners-box">
+    <!--<div class="top-header">
+      <div class="row">
+        <div class="col-12 col-md-4 col-lg-4 report-logo">
+          <img alt="logo" width="150" src="https://firebasestorage.googleapis.com/v0/b/fifth-compiler-381605.appspot.com/o/logo.png?alt=media&token=2f7954b2-b067-48ca-beab-4169f303f076" />
+        </div>
+
+      </div>
+    </div>-->
+    <h3 style="color: #1f538e; padding: 1%">Task Detail</h3>
+    <div class="row">
+      <div style="width:63%;padding-right:2%;">
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Task Name</label>
+          <label style="width:70%;text-align:left;">Distribution</label>
+        </div>
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Last Updated by</label>
+          <label style="width:70%;">Saji</label>
+        </div>
+
+
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Last Updated on</label>
+          <label style="width:70%;text-align:left;">10-02-2024</label>
+        </div>
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Current Status</label>
+          <label style="width:70%;">Pending</label>
+        </div>
+
+
+
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Change Status</label>
+          <select style="border: none; width: 70%; color: black; border-left: 3px solid #1f538e">
+            <option disabled hidden selected>Pending</option>
+            <option>Completed</option>
+            <option>On Hold</option>
+          </select>
+        </div>
+
+
+
+        <div class="data">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Description</label>
+          <input type="text" name="title1" style="height:70px">
+        </div>
+
+
+        <div class="uploadimage">
+          <label style="width: 30%; color: #5b5b69; font-weight: 500;">Select Files</label>
+          <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+          <div class="upload-area" (click)="fileInput.click()">
+            <p>Drag & drop media here or click to upload</p>
+          </div>
+        </div>
+
+        <div class="createtask">
+          <button class="primary-button rounded-button">View Images</button>
+          <!--<button class="save-button pulse-effect hover-effect:hover">View Images</button>-->
+        </div>
+
+      </div>
+      <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
+        <table style="width: 100%; color: black; margin-top: 2%;">
+          <thead>
+            <tr>
+              <td style="text-align:center;font-size:large;font-weight:500;">
+                <div class="row" style="display: flex; justify-content: center; color: #9da4a6; ">
+                  <mat-icon>history</mat-icon>
+                  History
+                </div>
+              </td>
+            </tr>
+          </thead>
+
+
+          <tbody>
+            <tr class="labelhover" *ngFor="let a of OrderManagementList">
+              <td style="text-align:left;font-size:small;">
+                <div class="labelshadow">
+                  <label style="background-color: #1F528E; color: white; width: 100%; text-align: center;border-radius:0px;margin-top:0.2px;">  {{a.ProductTask}} </label>
+                  <div class="InnerLabel">
+                    <label style="width:25%;"> {{a.TaskName}}</label>
+                    <span style="color:black;"> : 10/02/2024 10:30 pm</span> <br />
+
+                    <label style="width:25%;">  Activity Details</label>
+                    <span style="color:black;"> : Supplier name changed  and approved</span> <br />
+
+                    <label style="width: 25%; float: inline-start;"> Last UpdatedBy</label>
+                    <span style="color:black;"> : {{a.ProdcutDescription}}</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+
+      </div>
+    </div>
+
+
+
+
+    <mat-tab-group>
+      <mat-tab label="Supplier Selection">
+        <ng-template mat-tab-label>
+          <mat-icon><span class="material-symbols-outlined">diversity_3</span></mat-icon>
+          Supplier Selection
+        </ng-template>
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+
+          <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+        </div>
+
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+        </div>
+        <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
+          <thead>
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:10%;">Supplier Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Product ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Location ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Pl</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Type</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">PMI</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Status</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact No</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Email</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Website</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Updated Date</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Select</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of suppliersection ; let i=index let even=even" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);setvalue(item)">
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.SupplierName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ProductID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.LocationID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Pl}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Type}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.PMI}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Status}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Email}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Website}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Updateddate}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <!--<tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Available</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Abdulla Aljenaibi</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Head to Market Trading Company</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Out of Stock</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Mahesh Rajendran</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Liwa Gate (Liwa Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Enquired</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Heera Mohan</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">SRS (ShreeRamSales)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Enquired</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Jatin Girdhar</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>-->
+          </tbody>
+        </table>
+        <div class="row" style="height:100%">
+          <div style="width: 35%;overflow-y: auto; overflow-x: hidden;">
+
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Supplier Name</label>
+              <label style="width:70%;text-align:left;">{{suppliernameselection}}</label>
+            </div>
+            <div class="data">
+              <label style="width: 40%; color: #5b5b69; font-weight: 500;">Enter Price</label>
+              <input type="text" name="title1" style="width: 30%">
+            </div>
+
+
+            <div class="data">
+              <label style="width: 40%; color: #5b5b69; font-weight: 500;">Enter Leadtime</label>
+              <input type="text" name="title1" style="width: 30%">
+            </div>
+            <div class="data">
+              <label style="width: 40%; color: #5b5b69; font-weight: 500;">Enter Payment Terms</label>
+              <input type="text" name="title1" style="width: 30%">
+            </div>
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Description</label>
+              <input type="text" name="title1" style="height:100px">
+            </div>
+          </div>
+          <div style="width:63%;padding-right:2%;">
+            <div class="uploadimage">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Select Files</label>
+              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area" (click)="fileInput.click()">
+                <p>Drag & drop media here or click to upload</p>
+              </div>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 14%; color: #5b5b69; font-weight: 500;">Status</label>
+              <select style="border: none; width: 20%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{supplierselctionStatus}}</option>
+                <option>Enquired</option>
+                <option>Available</option>
+                <option>Out of Stock</option>
+                <option *ngFor="let a of StatusList">{{a.supplierselctionStatus}}</option>
+              </select>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 14%; color: #5b5b69; font-weight: 500;">Assigned To</label>
+              <select style="border: none; width: 20%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{Status}}</option>
+                <option>Saji</option>
+                <option>Anjo</option>
+                <option>Preeth</option>
+              </select>
+            </div>
+            <div class="createtask">
+              <button class="save-button pulse-effect hover-effect:hover">Save</button>
+              <button class="save-button pulse-effect hover-effect:hover">Approve</button>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+      <mat-tab label="QA">
+        <ng-template mat-tab-label>
+          <mat-icon><span class="material-symbols-outlined">analytics</span></mat-icon>
+          QA
+        </ng-template>
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+
+          <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+        </div>
+
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+        </div>
+        <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
+          <thead>
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:10%;">Supplier Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Product ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Location ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Pl</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Type</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">PMI</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Status</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact No</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Email</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Website</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Updated Date</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Select</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of QA ; let i=index let even=even" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);setvalueqa(item)">
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.SupplierName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ProductID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.LocationID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Pl}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Type}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.PMI}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Status}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Email}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Website}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Updateddate}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <!--<tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Sent for approval</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Abdulla Aljenaibi</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Head to Market Trading Company</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Processing</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Mahesh Rajendran</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Liwa Gate (Liwa Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Processing</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Heera Mohan</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">SRS (ShreeRamSales)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Rejected</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Jatin Girdhar</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>-->
+          </tbody>
+        </table>
+        <div class="row">
+          <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
+
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Supplier Name</label>
+              <label style="width:70%;text-align:left;">{{qasuppliername}}</label>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{qaStatus}}</option>
+                <option>Rejected</option>
+                <option>Processing</option>
+                <option>Sent for approval</option>
+                <option>Waiting for approval</option>
+                <option *ngFor="let a of StatusListqa">{{a.qaStatus}}</option>
+              </select>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{Status}}</option>
+                <option>Saji</option>
+                <option>Anjo</option>
+                <option>Preeth</option>
+                <option>Lal</option>
+              </select>
+            </div>
+
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Description</label>
+              <input type="text" name="title1" style="height:100px">
+            </div>
+
+
+          </div>
+          <div style="width:63%;padding-right:2%;">
+
+
+            <div class="uploadimage">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
+              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area" (click)="fileInput.click()">
+                <p>Drag & drop media here or click to upload</p>
+              </div>
+            </div>
+            <div class="createtask">
+              <button class="save-button pulse-effect hover-effect:hover">Save</button>
+              <button class="save-button pulse-effect hover-effect:hover">Approve</button>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Certifications">
+        <ng-template mat-tab-label>
+          <mat-icon><span class="material-symbols-outlined">verified_user</span></mat-icon>
+          Certifications
+        </ng-template>
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+
+          <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+        </div>
+
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+        </div>
+        <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
+          <thead>
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:10%;">Supplier Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Product ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Location ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Pl</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Type</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">PMI</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Status</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact No</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Email</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Website</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Updated Date</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Select</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of certifications; let i=index let even=even" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);setvaluecertifications(item)">
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.SupplierName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ProductID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.LocationID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Pl}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Type}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.PMI}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Status}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Email}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Website}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Updateddate}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <!--<tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Fail</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Abdulla Aljenaibi</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Head to Market Trading Company</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Valid</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Mahesh Rajendran</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Liwa Gate (Liwa Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Valid</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Heera Mohan</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">SRS (ShreeRamSales)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nill</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Expired</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Jatin Girdhar</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>-->
+          </tbody>
+        </table>
+        <div class="row">
+          <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
+
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Supplier Name</label>
+              <label style="width:70%;text-align:left;">{{suppliernamecertifications}}</label>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{cStatus}}</option>
+                <option>Under Review</option>
+                <option>Valid</option>
+                <option>Fail</option>
+                <option>Expired</option>
+                <option *ngFor="let a of Statuscertifications">{{a.cStatus}}</option>
+              </select>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{Status}}</option>
+                <option>Saji</option>
+                <option>Anjo</option>
+                <option>Preeth</option>
+              </select>
+            </div>
+
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Description</label>
+              <input type="text" name="title1" style="height:90px">
+            </div>
+
+
+          </div>
+          <div style="width:63%;padding-right:2%;">
+
+
+            <div class="uploadimage">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
+              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area" (click)="fileInput.click()">
+                <p>Drag & drop media here or click to upload</p>
+              </div>
+            </div>
+            <div class="createtask">
+              <button class="save-button pulse-effect hover-effect:hover">Save</button>
+              <button class="save-button pulse-effect hover-effect:hover">Approve</button>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Document Upload">
+        <ng-template mat-tab-label>
+          <mat-icon><span class="material-symbols-outlined">upload_file</span></mat-icon>
+          Document Upload
+        </ng-template>
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+
+          <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+
+        </div>
+
+        <div class="form-inline" style="margin-left:1%;margin-top:1%;">
+
+          <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+        </div>
+        <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
+          <thead>
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:10%;">Supplier Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Product ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Location ID</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:6%;">Pl</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Type</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">PMI</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Status</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact Name</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Contact No</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Email</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Website</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Updated Date</th>
+              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;width:7%;">Select</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of upload; let i=index let even=even" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);setupload(item)">
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.SupplierName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ProductID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.LocationID}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Pl}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Type}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.PMI}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Status}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.ContactNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Email}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Website}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Updateddate}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <!--<tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Uploaded</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Abdulla Aljenaibi</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Head to Market Trading Company</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Approved</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Mahesh Rajendran</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Liwa Gate (Liwa Mart)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Uploaded</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Heera Mohan</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">SRS (ShreeRamSales)</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Processing</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Jatin Girdhar</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">+91 9998765432</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">rm@srmfoods.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">avinash.kasinathan@censanext.com</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
+                <input type="checkbox" />
+              </td>
+            </tr>-->
+          </tbody>
+        </table>
+        <div class="row">
+          <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Supplier Name</label>
+              <label style="width:70%;text-align:left;">{{suppliernameupload}}</label>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{uploadStatus}}</option>
+                <option>Processing</option>
+                <option>Uploaded</option>
+                <option>Approved</option>
+                <option *ngFor="let a of Statusupload">{{a.uploadStatus}}</option>
+              </select>
+            </div>
+            <div class="data" style="margin-top:10px">
+              <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
+              <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
+                <option disabled hidden selected>{{Status}}</option>
+                <option>Saji</option>
+                <option>Anjo</option>
+                <option>Preeth</option>
+              </select>
+            </div>
+            <div class="data">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Description</label>
+              <input type="text" name="title1" style="height:90px">
+            </div>
+
+
+          </div>
+          <div style="width:63%;padding-right:2%;">
+
+
+            <div class="uploadimage">
+              <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
+              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area" (click)="fileInput.click()">
+                <p>Drag & drop media here or click to upload</p>
+              </div>
+            </div>
+            <div class="createtask">
+              <button class="save-button pulse-effect hover-effect:hover">Save</button>
+              <button class="save-button pulse-effect hover-effect:hover">Approve</button>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
+  </div>
+</div>
+
