@@ -17,17 +17,19 @@ export class LoginComponent implements OnInit {
   message!: string;
   connection: any;
   connectionstr: any;
-  user: any
-
+  user: any;
+  pass: any;
+   
+  
 
   constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver) { }
   userdata(username: string, password: string) {
     var usern: string = username;
     var passw: string = password;
-    var query: string = " SELECT username,password FROM login where  username='" + this.username + "'and password='" + this.password + "'";
+    var query: string = "SELECT UserName,Password FROM[AWS].[tbl_Users] where  UserName='" + this.username + "'and Password='" + this.password + "'";
     var connection: string = "";
-    let params1 = new HttpParams().set('connection', connection).set('query', query);
-    return this.http.get("https://multitenancyloginuat.azurewebsites.net/Loadarlsdetails", { params: params1, })
+    let params1 = new HttpParams().set('spname', query);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
   }
 
   ngOnInit() {
@@ -58,34 +60,35 @@ export class LoginComponent implements OnInit {
     }
 
   }
-  //login(){
-  //  this.userdata(this.username, this.password).subscribe((userdetails) => {
-  //    console.warn("userdetails", userdetails)
-  //    this.connection = userdetails
+  login(): void{
+    this.userdata(this.username, this.password).subscribe((userdetails) => {
+      console.warn("userdetails", userdetails)
+      this.connection = userdetails
+     
+      for (let item of this.connection) {
+       /* this.connectionstr = item.databaseconnection;*/
+        this.user = item.UserName;
+        this.pass = item.Password;
 
-  //    for (let item of this.connection) {
-  //      this.connectionstr = item.databaseconnection;
-  //      this.user = item.username;
-
-  //    }
-  //    if (this.username != null && this.connectionstr != null && this.username == this.user) {
-  //      this.router.navigate(['/Home']);
-
-
-  //    } else {
-  //      alert("Invalid credentials");
-  //    }
-  //  })
-
-  //}
-  login(): void {
+      }
+      if (this.username != null && this.username == this.user && this.password != null && this.password == this.pass) {
+        this.router.navigate(['/main/Dashboardreport']);
 
 
-    if (this.username == 'aws@gmail.com' && this.password == 'aws@123') {
+      } else {
+        alert("Invalid credentials");
+      }
+    })
 
-      this.router.navigate(['/main/Dashboardreport']);
-    } else {
-      alert("Invalid credentials");
-    }
   }
+  //login(): void {
+
+
+  //  if (this.username == 'aws@gmail.com' && this.password == 'aws@123') {
+
+  //    this.router.navigate(['/main/Dashboardreport']);
+  //  } else {
+  //    alert("Invalid credentials");
+  //  }
+  //}
 }
