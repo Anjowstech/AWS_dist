@@ -21,6 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DashboardreportComponent } from './dashboardreport/dashboardreport.component';
 import { CreatesupplierComponent } from './createsupplier/createsupplier.component';
 import { ShipmentComponent } from './shipment/shipment.component';
+import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     FaceloginComponent,
     DashboardreportComponent,
     CreatesupplierComponent,
-    ShipmentComponent
+    ShipmentComponent,
+    TaskdetailpageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
