@@ -18,6 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { DashboardreportComponent } from './dashboardreport/dashboardreport.component';
 import { CreatesupplierComponent } from './createsupplier/createsupplier.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -51,6 +53,8 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDividerModule,
     FormsModule,
     MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
     RouterModule.forRoot(appRoutes, { useHash: false }),
   ],
   entryComponents: [TasklistComponent],

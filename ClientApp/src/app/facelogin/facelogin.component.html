@@ -1,5 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Recognition Login</title>
 
-<p>facelogin works!properly</p>
+</head>
+<body>
+  <div class="login-container">
 
-<p>facelogin works!properlyand correctly</p>
-<p>giri test123</p>
+    <p>Fast and Secure Login</p>
+    <div class="card-image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/musicalproject-8c68a.appspot.com/o/facelogo.avif?alt=media&token=43730056-56ca-457c-8b3f-4c1692b685f2" alt="Card Image">
+
+    </div>
+    <div class="face-capture">
+      <video id="video" width="320" height="50" autoplay></video>
+      <canvas id="canvas" width="320" height="50"></canvas>
+
+    </div>
+    <button id="login-btn">Login</button>
+    <a id="email-password-btn" routerLink="/login">Login With Email & Password</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
