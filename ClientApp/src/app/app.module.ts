@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -18,14 +21,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { DashboardreportComponent } from './dashboardreport/dashboardreport.component';
 import { CreatesupplierComponent } from './createsupplier/createsupplier.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
+import { ShipmentComponent } from './shipment/shipment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
     { path: 'Dashboardreport', component: DashboardreportComponent },
     { path: 'createsupplier', component: CreatesupplierComponent },
-
+    { path: 'Shipment', component: ShipmentComponent }
   ]
 }
 ];
@@ -44,7 +49,9 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     TasklistComponent,
     FaceloginComponent,
     DashboardreportComponent,
-    CreatesupplierComponent
+    CreatesupplierComponent,
+    ShipmentComponent,
+    TaskdetailpageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,12 +60,16 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDividerModule,
     FormsModule,
     MatIconModule,
+    MatTabsModule,
     MatMenuModule,
     MatButtonModule,
     RouterModule.forRoot(appRoutes, { useHash: false }),
+    MatDialogModule,
+        BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

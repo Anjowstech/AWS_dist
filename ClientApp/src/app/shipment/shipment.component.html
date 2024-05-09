@@ -1,0 +1,140 @@
+<h3>Shipment</h3>
+<div style="margin-top: 5px;background-color:white">
+
+  <h5 style="padding-top: 40px;">Select the status dropdown to view the tracking details</h5>
+  <div class="tasktable">
+
+    <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: hidden;">
+      <thead>
+        <tr style="position: sticky; top: 0; ">
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Order ID</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Tracking ID</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Task Name</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Estimated Delivery Time</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Location</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="active-row" *ngFor="let item of ShipmentList; let i=index let even=even" #conten (click)="Trackingshipment(item);">
+          <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;" >
+            <label class="Highligh"> {{item.OrderID}}</label>
+          </td>
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
+            {{item.TrackingID}}
+          </td>
+          <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; " >
+            {{item.TaskName}}
+          </td>
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
+            {{item.EstimatedDeliverytime}}
+          </td>
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
+            {{item.Location}}
+          </td>
+
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " title="Double Click For tracking">
+
+            <div>
+              <select (change)="changestatus($event,i)" 
+                      [style.background-color]="statusClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="hidtablestatus()">
+                <option [hidden]="hidstatus">{{item.Status}}</option>
+                <option *ngFor="let a of loadshipmentstatusloaddata" >{{a.Status}}</option>
+
+              </select>
+            </div>
+
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="container" [hidden]="trackinghid">
+        <article class="card">
+          <header class="card-header"> Orders / Tracking </header>
+          <div class="card-body">
+            <h6>Order ID: {{oderID}}</h6>
+            <article class="card">
+              <div class="card-body row">
+                <div class="col"> <strong>Estimated Delivery time:</strong> <br>{{EstimatedDeliverytime}} </div>
+                <div class="col"> <strong>Status:</strong> <br> {{Status}} </div>
+                <div class="col"> <strong>Tracking #:</strong> <br> {{TrackingID}} </div>
+              </div>
+            </article>
+            <div class="track" *ngIf="Status== 'Ready for Shipment'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
+
+            </div>
+
+            <div class="trackleftwarehouse" *ngIf="Status== 'Left from Warehouse'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
+
+            </div>
+            <div class="trackintransit" *ngIf="Status== 'In Transit'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
+
+            </div>
+            <div class="track" *ngIf="Status== 'Within reach of warehouse'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+
+              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
+
+            </div>
+            <div class="trackDelivered to warehouse" *ngIf="Status== 'Delivered to Warehouse'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+
+              <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
+
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="col-md-6">
+
+      <div class="data">
+        <label class="label1">Description</label><br>
+        <textarea type="text" name="title" rows="5"></textarea>
+      </div>
+      <div class="uploadimage">
+        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <button class="save-button pulse-effect hover-effect:hover" style="float:right;position:sticky;bottom:0">Submit</button>
+</div>
