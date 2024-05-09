@@ -1,5 +1,5 @@
-<!--<div class="main-box">
-  <div class="inners-box">-->
+<div class="main-box">
+  <div class="inners-box">
     <!--<div class="top-header">
       <div class="row">
         <div class="col-12 col-md-4 col-lg-4 report-logo">
@@ -8,7 +8,7 @@
 
       </div>
     </div>-->
-    <!--<h3 style="color: #1f538e; padding: 1%">Task Detail</h3>
+    <h3 style="color: #1f538e; padding: 1%">Task Detail</h3>
     <div class="row">
       <div style="width:63%;padding-right:2%;">
         <div class="data">
@@ -51,16 +51,16 @@
 
         <div class="uploadimage">
           <label style="width: 30%; color: #5b5b69; font-weight: 500;">Select Files</label>
-          <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-          <div class="upload-area" (click)="fileInput.click()">
+          <input type="file" #fileInput [multiple]="true" placeholder="Custom Placeholder">
+          <div class="upload-area">
             <p>Drag & drop media here or click to upload</p>
           </div>
         </div>
 
         <div class="createtask">
-          <button class="primary-button rounded-button">View Images</button>-->
+          <button class="primary-button rounded-button">View Images</button>
           <!--<button class="save-button pulse-effect hover-effect:hover">View Images</button>-->
-        <!--</div>
+        </div>
 
       </div>
       <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
@@ -75,8 +75,6 @@
               </td>
             </tr>
           </thead>
-
-
           <tbody>
             <tr class="labelhover" *ngFor="let a of OrderManagementList">
               <td style="text-align:left;font-size:small;">
@@ -116,12 +114,12 @@
 
           <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
 
           <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
         </div>
 
@@ -129,9 +127,9 @@
 
           <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
           <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
         </div>
         <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
           <thead>
@@ -169,7 +167,7 @@
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
                 <input type="checkbox" />
               </td>
-            </tr>-->
+            </tr>
             <!--<tr>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
@@ -238,7 +236,7 @@
                 <input type="checkbox" />
               </td>
             </tr>-->
-          <!--</tbody>
+          </tbody>
         </table>
         <div class="row" style="height:100%">
           <div style="width: 35%;overflow-y: auto; overflow-x: hidden;">
@@ -269,25 +267,25 @@
           <div style="width:63%;padding-right:2%;">
             <div class="uploadimage">
               <label style="width: 30%; color: #5b5b69; font-weight: 500;">Select Files</label>
-              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-              <div class="upload-area" (click)="fileInput.click()">
+              <input type="file" #fileInput [multiple]="true">
+              <div class="upload-area">
                 <p>Drag & drop media here or click to upload</p>
               </div>
             </div>
             <div class="data" style="margin-top:10px">
               <label style="width: 14%; color: #5b5b69; font-weight: 500;">Status</label>
               <select style="border: none; width: 20%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{supplierselctionStatus}}</option>
+                <!--<option disabled hidden selected>{{supplierselctionStatus}}</option>-->
                 <option>Enquired</option>
                 <option>Available</option>
                 <option>Out of Stock</option>
-                <option *ngFor="let a of StatusList">{{a.supplierselctionStatus}}</option>
+                <!--<option *ngFor="let a of StatusList">{{a.supplierselctionStatus}}</option>-->
               </select>
             </div>
             <div class="data" style="margin-top:10px">
               <label style="width: 14%; color: #5b5b69; font-weight: 500;">Assigned To</label>
               <select style="border: none; width: 20%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{Status}}</option>
+                <!--<option disabled hidden selected>{{Status}}</option>-->
                 <option>Saji</option>
                 <option>Anjo</option>
                 <option>Preeth</option>
@@ -319,12 +317,12 @@
 
           <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
 
           <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
         </div>
 
@@ -332,9 +330,9 @@
 
           <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
           <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
         </div>
         <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
           <thead>
@@ -372,7 +370,7 @@
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
                 <input type="checkbox" />
               </td>
-            </tr>-->
+            </tr>
             <!--<tr>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
@@ -441,7 +439,7 @@
                 <input type="checkbox" />
               </td>
             </tr>-->
-          <!--</tbody>
+          </tbody>
         </table>
         <div class="row">
           <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
@@ -453,18 +451,18 @@
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{qaStatus}}</option>
+                <!--<option disabled hidden selected>{{qaStatus}}</option>-->
                 <option>Rejected</option>
                 <option>Processing</option>
                 <option>Sent for approval</option>
                 <option>Waiting for approval</option>
-                <option *ngFor="let a of StatusListqa">{{a.qaStatus}}</option>
+                <!--<option *ngFor="let a of StatusListqa">{{a.qaStatus}}</option>-->
               </select>
             </div>
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{Status}}</option>
+                <!--<option disabled hidden selected>{{Status}}</option>-->
                 <option>Saji</option>
                 <option>Anjo</option>
                 <option>Preeth</option>
@@ -484,8 +482,8 @@
 
             <div class="uploadimage">
               <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
-              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-              <div class="upload-area" (click)="fileInput.click()">
+              <input type="file" #fileInput [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area">
                 <p>Drag & drop media here or click to upload</p>
               </div>
             </div>
@@ -515,12 +513,12 @@
 
           <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
 
           <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
         </div>
 
@@ -528,9 +526,9 @@
 
           <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
           <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
         </div>
         <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
           <thead>
@@ -568,7 +566,7 @@
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
                 <input type="checkbox" />
               </td>
-            </tr>-->
+            </tr>
             <!--<tr>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
@@ -637,7 +635,7 @@
                 <input type="checkbox" />
               </td>
             </tr>-->
-          <!--</tbody>
+          </tbody>
         </table>
         <div class="row">
           <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
@@ -649,18 +647,18 @@
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{cStatus}}</option>
+                <!--<option disabled hidden selected>{{cStatus}}</option>-->
                 <option>Under Review</option>
                 <option>Valid</option>
                 <option>Fail</option>
                 <option>Expired</option>
-                <option *ngFor="let a of Statuscertifications">{{a.cStatus}}</option>
+                <!--<option *ngFor="let a of Statuscertifications">{{a.cStatus}}</option>-->
               </select>
             </div>
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{Status}}</option>
+                <!--<option disabled hidden selected>{{Status}}</option>-->
                 <option>Saji</option>
                 <option>Anjo</option>
                 <option>Preeth</option>
@@ -679,8 +677,8 @@
 
             <div class="uploadimage">
               <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
-              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-              <div class="upload-area" (click)="fileInput.click()">
+              <input type="file" #fileInput [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area">
                 <p>Drag & drop media here or click to upload</p>
               </div>
             </div>
@@ -710,12 +708,12 @@
 
           <input type="text" placeholder="Search Brand" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
 
           <input type="text" placeholder="Search Category" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
 
         </div>
 
@@ -723,9 +721,9 @@
 
           <input type="text" placeholder="Search Product" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
 
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
           <input type="text" placeholder="Search Region" style="background-color: white; width: 40%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
-          <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
+          <mat-icon style="font-size:x-large;margin-left:1%;">search</mat-icon>
         </div>
         <table class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family:system-ui; font-size: 13px; margin-left: 1%; overflow-x: auto;">
           <thead>
@@ -763,7 +761,7 @@
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">
                 <input type="checkbox" />
               </td>
-            </tr>-->
+            </tr>
             <!--<tr>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Earth (Hypermarket, Supermarket, Mart)</td>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">Nil</td>
@@ -832,7 +830,7 @@
                 <input type="checkbox" />
               </td>
             </tr>-->
-          <!--</tbody>
+          </tbody>
         </table>
         <div class="row">
           <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
@@ -843,17 +841,17 @@
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Status</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{uploadStatus}}</option>
+                <!--<option disabled hidden selected>{{uploadStatus}}</option>-->
                 <option>Processing</option>
                 <option>Uploaded</option>
                 <option>Approved</option>
-                <option *ngFor="let a of Statusupload">{{a.uploadStatus}}</option>
+                <!--<option *ngFor="let a of Statusupload">{{a.uploadStatus}}</option>-->
               </select>
             </div>
             <div class="data" style="margin-top:10px">
               <label style="width: 26%; color: #5b5b69; font-weight: 500;">Assigned To</label>
               <select style="border: none; width: 34%; color: black; border-left: 3px solid #1f538e">
-                <option disabled hidden selected>{{Status}}</option>
+                <!--<option disabled hidden selected>{{Status}}</option>-->
                 <option>Saji</option>
                 <option>Anjo</option>
                 <option>Preeth</option>
@@ -871,8 +869,8 @@
 
             <div class="uploadimage">
               <label style="width: 30%; color: #5b5b69; font-weight: 500;">Upload Files</label>
-              <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-              <div class="upload-area" (click)="fileInput.click()">
+              <input type="file" #fileInput [multiple]="true" placeholder="Custom Placeholder">
+              <div class="upload-area">
                 <p>Drag & drop media here or click to upload</p>
               </div>
             </div>
@@ -897,5 +895,5 @@
 
 
   </div>
-</div>-->
+</div>
 
