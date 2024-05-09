@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,11 +27,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 import { MarketResearchComponent } from './market-research/market-research.component';
+import { CameraComponent } from './camera/camera.component';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
     { path: 'Dashboardreport', component: DashboardreportComponent },
     { path: 'createsupplier', component: CreatesupplierComponent },
+    { path: 'TaskdetailpageComponent', component: TaskdetailpageComponent },
     { path: 'marketresearch', component: MarketResearchComponent },
     { path: 'Shipment', component: ShipmentComponent }
   ]
@@ -54,13 +57,15 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     CreatesupplierComponent,
     ShipmentComponent,
     TaskdetailpageComponent,
-    MarketResearchComponent
+    MarketResearchComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     MatToolbarModule,
     MatDividerModule,
+    NgbModule,
     FormsModule,
     MatIconModule,
     MatTabsModule,

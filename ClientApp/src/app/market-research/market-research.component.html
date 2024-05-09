@@ -1,219 +1,813 @@
-<div style="background-color: whitesmoke; height: 100%;">
-
-
-  <div style="padding-left: 2px; padding-top:30px;">
-
-    <div style="height: auto;">
-      <button style="margin-right: 1%;box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 41px; color: black; background-color: #8eada0; float: right; font-size: large; font-family: Calibri; border-radius: 0px; padding: 0px 11px; font-weight: 600; border: none; ">
-        + Add Task
-      </button>
-    </div>
-    <br />
-    <br />
-
-    <div class="taskbutton">
-
-      <table style="margin-left:1%;width:90%;">
-        <tr>
-          <td width="4%">
-            <button type="submit" class="btn btn-primary" style="margin-right: 10px; box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 41px; border-radius: 2px; color: black; background-color: #98ad8e; font-size: large; font-family: Calibri; padding: 0px 28px; font-weight: 600; border: none; " >All</button>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #a9d5d6;color:black;">Status</a>
-              <ul>
-                <li (click)="statusfilter('InProgress')"><a>InProgress</a></li>
-                <li (click)="statusfilter('Pending')"><a>Pending</a></li>
-                <li (click)="statusfilter('Not Started')"><a>Not Started</a></li>
-                <li (click)="statusfilter('Completed')"><a>Completed</a></li>
-                <li (click)="statusfilter('Approved')"><a>Approved</a></li>
-              </ul>
-            </div>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #a6c2e0; color: black;">Brand</a>
-              <ul>
-                <li *ngFor="let a of uniqueDataBrand"><a (click)="brandfilter(a.Brand)">{{a.Brand}}</a></li>
-              </ul>
-            </div>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #91c49c; color: black;">Category</a>
-              <ul>
-                <li *ngFor="let a of uniqueDataCategory"><a (click)="categoryfilter(a.Category)">{{a.Category}}</a></li>
-              </ul>
-            </div>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #b5c491; color: black;">Product</a>
-              <ul>
-                <li *ngFor="let a of uniqueDataProduct"><a (click)="productfilter(a.Product)">{{a.Product}}</a></li>
-              </ul>
-            </div>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #c2a98d; color: black;">AssignedTo</a>
-              <ul>
-                <li *ngFor="let a of uniqueDataAssigned"><a (click)="assignedtofilter(a.AssignedTo)">{{a.AssignedTo}}</a></li>
-              </ul>
-            </div>
-          </td>
-          <td>
-            <div class="dropdown hover">
-              <a style="background-color: #c2998d; color: black;">Department</a>
-              <ul>
-                <li *ngFor="let a of uniqueDataDepartment"><a (click)="departmentfilter(a.Department)">{{a.Department}}</a></li>
-              </ul>
-            </div>
-          </td>
-
-        </tr>
-      </table>
-
-
-      <table style="margin-left:1%;width:90%;margin-top:1%;">
-        <tr>
-          <td width="35%">
-            <input type="text" placeholder="Search here" style="background-color: white; width: 100%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
-          </td>
-          <td width="5%">
-            <mat-icon style="font-size:x-large;margin-left:1%;" (click)="SearchFunction()">search</mat-icon>
-          </td>
-          <td width="35%">
-            <input type="date" id="prodfrm" class="form-control inputtextbox" style="height:28px;background-color: white; width: 90%;margin-left:7%; border: none; font-family: Calibri; font-size: large;display:inline; border-radius: 5px;" [(ngModel)]="ngassigneddate" name="prddatefrm" value="" />
-          </td>
-          <td width="5%">
-            <mat-icon style="font-size:x-large;margin-left:1%;" (click)="assigndatefilter(ngassigneddate)">search</mat-icon>
-          </td>
-
-        </tr>
-
-      </table>
-
-
-
-
-
-
-
-
-
+<div width="100%">
+  <!--<div class="image" style="background-image: url(../../assets/product34.jpg) "  width="100%" >-->
+  <!--<img src="../../assets/nw-logo-jpg.jpg"/>-->
+  <div>
+    <h3>Market Research</h3>
+    <div style="margin-top: 5px;background-color:white">
       <div class="tasktable">
 
-        <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family: Calibri; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+        <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
           <thead>
             <tr>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;">Task ID</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:10%;">Task Name</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Brand</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:5%;">Category</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:5%;">Product</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Due Date</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Assigned Date</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Initially Assigned</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Currently Assigned</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Status</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Department</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Workflow</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Report</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Images</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Task ID</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Task Name</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">PO No</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Supplier</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Location</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">PMI</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Name</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Designation</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Contact No</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr (dblclick)="navigatetodetail()" class="active-row" *ngFor="let item of AssignedTaskList" #conten>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;">{{item.TaskID}}</td>
-              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.TaskName}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; ">{{item.Brand}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; ">{{item.Category}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; ">{{item.Product}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.DueDate}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.Assigenddate}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.InitiallyAssigned}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; ">{{item.CurrentlyAssigned}}</td>
+            <tr class="active-row" *ngFor="let item of OrderManagementList" #conten>
+              <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;">{{item.TaskID}}</td>
+              <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
+              <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.PurOrderNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Supplier}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Location}}</td>
 
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.PMI}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Name}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Designation}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.ContactNo}}</td>
 
-
-              <td *ngIf="item.Status =='InProgress'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small;font-family:Calibri; font-weight: 400; color: black;">
-                <div class="form-inline">
-                  <mat-icon style="color: lightgreen;">play_circle_outline</mat-icon>
-                  {{item.Status}}
-                </div>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " title="Double Click to Update">
+                {{item.Status}}
               </td>
-
-              <td *ngIf="item.Status =='Pending for approval'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e8e843; ">pause_circle_outline</mat-icon>
-                  <!--{{item.Status}}--> Pending
-                </div>
-              </td>
-              <td *ngIf="item.Status =='Not started'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e8e843; ">pause_circle_outline</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-              <td *ngIf="item.Status =='Approved'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: forestgreen;">check_circle</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-              <td *ngIf="item.Status =='Completed'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: forestgreen;">check_circle</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-              <td *ngIf="item.Status =='Cancelled'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e36959;">highlight_off</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-
-
-
-              <td style="border: 2px solid lightgrey; text-align: center; width: 7%; color: black;">{{item.Department}}</td>
-
-
-              <td style="border: 2px solid lightgrey; text-align: center; width: 6%; color: black;">
-                <button title="Click to View Workflow" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;" (click)="ViewAWSWorkFlow(item)">Workflow</button>
-              </td>
-              <td style="border: 2px solid lightgrey; text-align: center; width: 6%; color: black;">
-                <button title="Click to View Report" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;" (click)="OpenTaskReport(item)">Report</button>
-              </td>
-              <td style="border: 2px solid lightgrey; text-align: center; width: 7%; color: black;">
-                <button title="Click to View Images" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;" (click)="ViewImage(item)">View</button>
-              </td>
-
-
-
-
-
-
 
             </tr>
           </tbody>
         </table>
 
       </div>
+      <!--<div class="col-md-9">
 
 
+        <div class="data">
+          <label>Task Name</label><br>
+          <input type="text" class="inputclass3 " name="title"><br>
+        </div>
+        <div class="dataSelect">
+          <label>Brand</label><br>
+          <select>
+            <option style="color: grey; font-style: italic" disabled selected hidden></option>
+            <option>MP</option>
+            <option>European Tourister</option>
+            <option>Panda Cola</option>
+            <option>Mont Carlo</option>
+            <option>Delita</option>
+          </select>
+        </div>
+        <div class="dataSelect">
+          <label>Category</label><br>
+          <select>
+            <option style="color: grey; font-style: italic" disabled selected hidden></option>
+            <option>Food Item</option>
+            <option>Non Food Item</option>
+            <option>Carbonated Water</option>
+            <option>Spices</option>
+            <option>Processed food</option>
 
 
+          </select>
+        </div>
+        <div class="dataSelect">
+          <label>Product</label><br>
+          <select>
+            <option style="color: grey; font-style: italic" disabled selected hidden></option>
+            <option>Sweet and sault Savoury</option>
+            <option>Fruits and Vegetables, Frozen</option>
+            <option>Sauce</option>
+            <option>Honey</option>
+            <option>Dates</option>
+            <option>Pastry</option>
+          </select>
+        </div>
+        <div class="dataSelect">
+          <label>Supplier</label><br>
+          <select>
+            <option style="color: grey; font-style: italic" disabled selected hidden></option>
+            <option>Juuicy</option>
+            <option>Fillimi</option>
+            <option>Bambino</option>
+            <option>Flowlite</option>
+            <option>Daily Bite</option>
+
+
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div style="min-height: 450px; margin-top: 30px; border: none; width: 100%">
+          <img src="../assets/DreamHost-howto-prod-descrips-full.jpeg " height="150" width="350" />
+
+        </div>
+      </div>-->
     </div>
 
   </div>
 
 
+  <div style="background-color:white;" width="100%">
+
+    <div style="overflow-y:auto;overflow-x:hidden;">
+
+      <div>
+        <div class="row">
+          <div class="col-md-12">
+
+            <div>
+              <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs"  style="padding-top: 5px;">
+                <ng-container ngbNavItem="1" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Packaging</a>
+                  <ng-template ngbNavContent>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+                    <div class="tasktable">
+                      <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+                        <thead>
+                          <tr>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Image</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Component Name</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Specification</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Size</th>
+                            <!--<th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Unit Cost $</th>-->
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Fillable</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Upload</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+
+                          <tr class="active-row">
+
+                            <td style="font-size:medium;text-align:center;" width="15%">
+                              <img src="../assets/Carton.jpg " height="250" width="250" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              CARTON
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              CARTON
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              6 in 1 CARTON
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              No
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                            </td>
+                          </tr>
+
+                          <tr class="active-row">
+                            <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+                              <img src="../assets/bottle-package-designs.jpg " height="250" width="250" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              500 ML Bottle
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              500 ML Bottle
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              1 Bottle
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              Yes
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                            </td>
+                          </tr>
+                          <!--<tr class="active-row">
+                            <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+                              <img src="../assets/imagescap.jfif " height="150" width="150" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              CAP
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              CAP
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              1 CAP
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              No
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                            </td>
+                          </tr>-->
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </ng-template>
+
+
+
+                </ng-container>
+                <ng-container ngbNavItem="2" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Label</a>
+                  <ng-template ngbNavContent>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+
+
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="form-row">
+
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <table width="100%">
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
+                                  <td style="width: 24%; text-align: left; "> <input class="inputclass" type="text" placeholder="Enter here" [(ngModel)]="ngtaskname" /></td>
+
+
+                                </tr>
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
+                                  <td style="width: 24%; text-align: left; padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" [(ngModel)]="ngstatus" /></td>
+
+                                </tr>
+
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
+                                  <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" [(ngModel)]="ngcategory" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
+                                  <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" [(ngModel)]="ngcategory" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
+                                  <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" [(ngModel)]="ngproduct" /></td>
+
+                                </tr>
+
+
+                              </table>
+                            </div>
+                            <div class="col-md-6">
+
+                              <table width="100%">
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
+                                  <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Add Barcode image" [(ngModel)]="ngproduct" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button></td>
+                                  <td width="10%">
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
+                                  <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                                    <input class="inputclass" type="text" placeholder="Add Product image" [(ngModel)]="ngproduct" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;"> Browse</button>
+                                  </td>
+                                  <td width="10%">
+                                  </td>
+                                </tr>
+                              </table>
+
+                            </div>
+                            <div class="col-md-2">
+                              <div style=" border: none;  width: 100%; ">
+                                <img src="../assets/barcode.jpg " height="150" width="250" />
+
+                              </div>
+                              <div style=" margin-top: 30px; border: none; width: 100%">
+                                <img src="../assets/DreamHost-howto-prod-descrips-full.jpeg " height="150" width="250" />
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </ng-template>
+
+
+
+                </ng-container>
+                <ng-container ngbNavItem="3">
+                  <a class="tabcolor tabbutto tabrowli textsize" ngbNavLink>Artwork</a>
+                  <ng-template ngbNavContent>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+                    <ng-template #innerTabset class="nav-tabs ">
+                      <ngb-tabset>
+                        <ngb-tab>
+                          <ng-template ngbTabTitle><span style="font-size: smaller; " class="textsize">Artwork </span></ng-template>
+                          <ng-template ngbTabContent>
+                            <div class="form-inline" style="margin-top:25px;">
+                              <label class="label1" for="inputcust" style="margin-left:25px;font-size: smaller;font-family: Verdana;">Picture File</label>
+                              <input type="text" style="width:60%;" class="form-control" placeholder="" id="PDR" [(ngModel)]="picturefile1" name="pt1" value="">
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+
+
+                            </div>
+                            <div class="form-inline" style="margin-top:25px;">
+                              <div style=" margin-top: 30px; border: none; width: 100%">
+                                <img src="../assets/packagingart.jfif " height="150" width="350" />
+                                <img src="../assets/pack2art.jfif " height="150" width="150" />
+                                <img src="../assets/pack2art.jfif " height="150" width="150" />
+
+                              </div>
+
+                            </div>
+                          </ng-template>
+                        </ngb-tab>
+
+                        <ngb-tab>
+                          <ng-template ngbTabTitle><span style="font-size: smaller;" class="textsize">Audit Tracking</span></ng-template>
+                          <ng-template ngbTabContent>
+                            <form>
+                              <div style="margin-top: 1%; overflow-y:scroll; width: 100%; background-color: white;">
+                                <table class="styled-table" style="background-color: white;width:100%">
+                                  <thead>
+                                    <tr>
+                                      <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 20%;">Date</th>
+                                      <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 60%;">Task</th>
+                                      <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 20%;">Username</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </form>
+                          </ng-template>
+                        </ngb-tab>
+
+                      </ngb-tabset>
+                    </ng-template>
+                  </ng-template>
+                </ng-container>
+                <!--<ng-container ngbNavItem="4" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>BULK/FG COA Param</a>
+                  <ng-template ngbNavContent>
+                    <ng-container *ngTemplateOutlet="innerTabset"></ng-container>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <table class="styled-table" style="width: 100%; border: 2px solid lightgrey;font-family:Calibri;font-size:small;">
+                          <thead>
+                            <tr>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Claim</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Method</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Limits</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
+
+
+                            </tr>
+                          </thead>
+                          <tbody>
+
+
+                            <tr class="active-row">
+                              <td>
+                                PH
+                              </td>
+                              <td>
+                                PH SOLUTION
+                              </td>
+                              <td>
+                                5.4-6.5
+                              </td>
+                              <td>admin</td>
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-md-6">
+                        <table class="styled-table" style="width: 100%; border: 2px solid lightgrey;font-family:Calibri;font-size:small;">
+                          <thead>
+                            <tr>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Test</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Method</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">USP SPECS cfu/g</th>
+                              <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
+
+
+                            </tr>
+                          </thead>
+                          <tbody>
+
+
+                            <tr class="active-row">
+                            </tr>
+
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </ng-template>
+
+
+
+                </ng-container>-->
+
+                <ng-container ngbNavItem="4">
+                  <a class="tabcolor tabbutto tabrowli textsize" ngbNavLink>Approvals</a>
+                  <ng-template ngbNavContent>
+                    <!--<p style="font-family:Verdana;margin-top:10px;margin-left:5px;font-size:small"><b><u>Product Registration Approvals</u></b></p>-->
+
+
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 1</Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 2</Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; ">Region 3</Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 4</Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 5</Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                          </td>
+
+                        </tr>
+
+                        <tr>
+                          <td width="10%">
+                            <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">
+                              Region 6
+                            </Label>
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />yes
+
+                          </td>
+                          <td width="5%">
+                            <input type="radio" />No
+
+                          </td>
+                          <td width="50%">
+                            <input class="inputclass" type="text" [(ngModel)]="ngtaskname" />
+                          </td>
+                          <td width="10%">
+                            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+                          </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+
+
+                  </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem="5">
+
+                  <a class="tabcolor tabbutto tabrowli textsize" ngbNavLink>Product Specification</a>
+                  <ng-template ngbNavContent>
+
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+                    <ng-template #innerTabset class="nav-tabs ">
+                      <ngb-tabset>
+                        <ngb-tab>
+                          <ng-template ngbTabTitle><span style=" font-size: smaller;" class="textsize">General Information</span></ng-template>
+                          <ng-template ngbTabContent>
+
+
+                            <table>
+                              <tr>
+                                <td width="5%">
+                                  <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Product Description</label>
+
+                                </td>
+                                <td width="50%">
+                                  <form class="form-inline" style="    background-color: white">
+                                    <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" [(ngModel)]="productdescription" name="prddesc" value=""></textarea>
+                                  </form>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="5%">
+                                  <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Applications</label>
+
+                                </td>
+                                <td width="50%">
+                                  <form class="form-inline" style="    background-color: white">
+                                    <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" [(ngModel)]="productdescription" name="prddesc" value=""></textarea>
+                                  </form>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="5%">
+                                  <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana;">Technical Information</label>
+
+                                </td>
+                                <td width="50%">
+                                  <form class="form-inline" style="    background-color: white">
+                                    <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" [(ngModel)]="productdescription" name="prddesc" value=""></textarea>
+                                  </form>
+                                </td>
+                              </tr>
+                            </table>
+
+
+
+
+                          </ng-template>
+                        </ngb-tab>
+                        <!--<ngb-tab>
+                          <ng-template ngbTabTitle><span style="font-size: smaller; " class="textsize">Product Properties</span></ng-template>
+                          <ng-template ngbTabContent>
+                            <div style="margin-left: 1%; margin-top: 1%; height: 20rem; overflow-y: auto; background-color: white; border: solid; border-width: 0.1px">
+                              <table class="styled-table" style="background-color: white;width:100%;font-size:smaller;" id="rawmaterial table">
+                                <thead>
+                                  <tr>
+
+                                    <th class="header tabledatasize" scope="col">Property</th>
+                                    <th class="header tabledatasize" scope="col">Value</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let load_raw_prop of propertydata; let i=index;">
+                                    <td class="tabledatasize"> {{load_raw_prop.PropertyName}}</td>
+                                    <td class="tabledatasize"> {{load_raw_prop.PropertyValue}}</td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+
+                            <div style="background-color: white;border:solid 0.1px darkgrey">
+
+
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+
+                            </div>
+
+                          </ng-template>
+                        </ngb-tab>-->
+
+
+
+
+
+
+                      </ngb-tabset>
+                    </ng-template>
+
+
+
+
+                  </ng-template>
+                </ng-container>
+
+                <!--<ng-container ngbNavItem="6" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Product Batch History</a>
+                  <ng-template ngbNavContent>
+                    <ng-container *ngTemplateOutlet="innerTabset"></ng-container>
+                    <table class="styled-table" style="background-color: white;" width="100%">
+                      <thead>
+                        <tr>
+                          <th   style="text-align: center; font-size: small; ">Date</th>
+                          <th   style="text-align: center; font-size: small; ">Source </th>
+                          <th   style="text-align: center; font-size: small; ">B/F</th>
+                          <th   style="text-align: center; font-size: small; ">QTY</th>
+                          <th   style="text-align: center; font-size: small; ">Code</th>
+                          <th   style="text-align: center; font-size: small; ">Color</th>
+                          <th   style="text-align: center; font-size: small; ">Odor</th>
+                          <th   style="text-align: center; font-size: small; ">Texture</th>
+                          <th   style="text-align: center; font-size: small; ">pH</th>
+                          <th   style="text-align: center; font-size: small; ">Viscosity</th>
+                          <th   style="text-align: center; font-size: small; ">Specific Gravity</th>
+                          <th   style="text-align: center; font-size: small; ">Solids</th>
+                          <th   style="text-align: center; font-size: small; ">Remarks</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </ng-template>
+
+
+
+                </ng-container>-->
+                <!--<ng-container ngbNavItem="10" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>CMO</a>
+                  <ng-template ngbNavContent>
+                    <ng-container *ngTemplateOutlet="innerTabset"></ng-container>
+                    <table class="styled-table" style="background-color: white;" width="100%">
+                      <thead>
+                        <tr>
+                          <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 20%;">No</th>
+                          <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 60%;">CMO </th>
+                          <th class="header tabledatasize" scope="col" style="text-align: center; font-size: small; width: 20%;">Notes</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </ng-template>
+
+
+
+                </ng-container>-->
+                <ng-container ngbNavItem="6" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Audit</a>
+                  <ng-template ngbNavContent>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+                    <div style="margin-top: 1%;  overflow-y:scroll; width: 100%; background-color: white;">
+                      <table class="styled-table" style="background-color: white;" width="100%">
+                        <thead>
+                          <tr>
+                            <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Date</th>
+                            <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Task</th>
+                            <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let a of Auditlist">
+                            <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Date}}</td>
+                            <td style="border: 2px solid lightgrey;font-size:medium;text-align:left;">{{a.TaskName}}</td>
+                            <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Username}}</td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </ng-template>
+
+
+
+                </ng-container>
+              </nav>
+
+
+              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div style="background-color: white;padding-top:40px; ">
+        <table width="100%">
+          <tr>
+            <td width="80%"></td>
+
+            <td width="10%">
+              <label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>
+              <!--<input type="checkbox" style="float: right; margin-top: 1.5%;  " />-->
+              <input type="checkbox" class="largerCheckbox" style="float: right; "
+                     name="checkBox2">
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;">Submit</button>
+              <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 200px; font-size: smaller; height: 30px;">Approve Product</button>-->
+
+            </td>
+          </tr>
+        </table>
+        <!--<input class="form-check-input" style="margin-left:90%; margin-top: -2.5%;" id="apprform" type="checkbox" value="">
+        <label style="float: right; margin-left: 2%; margin-top: -3.5%; color: #1f538e; font-size: large;"><b>Approve Product</b></label>-->
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
 
 
 
