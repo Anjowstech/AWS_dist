@@ -1,0 +1,46 @@
+<body>
+  <div>
+    <div>
+      <h1>Create Component</h1>
+
+    </div>
+
+
+    <div>
+      <div class="data">
+        <label>Component Name</label><br>
+        <input type="text" [(ngModel)]="ComponentName" name="title"><br>
+      </div>
+      <div class="data">
+        <label>Specification</label><br>
+        <input type="text"  [(ngModel)]="Specification" name="title">
+      </div>
+      <div class="data">
+        <label>Size</label><br>
+          <input type="text"  [(ngModel)]="Size"  name="title">
+      </div>
+
+
+      <div class="data">
+        <label>Unit Cost $</label><br>
+        <input type="text"   [(ngModel)]="UnitCost" name="title">
+      </div>
+     
+
+
+     
+      <div class="uploadimage">
+        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+
+      <div class="createtask">
+        <button class="save-button1 hover-effect:hover" (click)="Cleardata()" matDialogClose>Clear</button>
+        <button class="save-button pulse-effect hover-effect:hover" (click)="savecomponent()">Save</button>
+      </div>
+
+    </div>
+  </div>
+</body>

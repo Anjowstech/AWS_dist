@@ -19,13 +19,13 @@
       <tbody>
         <tr class="active-row" *ngFor="let item of ShipmentList; let i=index let even=even" #conten (click)="Trackingshipment(item);">
           <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;" >
-            <label class="Highligh"> {{item.OrderID}}</label>
+            <label class="Highligh"> {{item.OrderId}}</label>
           </td>
-          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
-            {{item.TrackingID}}
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">
+            {{item.TrackingId}}
           </td>
-          <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; " >
-            {{item.TaskName}}
+          <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">
+            {{item.Taskname}}
           </td>
           <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
             {{item.EstimatedDeliverytime}}
@@ -122,7 +122,7 @@
 
       <div class="data">
         <label class="label1">Description</label><br>
-        <textarea type="text" name="title" rows="5"></textarea>
+        <textarea type="text" name="title" [(ngModel)]="Description" rows="5"></textarea>
       </div>
       <div class="uploadimage">
         <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
@@ -136,5 +136,5 @@
 
 
 
-  <button class="save-button pulse-effect hover-effect:hover" style="float:right;position:sticky;bottom:0">Submit</button>
+  <button class="save-button pulse-effect hover-effect:hover" style="float:right;position:sticky;bottom:0" (click)="submitclick()">Submit</button>
 </div>
