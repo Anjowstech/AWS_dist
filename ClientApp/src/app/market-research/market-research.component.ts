@@ -1,12 +1,4 @@
-import { Component, Inject, OnInit, ElementRef, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -19,226 +11,68 @@ import { Router } from '@angular/router';
   styleUrls: ['./market-research.component.css']
 })
 export class MarketResearchComponent implements OnInit  {
-  AssignedTaskList = [
-    { TaskID: "1", TaskName: "AFRA FOODS APRICOT JAM 375G (GLASS JAR)", Brand: "European Garden", Category: "JAMS", Product: "Food", DueDate: "30-04-2024", Assigenddate: "01-01-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "Praveen", Status: "InProgress", Department: "Clearance", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-    { TaskID: "2", TaskName: "AFRA FOODS BAKED BEANS IN TOMATO SAUCE 220G (CANNED)", Brand: "AFRA Foods", Category: "SAUCES", Product: "Food", DueDate: "15-04-2024", Assigenddate: "01-02-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "Lalu", Status: "InProgress", Department: "Orders", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-    { TaskID: "3", TaskName: "Daily Bite FOODS BAKED BEANS IN TOMATO SAUCE 400G (CANNED)", Brand: "Daily Byte", Category: "SAUCES", Product: "Food", DueDate: "18-04-2024", Assigenddate: "01-03-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "Shekar", Status: "Pending for approval", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "download icon.png" },
-    { TaskID: "4", TaskName: "Delita FOODS BBQ SAUCE ORIGINAL 18 OZ (510G)", Brand: "Delita", Category: "SAUCES", Product: "Food", DueDate: "19-04-2024", Assigenddate: "01-01-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "Sharaz", Status: "Pending for approval", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-    { TaskID: "5", TaskName: "Oil Tree FOODS BLENDED VEG COOKING OIL PET BOTTLE W/H 1.5L", Brand: "Oil Tree", Category: "Cooking Oil", Product: "Oil", DueDate: "25-04-2024", Assigenddate: "01-04-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "ere", Status: "Not started", Department: "Design", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-    { TaskID: "6", TaskName: "Raya FOODS CHICK PEAS 400G (CANNED)", Brand: "RAYA", Category: "Canned", Product: "Food", DueDate: "28-04-2024", Assigenddate: "01-05-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "yuu", Status: "Completed", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-    { TaskID: "7", TaskName: "Super Tasty FOODS CHICKEN LUNCHEON MEAT 200G", Brand: "SUPER Tasty", Category: "Meat", Product: "Food", DueDate: "30-04-2024", Assigenddate: "01-05-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "uoo", Status: "Approved", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-  ];
-  filterMetadata = { count: 0 };
-  ngtaskname: string = "";
-  ngstatus: string = "";
-  ngbrand: string = "";
-  ngcategory: string = "";
-  ngproduct: string = "";
-  ngassigneddate: string = "";
-  ngassignedto: string = "";
-  ngdepartment: string = "";
-
-  loadtaskdata: any = [];
-  TodayDate: any;
-
-  i: any;
-  j: any;
-  uniqueDataProduct: any;
-  uniqueDataBrand: any;
-  uniqueDataCategory: any;
-  uniqueDataAssigned: any;
-  uniqueDataDepartment: any;
-  ngSearch: string = "";
-
-  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
-  ViewAWSWorkFlow(rowvalue: any) {
-    //var data = [rowvalue]
-
-    //const dialogRef = this.dialog.open(AWSWorkFlowComponent, {
-    //  height: '70%',
-    //  width: '50%',
-    //  data: { displaydata: data }, disableClose: true
-    //});
-  }
-
-  CreateTask(rowvalue: any) {
-    //const dialogRef = this.dialog.open(CreateTaskComponent, {
-    //  height: '85%',
-    //  width: '80%',
-    //  disableClose: true
-    //});
-  }
-
-  ViewImage(rowvalue: any) {
-    //var data = [rowvalue]
-
-    //const dialogRef = this.dialog.open(ViewImagesComponent, {
-    //  height: '70%',
-    //  width: '30%',
-    //  data: { displaydata: data }, disableClose: true
-    //});
-  }
-
-
-  OpenTaskReport(rowvalue: any) {
-    var data = [rowvalue]
-
-    //const dialogRef = this.dialog.open(TaskReportComponent, {
-    //  height: '80%',
-    //  width: '80%',
-    //  disableClose: true,
-    //  data: { displaydata: data }
-    //});
-  }
-
-
-
-  statusfilter(status: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let filterValueLowerngstatus = status.toLowerCase();
-    if (filterValueLowerngstatus != "" || filterValueLowerngstatus != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Status.toLowerCase().includes(filterValueLowerngstatus));
-    }
-
-  }
-
-  brandfilter(brand: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let filterValueLowerngbrand = brand.toLowerCase();
-    if (filterValueLowerngbrand != "" || filterValueLowerngbrand != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Brand.toLowerCase().includes(filterValueLowerngbrand));
-    }
-  }
-
-  categoryfilter(category: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let filterValueLowerngcategory = category.toLowerCase();
-    if (filterValueLowerngcategory != "" || filterValueLowerngcategory != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Category.toLowerCase().includes(filterValueLowerngcategory));
-    }
-  }
-
-  productfilter(product: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let filterValueLowerngproduct = product.toLowerCase();
-    if (filterValueLowerngproduct != "" || filterValueLowerngproduct != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Product.toLowerCase().includes(filterValueLowerngproduct));
-    }
-  }
-
-  assignedtofilter(assignto: any) {
-    this.AssignedTaskList = this.loadtaskdata
-
-    let filterValueLowerngassignedto = assignto.toLowerCase();
-
-    if (filterValueLowerngassignedto != "" || filterValueLowerngassignedto != undefined) {
-      var data1 = this.AssignedTaskList.filter((alldata) => alldata.InitiallyAssigned.toLowerCase().includes(filterValueLowerngassignedto));
-      var data2 = this.AssignedTaskList.filter((alldata) => alldata.CurrentlyAssigned.toLowerCase().includes(filterValueLowerngassignedto));
-
-      this.AssignedTaskList = data1;
-      if (data2.length > 0) {
-        this.AssignedTaskList = data2;
-      }
-    }
-  }
-
-
-  departmentfilter(department: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let filterValueLowerngdepartment = department.toLowerCase();
-    if (filterValueLowerngdepartment != "" || filterValueLowerngdepartment != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Department.toLowerCase().includes(filterValueLowerngdepartment));
-    }
-  }
-
-
-  assigndatefilter(assigndate: any) {
-    this.AssignedTaskList = this.loadtaskdata
-    let AssignDt = assigndate.split("-");
-    var Year = AssignDt[0];
-    var Month = AssignDt[1];
-    var Date = AssignDt[2];
-
-    let filterValueLowerngassigneddate = Date + "-" + Month + "-" + Year;
-
-    if (this.TodayDate !== assigndate) {
-      if (filterValueLowerngassigneddate != "" || filterValueLowerngassigneddate != undefined) {
-        this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Assigenddate.toLowerCase().includes(filterValueLowerngassigneddate));
-      }
-    }
-  }
-
-
-
-  applyfilter(ngtaskname: any, ngstatus: any, ngbrand: any, ngcategory: any, ngproduct: any, ngassigneddate: any, ngassignedto: any, ngdepartment: any) {
-
-    this.AssignedTaskList = this.loadtaskdata
-
-    let filterValueLowerngtaskname = ngtaskname.toLowerCase();
-    let filterValueLowerngstatus = ngstatus.toLowerCase();
-    let filterValueLowerngbrand = ngbrand.toLowerCase();
-    let filterValueLowerngcategory = ngcategory.toLowerCase();
-    let filterValueLowerngproduct = ngproduct.toLowerCase();
-    let filterValueLowerngassignedto = ngassignedto.toLowerCase();
-    let filterValueLowerngdepartment = ngdepartment.toLowerCase();
-
-
-
-
-    let AssignDt = ngassigneddate.split("-");
-    var Year = AssignDt[0];
-    var Month = AssignDt[1];
-    var Date = AssignDt[2];
-
-    let filterValueLowerngassigneddate = Date + "-" + Month + "-" + Year;
-
-
-
-    if (filterValueLowerngtaskname != "" || filterValueLowerngtaskname != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.TaskName.toLowerCase().includes(filterValueLowerngtaskname));
-    }
-    if (filterValueLowerngstatus != "" || filterValueLowerngstatus != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Status.toLowerCase().includes(filterValueLowerngstatus));
-    }
-    if (filterValueLowerngbrand != "" || filterValueLowerngbrand != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Brand.toLowerCase().includes(filterValueLowerngbrand));
-    }
-
-    if (filterValueLowerngcategory != "" || filterValueLowerngcategory != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Category.toLowerCase().includes(filterValueLowerngcategory));
-    }
-    if (filterValueLowerngproduct != "" || filterValueLowerngproduct != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Product.toLowerCase().includes(filterValueLowerngproduct));
-    }
-
-    if (this.TodayDate !== ngassigneddate) {
-      if (filterValueLowerngassigneddate != "" || filterValueLowerngassigneddate != undefined) {
-        this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Assigenddate.toLowerCase().includes(filterValueLowerngassigneddate));
-      }
-    }
-
-    if (filterValueLowerngassignedto != "" || filterValueLowerngassignedto != undefined) {
-      var data1 = this.AssignedTaskList.filter((alldata) => alldata.InitiallyAssigned.toLowerCase().includes(filterValueLowerngassignedto));
-      var data2 = this.AssignedTaskList.filter((alldata) => alldata.CurrentlyAssigned.toLowerCase().includes(filterValueLowerngassignedto));
-
-      this.AssignedTaskList = data1;
-      if (data2.length > 0) {
-        this.AssignedTaskList = data2;
-      }
-    }
-    if (filterValueLowerngdepartment != "" || filterValueLowerngdepartment != undefined) {
-      this.AssignedTaskList = this.AssignedTaskList.filter((alldata) => alldata.Department.toLowerCase().includes(filterValueLowerngdepartment));
-    }
-
-
-  }
-
-
-
+  datapcc: any = [];
+  OrderManagementList: any = []
+  Auditlist: any = [];
+  active: any;
+  productdescription: any;
+  ngtaskname: any;
+  ngproduct: any;
+  picturefile1: any;
+  ngcategory: any;
+  ngstatus: any;
+  constructor() { }
   ngOnInit() {
-        throw new Error('Method not implemented.');
-    }
+
+    this.datapcc = [{ Itemno: "1", Information: "Product Description & Codes or Formulation Code", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "2", Information: "Product formula including %'s, INCI names, Trade Names and Suppliers", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "3", Information: "Perfumes - 26 potential allergens content list from perfume supplie", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "4", Information: "INCI list with %'s", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "5", Information: "Stability Summary,  with reference to methods(this usually shows the stability at ambient 30C, 40C, freeze-thaw etc.)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "6", Information: "Manufacturing Procedure summary", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "7", Information: "Specification - Viscosity, pH and other test data listed", CheckOff: false, checked: "", UserName: "", locked: "E" },
+
+    { Itemno: "8", Information: "Labeling requirements", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "9", Information: "Product Testing Results - Microbiological Challenge test records for products that contain water", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "10", Information: "Content - declare in g. or ml.", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "11", Information: "Claim Substantiation summary with refererences (this is proof that pack claims are able to be substantiated)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "12", Information: "Proposed pack copy or artwork for each carton and label (make sure claims in Pack copy are checked)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "13", Information: "PAO (Product After Opening) time or best before date (Minimum Durability)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "14", Information: "Product Safety Assessment Statement - Executive Summary", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "15", Information: "Legal Compliance for Annex III restricted materials, colors & preservatives and sunscreen (CIR Panel review, preservative, sunscreen and color legal compliance check)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "16", Information: "A picture of the final product should appear in the PCC (as this will be required when on-line registration is available)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "17", Information: "Perfumes and Flavors should have IFRA and/or RFIM compliance statements from the perfume shop", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "18", Information: "Raw Material ingredient specifications and technical data sheets", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "19", Information: "Summary of GMP statement(a statement on company letter head declaring ISO standards and/or GMP compliance)", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "20", Information: "The product must not have been tested on animals", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "21", Information: "The assessments has assumed that the raw materials are of Cosmetic or Pharmaceutical grade and are low in impurities", CheckOff: false, checked: "", UserName: "", locked: "E" },
+    { Itemno: "22", Information: "Miscellaneous Information for Product Info. File", CheckOff: false, checked: "", UserName: "", locked: "E" }
+    ]
 
 
+
+    this.OrderManagementList = [
+      { TaskID: "1", TaskName: "Sweets and Salty Savoury", Supplier: "Chocovic", Location: "India", PMI: "Chocovic", Name: "Sahil Gupta", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N001" },
+      { TaskID: "2", TaskName: "Tea", Supplier: "Chocovic", Location: "USA", PMI: "Esah(Rulio Tea Company)", Name: "Bijit Sharma", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N002" },
+      { TaskID: "3", TaskName: "Dates", Supplier: "Chocovic", Location: "Moracco", PMI: "Cooperative Mahi Coop", Name: "Mandar Tilak", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N003" },
+      { TaskID: "4", TaskName: "Coffee", Supplier: "Chocovic", Location: "Brazil", PMI: "Worldwide Trade Solutions", Name: "Saneesh Thomas", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N004" },
+      { TaskID: "5", TaskName: "Syrups", Supplier: "Chocovic", Location: "Mexico", PMI: "Chocovic", Name: "Jessica garcia", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N005" },
+      { TaskID: "6", TaskName: "Almond Oil", Supplier: "Chocovic", Location: "Germany", PMI: "Esah(Rulio Tea Company)", Name: "Joseph", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N006" },
+
+    ];
+
+
+    this.Auditlist = [
+      { Date: "17/4/2024", TaskName: "TaskName: Sweets and Salty Savoury Branding is InProgress", Username: "Admin" },
+      { Date: "16/4/2024", TaskName: "TaskName: Tea Branding is InProgress", Username: "Admin" },
+      { Date: "13/4/2024", TaskName: "TaskName: Dates Branding is InProgress", Username: "Admin" },
+      { Date: "12/4/2024", TaskName: "TaskName: Coffee Branding is InProgress", Username: "Admin" },
+      { Date: "11/4/2024", TaskName: "TaskName: Syrups Branding is InProgress", Username: "Admin" },
+      { Date: "10/4/2024", TaskName: "TaskName: Almond Oil Branding is InProgress", Username: "Admin" },
+      { Date: "09/4/2024", TaskName: "TaskName: Popcorn Branding Completed", Username: "Admin" },
+
+    ];
+  }
 
 }
+
