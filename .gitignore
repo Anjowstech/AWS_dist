@@ -235,3 +235,5 @@ _Pvt_Extensions
 /ClientApp/.angular/cache/15.2.11
 /ClientApp/src/app/nav-menu/nav-menu.component.html
 /ClientApp/src/app/app.module.ts
+/ClientApp/src/styles.css
+/ClientApp/src/index.html
