@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,18 +19,27 @@ export class LoginComponent implements OnInit {
   connection: any;
   connectionstr: any;
   user: any;
+  role!: string;
   pass: any;
-   
-  
+  dataListsave1: login[][] = [];
+
 
   constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver) { }
   userdata(username: string, password: string) {
     var usern: string = username;
     var passw: string = password;
-    var query: string = "SELECT UserName,Password FROM[AWS].[tbl_Users] where  UserName='" + this.username + "'and Password='" + this.password + "'";
+    this.dataListsave1[0] = ([{
+      Usernam: this.username,
+      Pass: this.password,
+
+
+    }]);
+
+    var datasaveslist: any = JSON.stringify(this.dataListsave1);
+    var query: string = "[AWS].[Sp_Select_Roles]";
     var connection: string = "";
-    let params1 = new HttpParams().set('spname', query);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
+    let params1 = new HttpParams().set('spname', query).set('JSONFileparams', datasaveslist);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICLOGIN", { params: params1 })
   }
 
   ngOnInit() {
@@ -60,20 +70,19 @@ export class LoginComponent implements OnInit {
     }
 
   }
-  login(): void{
+  login() {
     this.userdata(this.username, this.password).subscribe((userdetails) => {
       console.warn("userdetails", userdetails)
       this.connection = userdetails
-     
-      for (let item of this.connection) {
-       /* this.connectionstr = item.databaseconnection;*/
-        this.user = item.UserName;
-        this.pass = item.Password;
 
-      }
-      if (this.username != null && this.username == this.user && this.password != null && this.password == this.pass) {
+      /* this.connectionstr = item.databaseconnection;*/
+      this.role = this.connection;
+      /* this.pass = item.Password;*/
+
+
+      if (this.role !== null) {
         this.router.navigate(['/main/Dashboardreport']);
-
+        /* this.Datashare.sendrole(this.role);*/
 
       } else {
         alert("Invalid credentials");
@@ -91,4 +100,10 @@ export class LoginComponent implements OnInit {
   //    alert("Invalid credentials");
   //  }
   //}
+}
+export class login {
+  Usernam!: string;
+  Pass!: string;
+
+
 }
