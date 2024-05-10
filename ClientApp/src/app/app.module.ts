@@ -26,13 +26,23 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 import { MarketResearchComponent } from './market-research/market-research.component';
+import { DesktopCameraService } from './service/desktop-camera.service';
+import { OrderManagementComponent } from './order-management/order-management.component';
+import { ReOrderComponent } from './re-order/re-order.component';
+import { OrderStatusUpdateComponent } from './order-management/order-status-update/order-status-update.component';
+import { ReOrderPopUpComponent } from './re-order/re-order-pop-up/re-order-pop-up.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
     { path: 'Dashboardreport', component: DashboardreportComponent },
     { path: 'createsupplier', component: CreatesupplierComponent },
     { path: 'marketresearch', component: MarketResearchComponent },
-    { path: 'Shipment', component: ShipmentComponent }
+    { path: 'Shipment', component: ShipmentComponent },
+    { path: 'OrderMang', component: OrderManagementComponent },
+    { path: 'ReOrder', component: ReOrderComponent }
   ]
 }
 ];
@@ -54,7 +64,11 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     CreatesupplierComponent,
     ShipmentComponent,
     TaskdetailpageComponent,
-    MarketResearchComponent
+    MarketResearchComponent,
+    OrderManagementComponent,
+    ReOrderComponent,
+    OrderStatusUpdateComponent,
+    ReOrderPopUpComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -70,8 +84,10 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent],
-  providers: [],
+  entryComponents: [TasklistComponent, ShipmentComponent, ReOrderPopUpComponent, OrderStatusUpdateComponent],
+  providers: [
+    DesktopCameraService,
+  ],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

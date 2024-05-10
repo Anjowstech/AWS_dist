@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,10 +20,7 @@ export class LoginComponent implements OnInit {
   connectionstr: any;
   user: any;
   pass: any;
-   
-  
-
-  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver) { }
+  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver,) { }
   userdata(username: string, password: string) {
     var usern: string = username;
     var passw: string = password;
@@ -81,6 +79,8 @@ export class LoginComponent implements OnInit {
     })
 
   }
+
+
   //login(): void {
 
 

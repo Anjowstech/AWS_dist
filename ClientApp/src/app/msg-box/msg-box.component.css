@@ -1,0 +1,36 @@
+.buttoncolor {
+  border-color: none;
+  background-color: #214252;
+}
+
+.button {
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.angular-with-newlines {
+ /* white-space: pre-line;*/
+}
+
+
+.save-button {
+  cursor: pointer;
+  background-color: #1F528E;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+.pulse-effect {
+  animation: pulse 1s infinite alternate;
+}
+.hover-effect:hover {
+  background-color: #1F528E; /* Change to your desired color */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}

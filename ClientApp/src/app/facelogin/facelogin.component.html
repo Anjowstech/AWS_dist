@@ -10,20 +10,24 @@
   <div class="login-container">
 
     <p>Fast and Secure Login</p>
-    <div class="card-image">
+    <p>{{response}}</p>
+    <!--<div class="card-image">
       <img src="https://firebasestorage.googleapis.com/v0/b/musicalproject-8c68a.appspot.com/o/facelogo.avif?alt=media&token=43730056-56ca-457c-8b3f-4c1692b685f2" alt="Card Image">
 
-    </div>
-    <div class="face-capture">
-      <video id="video" width="320" height="50" autoplay></video>
-      <canvas id="canvas" width="320" height="50"></canvas>
+    </div>-->
+    <div class="face-capture" style="height:500px;">
+      <video id="videoC" #videoC [hidden]="isRecord" autoplay height="450" width="450"></video>
+      <canvas id="canvas" [hidden]="isCaptured" #canvas height="450" width="450"></canvas>
 
     </div>
-    <button id="login-btn">Login</button>
+
+    <button (click)="register()">Register</button>
+    <!--<button (click)="stop()">Stop</button>-->
+
+    <button id="login-btn" (click)="BioMetriclogin()">Login</button>
     <a id="email-password-btn" routerLink="/login">Login With Email & Password</a>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-

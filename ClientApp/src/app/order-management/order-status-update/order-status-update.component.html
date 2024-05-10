@@ -1,0 +1,142 @@
+
+<div style="background-color: whitesmoke; height: 100%;" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <!--<button type="submit" style="float:right;height:30px;width:38px;background-color:white;box-shadow:none;" matDialogClose>
+    <mat-icon style="color: black;">highlight_off</mat-icon>
+  </button>-->
+
+  
+  <div class="row">
+    <div style="width:63%;padding-right:2%;">
+
+      <div class="data">
+        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Purchase Order No</label>
+        <label style="width:70%;text-align:left;">{{PurOrdNo}}</label>
+      </div>
+      <div class="data">
+        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Purchase Order Date</label>
+        <label style="width:70%;">{{PurOrdDate}}</label>
+      </div>
+
+
+      <div class="data">
+        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Task Name</label>
+        <label style="width:70%;text-align:left;">{{TaskName}}</label>
+      </div>
+      <div class="data">
+        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Current Status</label>
+        <label style="width:70%;">{{Status}}</label>
+      </div>
+
+
+
+      <div class="data">
+        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Change Status</label>
+        <select style="border: none; width: 70%; color: black; border-left: 3px solid #1f538e">
+          <option disabled hidden selected>{{Status}}</option>
+          <option *ngFor="let a of StatusList">{{a.Status}}</option>
+        </select>
+      </div>
+
+
+
+      <div class="data">
+        <label style="color: #5b5b69; font-weight: 500;">Description</label><br>
+        <textarea type="text" name="title" rows="5"></textarea>
+      </div>
+
+
+      <div class="uploadimage">
+        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+
+      <div class="createtask">
+        <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
+        <button class="save-button pulse-effect hover-effect:hover">Submit</button>
+      </div>
+
+    </div>
+
+    <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
+
+      <table style="width: 100%; color: black; margin-top: 2%;">
+        <thead>
+          <tr>
+            <td style="text-align:center;font-size:large;font-weight:500;">
+              <div class="row" style="display: flex; justify-content: center; color: #9da4a6; ">
+                <mat-icon>history</mat-icon>
+                History
+              </div>
+            </td>
+          </tr>
+        </thead>
+
+
+        <tbody>
+          <tr class="labelhover" *ngFor="let a of OrderManagementhistory">
+            <td style="text-align:left;font-size:small;">
+              <div class="labelshadow">
+                <label style="background-color: #1F528E; color: white; width: 100%; text-align: center;border-radius:0px;margin-top:0.2px;">  {{a.ProductTask}} </label>
+                <div class="InnerLabel">
+
+                  <table width="100%">
+
+                    <tr>
+                      <td style="width: 20%; text-align: left;">
+                        Description
+                      </td>
+                      <td style="width: 2%; text-align: left;">
+                        :
+                      </td>
+                      <td style="text-align:left;width:78%;">
+                        <span style="color:black;text-align:left;">  {{a.ProdcutDescription}}</span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="width: 20%; text-align: left;">
+                        <!--{{a.TaskName}}--> Updated on
+                      </td>
+                      <td style="width: 2%; text-align: left;">
+                        :
+                      </td>
+                      <td style="text-align: left; width: 78%;">
+                        <span style="color:black;"> {{a.OnDate}} </span> <br />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width: 20%; text-align: left;">
+                        Updated  By
+                      </td>
+                      <td style="width: 2%; text-align: left;">
+                        :
+                      </td>
+                      <td style="text-align: left; width: 78%;">
+                        <span style="color:black;"> {{a.ByUser}}</span> <br />
+                      </td>
+                    </tr>
+
+                  </table>
+
+
+
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+       
+      </table>
+
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
