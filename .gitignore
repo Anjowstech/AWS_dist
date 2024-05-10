@@ -232,3 +232,4 @@ _Pvt_Extensions
 /ClientApp/package-lock.json
 /ClientApp/package-lock.json
 /.gitignore
+/ClientApp/src/app/market-research/market-research.component.html
