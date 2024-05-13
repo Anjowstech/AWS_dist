@@ -20,6 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { DashboardreportComponent } from './dashboardreport/dashboardreport.component';
 import { CreatesupplierComponent } from './createsupplier/createsupplier.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -51,10 +55,14 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     HttpClientModule,
     MatToolbarModule,
     MatDividerModule,
+    NoopAnimationsModule,
     FormsModule,
+    BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    MatSnackBarModule,
     RouterModule.forRoot(appRoutes, { useHash: false }),
   ],
   entryComponents: [TasklistComponent],
