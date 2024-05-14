@@ -1,0 +1,236 @@
+<div class="mx-xl-auto">
+  <mat-icon type="button" class="btn-close" aria-label="Close" style="float: right;margin-right:5px;" matDialogClose>clear</mat-icon>
+  <!--<dx-button icon="close" style="float:right;margin-top:4%;margin-right:4%;height:2%" matDialogClose></dx-button>
+  <dx-button icon="print" text="Print" style="float:right;margin-top:4%;margin-right:4%;height:2%" (click)="print('componentID')"></dx-button>-->
+
+  <div id="componentID">
+    <div>
+      <div [ngSwitch]="viewMode">
+        <div>
+          <div class="invoice-wrapper">
+            <div class="intro">
+
+              <!--<h1 style="font-size:xx-large;color:maroon;text-align:center;font-weight:700"><b>{{reportheader}}</b></h1>-->
+            </div>
+
+            <div class="mb-4 input-group"></div>
+
+            <!--<ng-container *ngIf="isLoadingFormula;else conten3|async">
+
+              <div class="overlay">
+
+                <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+
+              </div>
+
+            </ng-container>-->
+            <table width="100%">
+              <thead>
+                <tr>
+                  <th>
+                    <table style="width: 100%;">
+                      <tr>
+                        <td style="font-size:x-large;font-weight:700; color: maroon; text-align: center;">
+                          <strong>LUGGAGE PRICE COMPARISION REPORT</strong>
+                        </td>
+                      </tr>
+                    </table>
+                    <!--<table style="width: 100%; background-color: white; border: none;">
+
+                      <tbody>
+                        <tr style="background-color: white; ">
+                          <td class="tabledatasize" style="font-weight: normal; border: none; margin-left: 1%; color: darkblue; font-family: Arial; font-size: large; word-wrap: break-word" colspan="2"><strong><strong>{{CompanyName}}</strong></strong> </td>
+                          <td class="tabledatasize" style="font-weight: normal; border: none; margin-left: 1%; color: darkblue; font-family: Arial; font-size: smaller; word-wrap: break-word" rowspan="3">
+                            <div style=" text-align: center;">
+                              <img id="mylogo" style="margin-left:5%" src="{{PictureFile}}" [hidden]="imageform" width="100" height="80" />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr style="background-color: white; ">
+                          <td class="tabledatasize" style=" font-weight: normal; border: none; margin-left: 1%; color: darkblue; font-family: Arial; font-size: smaller; word-wrap: break-word" colspan="2">{{Address}}{{CompanyAddress}}</td>
+
+                        </tr>
+                        <tr style="background-color: white;">
+
+                          <td class="tabledatasize" style=" font-weight: normal; border: none; margin-left: 1%; color: darkblue; font-family: Arial; font-size: smaller; word-wrap: break-word">{{Email}}{{CompanyEmail}}  </td>
+                          <td class="tabledatasize" style="font-weight: normal; border: none; margin-left: 1%; color: darkblue; font-family: Arial; font-size: smaller; word-wrap: break-word">{{Phone}}{{CompanyNumber}}</td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>-->
+                 
+                    <div class="mb-4 input-group"></div>
+
+
+                  </th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div>
+                      <div>
+                        <table class=" table table-hover table-bordered" style=" background-color: white; border-collapse: collapse; border: 1px solid black;" id="table" width="100%">
+                          <thead>
+
+                            <tr>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center; border: 1px solid black;word-wrap:break-word" scope="col" width="10%">ID</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Item Code</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Description</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Brand</th>
+                              <th rowspan="1" colspan="3" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">ClassA</th>
+
+                              <th rowspan="1" colspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">ECommerce</th>
+
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Average</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="15%">Promation_Size</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Brand</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Store</th>
+                              <th rowspan="2" class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Prices</th>
+
+
+                            </tr>
+
+                            <tr>
+                              <th class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Lulu</th>
+                              <th class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Carrefour</th>
+                              <th class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Union Coop</th>
+
+                              <th class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Amazon</th>
+                              <th class="header tabledatasize" style="font-weight:700;font-family: Arial;page-break-inside: avoid; font-size: small;text-align:center;border: 1px solid black;word-wrap:break-word" scope="col" width="10%">Noon</th>
+
+                            </tr>
+
+
+
+                          </thead>
+                          <tbody>
+
+
+                            <tr *ngFor="let item of AssignedTaskList" style="font-family: Arial; font-size: smaller;border: 1px solid black;word-wrap:break-word">
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.ID}}
+                              </td>
+
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.ItemCode}}
+                              </td>
+
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Description}}
+                              </td>
+
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Brand}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid; text-align: right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.ClassA_Lulu}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.ClassA_Carrefour}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.ClassA_UnionCoop}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Ecommerce_Amozon}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Ecommerce_Noon}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Average}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Promotion_size}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Brand_1}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Store}}
+                              </td>
+                              <td class="tabledatasize" style="font-family: Arial; page-break-inside: avoid;text-align:right; font-size: smaller; border: 1px solid black; word-wrap: break-word">
+                                {{item.Prices}}
+                              </td>
+
+                            </tr>
+                          </tbody>
+
+                        </table>
+                        <div class="mb-4 input-group"></div>
+                      </div>
+                    </div>
+
+
+
+
+                  </td>
+                </tr>
+              </tbody>
+
+
+              <tfoot>
+                <tr>
+                  <td>
+                    <div class="hiddisplay">
+                      <table style="border:none">
+                        <tr style=" border: none;height:50px;">
+                        </tr>
+                      </table>
+
+                    </div>
+
+
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+            <div class="footer">
+
+              <table style="width: 100%; background-color: white; border:none;">
+
+                <tbody>
+                  <tr style="width: 100%; background-color: white; ">
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"> </td>
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"><strong></strong></td>
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"><strong></strong></td>
+
+                  </tr>
+                  <tr style="width: 100%; background-color: white; ">
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"> <span>Luggage Price Comparision Report</span></td>
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"><strong></strong></td>
+
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word"></td>
+
+                  </tr>
+                  <tr style="width: 100%; background-color: white;">
+
+                    <td class="tabledatasize" style="margin-left: 1%; font-family: Arial;font-size:smaller; word-wrap: break-word">
+                      <span>Printed By:</span>
+                      <strong>Admin</strong>
+                    </td>
+                    <td class="tabledatasize" style="margin-left: 5px; font-family: Arial;font-size:smaller; word-wrap: break-word">
+                    </td>
+
+                    <td class="tabledatasize" style="margin-left: 5px; font-family: Arial; text-align: right; font-size: smaller; word-wrap: break-word">
+                      <span>Printed On:</span>
+                      <strong>13-05-2024</strong>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

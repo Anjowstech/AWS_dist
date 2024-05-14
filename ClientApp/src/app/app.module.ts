@@ -27,7 +27,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TaskdetailpageComponent } from './taskdetailpage/taskdetailpage.component';
 import { MarketResearchComponent } from './market-research/market-research.component';
+import { BrandingComponent } from './branding/branding.component';
+import { OrderManagementComponent } from './order-management/order-management.component';
+import { ReorderComponent } from './reorder/reorder.component';
 import { CameraComponent } from './camera/camera.component';
+import { ViewImagesComponent } from './view-images/view-images.component';
+
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { LuggageReportComponent } from './luggage-report/luggage-report.component';
+
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -35,7 +43,10 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'createsupplier', component: CreatesupplierComponent },
     { path: 'TaskdetailpageComponent', component: TaskdetailpageComponent },
     { path: 'marketresearch', component: MarketResearchComponent },
-    { path: 'Shipment', component: ShipmentComponent }
+    { path: 'Branding', component: BrandingComponent },
+    { path: 'ordermanagement', component: OrderManagementComponent },
+    { path: 'Shipment', component: ShipmentComponent },
+    { path: 'Reorder', component: ReorderComponent }
   ]
 }
 ];
@@ -58,7 +69,15 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     ShipmentComponent,
     TaskdetailpageComponent,
     MarketResearchComponent,
-    CameraComponent
+    BrandingComponent,
+    OrderManagementComponent,
+    ReorderComponent,
+    CameraComponent,
+    ViewImagesComponent,
+ 
+    CreateTaskComponent,
+    LuggageReportComponent,
+   
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -75,7 +94,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent,ViewImagesComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

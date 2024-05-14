@@ -1,0 +1,192 @@
+.image {
+  /*background-image:src('../../assets/nw-logo-jpg.jpg');*/
+  /*background-image: url('../../assets/cartoonbasket.jpg');*/
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  /*font-family: sans-serif;*/
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+  .styled-table thead tr {
+    background-color: #1F528E;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 4px 5px;
+  }
+
+  .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+    .styled-table tbody tr:nth-of-type(even) {
+      /*background-color: #f3f3f3;*/
+      background-color: white;
+    }
+
+    .styled-table tbody tr:last-of-type {
+      border-bottom: 2px solid #009879;
+    }
+
+    .styled-table tbody tr.active-row {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+
+.inputclass3 {
+  /*border-radius: 10px;*/
+  height: 30px;
+  width: 858px;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+}
+
+.inputclass {
+  /*background-color: white;
+  border: none;
+  font-family: Calibri;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+
+  height: 30px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+}
+
+
+.labelclass {
+  color: #1F528E;
+  border: none;
+  font-family: Calibri;
+  font-weight: 700;
+  width: 90%
+}
+
+a {
+  color: #1F528E;
+}
+
+input.largerCheckbox {
+  width: 30px;
+  height: 30px;
+  border-color: #1F528E;
+}
+
+h3 {
+  text-align: left;
+  color: #1f538e;
+  padding: 30px 30px 0px 30px
+}
+
+
+.data {
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 90%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.save-button {
+  background-color: #1F528E;
+  color: white;
+  border: 1px solid white;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60px;
+}
+
+
+/*.hover-effect:hover {
+  background-color: #1F528E;*/ /* Change to your desired color */
+/*transition: background-color 0.3s ease;*/ /* Smooth transition */
+/*}*/
+
+.save-button1 {
+  background-color: white;
+  color: #1F528E;
+  border: 1px solid #1f538e;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60px;
+}
+
+/*.pulse-effect {
+  animation: pulse 1s infinite alternate;
+}
+*/
+button {
+  height: 35px;
+  margin: 10px;
+  color: white;
+  background-color: #1F528E;
+  border: none;
+  /*border: 0.5px solid lightslategrey; */
+  border-radius: 5px;
+  box-shadow: 0 1px 15px #1F528E;
+}
+
+
+select {
+  /*border-radius: 10px;*/
+  height: 35px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+}
+
+
+.dataSelect {
+  border-radius: 5px;
+  /*box-shadow: 0 6px 8px #2828284d;*/
+  /*  border: 1px solid #ddd;*/
+  padding: 5px 10px;
+  width: 40%;
+  display: inline-block;
+  vertical-align: top;
+  /*  background-color: #f3f3f3;*/
+}
+
+.label1 {
+  font-family: Calibri;
+  color: #1F528E;
+  font-weight: 700;
+}
+
+
+
+
+
+.textareaclass {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+  /*  background-color: white;
+  border: none;
+  font-family: Calibri;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+}

@@ -1,7 +1,7 @@
 <body>
   <div>
     <div>
-      <h1 class=" layoutHead">Create Supplier</h1>
+      <h1 class=" layoutHead"> Supplier</h1>
       <button class="close-button" matDialogClose><mat-icon>close</mat-icon></button>
     </div>
     <!--<div>
@@ -12,21 +12,21 @@
     <div>
       <div class="data">
         <label class="label">Supplier ID </label><br>
-        <input type="text" name="title" class="input"><br>
+        <input type="text" name="title" class="input" style="width:90%" /><mat-icon>mic</mat-icon><br>
       </div>
       <div class="data">
         <label class="label">Supplier Name</label><br>
-        <input type="text" name="title" class="input">
+        <input type="text" name="title" class="input" style="width:90%" /><mat-icon>mic</mat-icon><br>
       </div>
       <div class="data">
         <label class="label">Description</label><br>
-       <textarea type="text" name="title" rows="5" class="input"></textarea>
+       <textarea type="text" name="title" rows="5" class="input" style="width:90%"></textarea><mat-icon>mic</mat-icon>
       </div>
       <div class="data">
         <div class=" dataselect">
           <div class="dataSelect brandSelect">
             <label class="SupplierLabel">Brand</label><br>
-            <input type="text" class="input"><br />
+            <input type="text" class="input" ><br />
           </div>
 
           <div class="dataSelect productSelect">
@@ -102,118 +102,10 @@
 
           <div class="createtask">
             <button class="save-button1 hover-effect:hover" matDialogClose>Clear</button>
-            <button class="save-button pulse-effect hover-effect:hover">Create</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body><body>
-  <div>
-    <div>
-      <h1 class=" layoutHead">Create Supplier</h1>
-      <button class="close-button" matDialogClose><mat-icon>close</mat-icon></button>
-    </div>
-
-
-    <div>
-      <div class="data">
-        <label class="label">Supplier ID </label><br>
-        <input type="text" name="title" class="input"><br>
-      </div>
-      <div class="data">
-        <label class="label">Supplier Name</label><br>
-        <input type="text" name="title" class="input">
-      </div>
-      <div class="data">
-        <label class="label">Description</label><br>
-<textarea type="text" name="title" rows="5" class="input"></textarea>
-      </div>
-      <div class="data">
-        <div class=" dataselect">
-          <div class="dataSelect brandSelect">
-            <label class="SupplierLabel">Brand</label><br>
-            <input type="text" class="input"><br />
-          </div>
-
-          <div class="dataSelect productSelect">
-            <label class="SupplierLabel">Product</label><br>
-            <select>
-              <option style="color: grey; font-style: italic" class="input" disabled selected hidden></option>
-              <option>Sweet and sault Savoury</option>
-              <option>Fruits and Vegetables, Frozen</option>
-              <option>Sauce</option>
-              <option>Honey</option>
-              <option>Dates</option>
-              <option>Pastry</option>
-            </select>
-          </div>
-
-          <div class="dataSelect categorySelect">
-            <label class="SupplierLabel">Category</label><br>
-            <select>
-              <option style="color: grey; font-style: italic" disabled selected hidden></option>
-              <option>Food Item</option>
-              <option>Non Food Item</option>
-              <option>Carbonated Water</option>
-              <option>Spices</option>
-              <option>Processed food</option>
-            </select>
-          </div>
-
-          <div class="dataSelect">
-            <label class="SupplierLabel">Address</label><br>
-            <input type="text" name="Address" class="input"><br />
-          </div>
-
-          <div class="dataSelect">
-            <label class="SupplierLabel">Status</label><br>
-            <select>
-              <option style="color: grey; font-style: italic" disabled selected hidden></option>
-              <option>In-Progress</option>
-              <option>Pending for approval</option>
-              <option>Not started</option>
-            </select>
-          </div>
-
-          <div class="dataSelect">
-            <label class="SupplierLabel">Location</label><br>
-            <select>
-              <option style="color: grey; font-style: italic" disabled selected hidden></option>
-              <option>Dubai</option>
-              <option>America</option>
-              <option>Canada</option>
-              <option>Germany</option>
-            </select>
-          </div>
-
-
-          <div class="dataSelect">
-            <label class="SupplierLabel">Phone Number : </label><br>
-            <input type="tel" name="title" class="input"><br />
-          </div>
-          <div class="dataSelect">
-            <label class="SupplierLabel">Email : </label><br>
-            <input type="email" name="title" class="input">
-          </div>
-          <div class="dataSelect">
-            <label class="SupplierLabel">Date : </label><br>
-            <input type="date" name="title" [(ngModel)]="currentDate" class="input">
-          </div>
-          <div class="uploadimage">
-            <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-            <div class="upload-area" (click)="fileInput.click()">
-              <p>Drag & drop media here or click to upload</p>
-            </div>
-          </div>
-
-          <div class="createtask">
-            <button class="save-button1 hover-effect:hover" matDialogClose>Clear</button>
-            <button class="save-button pulse-effect hover-effect:hover">Create</button>
+            <button class="save-button pulse-effect hover-effect:hover">Save</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </body>
-     

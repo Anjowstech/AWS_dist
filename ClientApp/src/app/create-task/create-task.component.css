@@ -1,0 +1,408 @@
+/* CSS for screens smaller */
+@media (max-width: 500px) {
+  input {
+    /*border-radius: 10px;*/
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+    input:focus {
+      border: none;
+      box-shadow: 0 1px 8px lightslategrey;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    input[type="date"] {
+      border-left: 3px solid #1F528E;
+      /*color: darkgray;*/
+    }
+
+    input[type="file"] {
+      border-left: 3px solid #1F528E;
+      /*color: darkgray;*/
+    }
+
+  select {
+    /*border-radius: 10px;*/
+    height: 35px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  button {
+    height: 35px;
+    margin: 0px 5px 10px;
+    background-color: #1F528E;
+    border: none;
+    cursor: pointer;
+    /*border: 0.5px solid lightslategrey; 
+    border-radius: 5px;
+    box-shadow: 0 1px 15px #1F528E;*/
+    font-weight: bold;
+    font-size: 11px;
+    padding: 5px 5px;
+    text-align: center;
+  }
+
+  h1 {
+    text-align: left;
+    color: #1f538e;
+    padding: 10px
+  }
+
+  label {
+    color: gray;
+  }
+
+  p {
+    color: gray;
+  }
+
+  td {
+    text-align: right;
+  }
+
+
+
+  .id {
+    width: 15%;
+    height: 25px;
+  }
+
+  .content {
+    background-color: #f3f3f3;
+    box-shadow: 0 1px 13px lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  .data {
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .dataSelect {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 10px;
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+  }
+
+  .dataDate {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 10px;
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+  }
+
+  .createtask {
+    /*width:100%;
+  margin-right: 13%;*/
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .uploadimage {
+    padding: 5px 10px;
+    /*  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 8px #2828284d;
+  background-color: #f3f3f3;*/
+  }
+
+    .uploadimage input {
+      height: 50px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 75%;
+      min-width: 250px;
+      background-color: white;
+      cursor: pointer;
+      border-left: 3px solid #1F528E;
+    }
+
+    .uploadimage button {
+      /*position: absolute;*/
+      cursor: pointer;
+      box-shadow: none;
+      background-color: #f3f3f3;
+      border: 1px solid lightgray;
+    }
+
+  body {
+    /*background-color: #f3f3f3;*/
+    font-family: Calibri;
+  }
+
+  .save-button {
+    background-color: #1F528E;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60px;
+  }
+
+  .save-button1 {
+    background-color: white;
+    color: #1F528E;
+    border: 1px solid #1f538e;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60px;
+  }
+
+  .pulse-effect {
+    animation: pulse 1s infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .hover-effect:hover {
+    background-color: #1F528E; /* Change to your desired color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+}
+
+
+
+@media (min-width: 500px) {
+
+  input {
+    /*border-radius: 10px;*/
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+    input:focus {
+      border: none;
+      box-shadow: 0 1px 8px lightslategrey;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    input[type="date"] {
+      border-left: 3px solid #1F528E;
+      /*color: darkgray;*/
+    }
+
+    input[type="file"] {
+      border-left: 3px solid #1F528E;
+      /*color: darkgray;*/
+    }
+
+  select {
+    /*border-radius: 10px;*/
+    height: 35px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  h1 {
+    text-align: left;
+    color: #1f538e;
+    padding: 10px
+  }
+
+  label {
+    color: gray;
+  }
+
+  p {
+    color: gray;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  button {
+    height: 35px;
+    margin: 10px;
+    color: white;
+    background-color: #1F528E;
+    border: none;
+    /*border: 0.5px solid lightslategrey; */
+    border-radius: 5px;
+    box-shadow: 0 1px 15px #1F528E;
+  }
+
+  .id {
+    width: 15%;
+    height: 25px;
+  }
+
+  .content {
+    background-color: #f3f3f3;
+    box-shadow: 0 1px 13px lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  .data {
+    border-radius: 5px;
+    padding: 5px 20px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .dataSelect {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 20px;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+  }
+
+  .dataDate {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 20px;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+  }
+
+  .createtask {
+    /*width:100%;
+  margin-right: 13%;*/
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .uploadimage {
+    padding: 10px 20px;
+    /*  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 8px #2828284d;
+  background-color: #f3f3f3;*/
+  }
+
+    .uploadimage input {
+      height: 50px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 75%;
+      min-width: 250px;
+      background-color: white;
+      cursor: pointer;
+      border-left: 3px solid #1F528E;
+    }
+
+    .uploadimage button {
+      /*position: absolute;*/
+      cursor: pointer;
+      box-shadow: none;
+      background-color: #f3f3f3;
+      border: 1px solid lightgray;
+    }
+
+  body {
+    /*background-color: #f3f3f3;*/
+    font-family: Calibri;
+  }
+
+  .save-button {
+    cursor: pointer;
+    background-color: #1F528E;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .save-button1 {
+    cursor: pointer;
+    background-color: white;
+    color: #1F528E;
+    border: 1px solid #1f538e;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .pulse-effect {
+    animation: pulse 1s infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .hover-effect:hover {
+    background-color: #1F528E; /* Change to your desired color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+}

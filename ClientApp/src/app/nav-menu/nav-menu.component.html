@@ -9,10 +9,14 @@
     <button mat-button style="color: white; font-size: medium; font-weight: 600; margin-left: 1%; font-family: Calibri" [routerLink]="['Dashboardreport']">Dashboard</button>
     <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['TaskList']">Task List</button>
     <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['marketresearch']">Market Research</button>
-    <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['TaskList']">Task Page</button>
+    <!--<button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['TaskList']">Task Page</button>-->
 
     <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['TaskdetailpageComponent']">Task Detail</button>
+    <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['Branding']">Branding</button>
+    <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['ordermanagement']">Order Management</button>
+
     <button mat-button style="color: white; font-size: medium; font-weight: 600; margin-left: 1%; font-family: Calibri" [routerLink]="['Shipment']">Shipment</button>
+    <button mat-button style="color:white;font-size:medium;font-weight:600;margin-left:1%;font-family:Calibri" [routerLink]="['Reorder']">Reorder</button>
     <button mat-button style="color: white; font-size: medium; font-weight: 600; margin-left: 1%; font-family: Calibri">Reports</button>
     <span style="flex:auto"></span>
 
@@ -24,6 +28,9 @@
       <mat-menu #menu style="background-color:white;color:gray">
         <button mat-menu-item style="background-color:white;color:gray; border:none" [routerLink]="'/login'">
           Logout
+        </button>
+        <button mat-menu-item style="background-color:white;color:gray; border:none">
+          Admin
         </button>
       </mat-menu>
     </div>

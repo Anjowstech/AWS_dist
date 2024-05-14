@@ -1,0 +1,122 @@
+<body>
+  <div>
+    <div>
+      <h1>Create Task</h1>
+
+    </div>
+
+
+    <div>
+      <div class="data">
+        <label>Task Name</label><br>
+        <input type="text" name="title" style="width:90%"><mat-icon>mic</mat-icon><br>
+      </div>
+      <div class="data">
+        <label>Assigned To</label><br>
+        <input type="text" name="title" style=" width:90%"><mat-icon>mic</mat-icon><br>
+      </div>
+      <div class="data">
+        <label>Description</label><br>
+<textarea type="text" name="title" rows="5" style=" width:90%"></textarea><mat-icon>mic</mat-icon>
+      </div>
+
+
+      <div class="dataSelect">
+        <label>Brand</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>MP</option>
+          <option>European Tourister</option>
+          <option>Panda Cola</option>
+          <option>Mont Carlo</option>
+          <option>Delita</option>
+        </select>
+      </div>
+      <div class="dataSelect">
+        <label>Category</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>Food Item</option>
+          <option>Non Food Item</option>
+          <option>Carbonated Water</option>
+          <option>Spices</option>
+          <option>Processed food</option>
+
+
+        </select>
+      </div>
+      <div class="dataSelect">
+        <label>Product</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>Sweet and sault Savoury</option>
+          <option>Fruits and Vegetables, Frozen</option>
+          <option>Sauce</option>
+          <option>Honey</option>
+          <option>Dates</option>
+          <option>Pastry</option>
+        </select>
+      </div>
+      <div class="dataSelect">
+        <label>Supplier</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>Juuicy</option>
+          <option>Fillimi</option>
+          <option>Bambino</option>
+          <option>Flowlite</option>
+          <option>Daily Bite</option>
+
+
+        </select>
+      </div>
+
+      <div class="dataSelect">
+        <label>Status</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>In-Progress</option>
+          <option>Pending for approval</option>
+          <option>Not started</option>
+        </select>
+      </div>
+      <div class="dataSelect">
+        <label>Department</label><br>
+        <select>
+          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+          <option>Clearance</option>
+          <option>Orders</option>
+          <option>Purchaser</option>
+          <option>Design</option>
+        </select>
+      </div>
+
+
+      <div class="dataDate">
+        <label>Due Date : </label><br>
+        <input type="date" name="title"><br />
+      </div>
+      <div class="dataDate">
+        <label>Assigned Date : </label><br>
+        <input type="date" name="title">
+      </div>
+      <div class="dataDate">
+        <label>Created Date : </label><br>
+        <input type="date" name="title" [(ngModel)]="currentDate">
+      </div>
+      <div class="uploadimage">
+        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+
+      <div class="createtask">
+        <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
+        <button class="save-button pulse-effect hover-effect:hover">Save</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+

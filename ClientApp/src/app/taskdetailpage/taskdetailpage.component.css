@@ -1,6 +1,6 @@
 .main-box {
   padding-left: 0px;
-  height: 100rem;
+  height: 83rem;
   background-color: whitesmoke;
 }
 
@@ -790,7 +790,7 @@ li {
     border: none;
     border: 0.5px solid lightslategrey;
     border-radius: 5px;
-    box-shadow: 0 1px 15px #1F528E;
+/*    box-shadow: 0 1px 15px #1F528E;*/
   }
 
   .id {
@@ -921,6 +921,21 @@ li {
 }
 
 .rounded-button {
-  border-radius: 18px;
+  border-radius: 11px;
   font-weight: 500;
+}
+.button2 {
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 70px;
+  height: 40px;
+  width: 120px;
+  color: white;
+  background-color: #1F528E;
+  border: none;
+  /*border: 0.5px solid lightslategrey; #1F528E*/
+  border-radius: 15px;
+  margin-top: 5px;
+  text-align: center;
+  vertical-align: central;
 }

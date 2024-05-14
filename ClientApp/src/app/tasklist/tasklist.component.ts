@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit, ElementRef, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-
+import { CreateTaskComponent } from '../create-task/create-task.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -89,8 +89,8 @@ export class TasklistComponent {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  capture() {
-
+  opentaskdetail() {
+    this.router.navigate(['/main/TaskdetailpageComponent']);
   }
 
   statusfilter(status: any) {
@@ -233,7 +233,18 @@ export class TasklistComponent {
 
   }
 
+  addtask() {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
+      width: '80%', height: '80%', disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      //     console.log('The dialog was closed', result);
 
+      if (result != "") {
+
+      }
+    });
+  }
 
   ngOnInit() {
     throw new Error('Method not implemented.');

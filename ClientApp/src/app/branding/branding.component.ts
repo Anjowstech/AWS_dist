@@ -1,53 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { CameraComponent } from '../camera/camera.component'
-import { ViewImagesComponent } from '../view-images/view-images.component'
-
-
-
-
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-market-research',
-  templateUrl: './market-research.component.html',
-  styleUrls: ['./market-research.component.css']
+  selector: 'app-branding',
+  templateUrl: './branding.component.html',
+  styleUrls: ['./branding.component.css']
 })
-export class MarketResearchComponent implements OnInit  {
+export class BrandingComponent {
   datapcc: any = [];
-  OrderManagementList: any = []
-  Auditlist: any = [];
-  active: any;
-  productdescription: any;
+  rowClicked: any;
+  active: any
   ngtaskname: any;
-  ngproduct: any;
-  picturefile1: any;
+  productdescription: any;
   ngcategory: any;
   ngstatus: any;
-  constructor(public dialog: MatDialog) { }
-  opencamera() {
-    const dialogRef = this.dialog.open(CameraComponent, {
-      width: '50%', height: '70%', disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      //     console.log('The dialog was closed', result);
-
-      if (result != "") {
-      
-      }
-    });
+  ngproduct: any;
+  picturefile1: any;
+  OrderManagementList: any = []
+  Auditlist: any = [];
+  constructor() { }
+  changeTableRowColor(idx: any) {
+    if (this.rowClicked === idx) this.rowClicked = -1;
+    else this.rowClicked = idx;
   }
-  viewimages() {
-    const dialogRef = this.dialog.open(ViewImagesComponent, {
-      width: '50%', height: '70%', disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      //     console.log('The dialog was closed', result);
 
-      if (result != "") {
-
-      }
-    });
-  }
   ngOnInit() {
 
     this.datapcc = [{ Itemno: "1", Information: "Product Description & Codes or Formulation Code", CheckOff: false, checked: "", UserName: "", locked: "E" },
@@ -78,20 +53,24 @@ export class MarketResearchComponent implements OnInit  {
 
 
     this.OrderManagementList = [
-      { TaskID: "1", TaskName: "Sweets ", Supplier: "Marketing Research In-Progress ", Location: "Purchase Manager", PMI: "24/4/2024", Name: "Sahil Gupta", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "Jams" },
-      
+      { TaskID: "1", TaskName: "Sweets and Salty Savoury", Supplier: "Chocovic", Location: "India", PMI: "Chocovic", Name: "Sahil Gupta", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N001" },
+      { TaskID: "2", TaskName: "Tea", Supplier: "Chocovic", Location: "USA", PMI: "Esah(Rulio Tea Company)", Name: "Bijit Sharma", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N002" },
+      { TaskID: "3", TaskName: "Dates", Supplier: "Chocovic", Location: "Moracco", PMI: "Cooperative Mahi Coop", Name: "Mandar Tilak", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N003" },
+      { TaskID: "4", TaskName: "Coffee", Supplier: "Chocovic", Location: "Brazil", PMI: "Worldwide Trade Solutions", Name: "Saneesh Thomas", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N004" },
+      { TaskID: "5", TaskName: "Syrups", Supplier: "Chocovic", Location: "Mexico", PMI: "Chocovic", Name: "Jessica garcia", Designation: "GM", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N005" },
+      { TaskID: "6", TaskName: "Almond Oil", Supplier: "Chocovic", Location: "Germany", PMI: "Esah(Rulio Tea Company)", Name: "Joseph", Designation: "CEO", ContactNo: "9876543210", Status: "Branding InProgress", PurOrderNo: "PO00N006" },
 
     ];
 
 
     this.Auditlist = [
-      { Date: "17/4/2024", TaskName: "TaskName: Sweets and Salty Savoury Branding is InProgress", Username: "Admin" },
-      { Date: "16/4/2024", TaskName: "TaskName: Tea Branding is InProgress", Username: "Admin" },
-      { Date: "13/4/2024", TaskName: "TaskName: Dates Branding is InProgress", Username: "Admin" },
-      { Date: "12/4/2024", TaskName: "TaskName: Coffee Branding is InProgress", Username: "Admin" },
-      { Date: "11/4/2024", TaskName: "TaskName: Syrups Branding is InProgress", Username: "Admin" },
-      { Date: "10/4/2024", TaskName: "TaskName: Almond Oil Branding is InProgress", Username: "Admin" },
-      { Date: "09/4/2024", TaskName: "TaskName: Popcorn Branding Completed", Username: "Admin" },
+      { Date: "17/4/2024", TaskName: "Task Name: Sweets and Salty Savoury Branding is InProgress", Username: "Admin" },
+      { Date: "16/4/2024", TaskName: "Task Name: Tea Branding is InProgress", Username: "Admin" },
+      { Date: "13/4/2024", TaskName: "Task Name: Dates Branding is InProgress", Username: "Admin" },
+      { Date: "12/4/2024", TaskName: "Task Name: Coffee Branding is InProgress", Username: "Admin" },
+      { Date: "11/4/2024", TaskName: "Task Name: Syrups Branding is InProgress", Username: "Admin" },
+      { Date: "10/4/2024", TaskName: "Task Name: Almond Oil Branding is InProgress", Username: "Admin" },
+      { Date: "09/4/2024", TaskName: "Task Name: Popcorn Branding Completed", Username: "Admin" },
 
     ];
   }
