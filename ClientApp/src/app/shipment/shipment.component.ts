@@ -5,7 +5,8 @@ import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { MsgBoxComponent } from 'src/app/msg-box/msg-box.component';
 import { ShipmentService } from 'src/app/shipment/service/shipment.service';
-
+import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shipment',
@@ -34,15 +35,23 @@ export class ShipmentComponent implements OnInit {
   ShipmentId: any;
   Description: any;
   datasubmitshipmentdetails: any;
-  shipmentselecteddetails: any = []
-  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService) {
-
+  shipmentselecteddetails: any = [];
+  listshipmentpost: shipmentpost [] =[];
+  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService, private _snackBar: MatSnackBar) {
+  
+  
 
 
   }
 
 
-
+  openSnackBar(message: string, action: string, ) {
+    this._snackBar.open(message, action,{
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    })
+  }
 
   //To highlight the row clicked in dropdown
   changestatus(event: any, index: any) {
@@ -67,6 +76,7 @@ export class ShipmentComponent implements OnInit {
     }
     this.TrackingID = rowvalue.TrackingId;
     this.EstimatedDeliverytime = rowvalue.EstimatedDeliverytime;
+    this.Description = rowvalue.Description
 
     this.shipmentselecteddetails = [rowvalue.Taskname, rowvalue.OrderId, rowvalue.TrackingId, rowvalue.EstimatedDeliverytime, rowvalue.ShipmentId, rowvalue.Location, rowvalue.Status];
   }
@@ -88,13 +98,6 @@ export class ShipmentComponent implements OnInit {
   //upload data
 
   placeholderText: string = 'Custom Placeholder';
-  showDatePickerFlag: boolean = false;
-
-
-  openDatePicker() {
-    this.showDatePickerFlag = !this.showDatePickerFlag; // Toggle the visibility of the date picker
-  }
-
   handleDateChange(event: any) {
     console.log('Selected date:', event.target.value);
   }
@@ -126,7 +129,7 @@ export class ShipmentComponent implements OnInit {
 
   //Shipment grid load
   shipmentloaddata() {
-    var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,* from aws.shipment_details";
+    var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,* from AWS.tbl_shipment_details";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
@@ -135,21 +138,9 @@ export class ShipmentComponent implements OnInit {
 
   //submit shipment
 
-  submitshipmentdetails(Connection:any,jsonprams: any, spsname: any) {
 
-    const headers: any = new HttpHeaders({
-      jsonprams
-    });
-
-    console.log(jsonprams, spsname)
-    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', spsname, { headers });
-  }
-
- 
-  
-  submitclick() {
-    console.log(this.shipmentselecteddetails)
-    this.shipmentdetails[0] = ([{
+  submitclick():void {
+    const shipment = {
       ShipmentId: this.shipmentselecteddetails[4],
       OrderId: this.shipmentselecteddetails[1],
       TrackingId: this.shipmentselecteddetails[2],
@@ -160,41 +151,129 @@ export class ShipmentComponent implements OnInit {
       Description: this.Description,
       BlobPath: "",
       UploadFile: "",
+    };
+    console.log(shipment)
+    this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment )
+      .subscribe(
+        (response) => {
+          console.log('Data inserted successfully:', response);
+          this.openSnackBar('Shipment updated successfully', 'close');
+        },
+        (error) => {
+          console.error('Error inserting data:', error);
+          if (error && error.error && error.error.errors) {
+            const validationErrors = error.error.errors;
+            console.log('Validation errors:', validationErrors);
+          }
+          this.openSnackBar('Failed to update Shipment', 'close');
+        }
+      );
+  }
+  
+
+  //submitshipmentdetails(jsonprams: any, spsname: any) {
+  //  let params1 = new HttpParams().set('JSONFileparams', jsonprams).set('spname', spsname);
+  //  console.log(params1)
+  //  console.log(jsonprams, spsname)
+  //  return this.http.get('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', { params: params1 });
+  //}
+
+ 
+  
+  //submitclick(): Observable<string> {
+  //  this.shipmentdetails[0] = ([{
+  //    ShipmentId: this.shipmentselecteddetails[4],
+  //    OrderId: this.shipmentselecteddetails[1],
+  //    TrackingId: this.shipmentselecteddetails[2],
+  //    TaskName: this.shipmentselecteddetails[0],
+  //    EstimatedDeliveryTime: this.shipmentselecteddetails[3],
+  //    Location: this.shipmentselecteddetails[5],
+  //    Status: "InTransit",
+  //    Description: this.Description,
+  //    BlobPath: "",
+  //    UploadFile: "",
+  //  }]);
+  //  var JSONFileparams: string = JSON.stringify(this.shipmentdetails);
+  //  console.log(JSONFileparams)
+  //  var spname: string = "[AWS].[sp_shipment_details]";
+
+  //  let params1 = new HttpParams().set('JSONFileparams', JSONFileparams).set('spname', spname);
+  //  console.log(params1)
+  //  //let headers = new HttpHeaders();
+  //  //headers = headers.append(jsonprams, spsname);
+  //  //console.log(headers)
+  //  //let fd = new FormData();
+  //  //fd.set('JSONFileparams', jsonprams),
+  //  //fd.set('spname', spsname)
+  //  //console.log(fd)
+  //  var result = this.http.post<string>('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', { params:params1,responseType:'text'})
+  //  //console.log(result)
+    
+  //  result.subscribe(
+  //      (response) => {
+  //        console.log('Data inserted successfully:', response);
+  //        //this.openSnackBar('Supplier created successfully');
+  //      },
+  //      (error) => {
+  //        console.error('Error inserting data:', error);
+  //        if (error && error.error && error.error.errors) {
+  //          const validationErrors = error.error.errors;
+  //          console.log('Validation errors:', validationErrors);
+  //        }
+  //        //this.openSnackBar('Failed to create supplier');
+  //      }
+  //  );
+
+  //  return result
+  //  //console.log(this.shipmentselecteddetails)
+  //  //this.shipmentdetails[0] = ([{
+  //  //  ShipmentId: this.shipmentselecteddetails[4],
+  //  //  OrderId: this.shipmentselecteddetails[1],
+  //  //  TrackingId: this.shipmentselecteddetails[2],
+  //  //  TaskName: this.shipmentselecteddetails[0],
+  //  //  EstimatedDeliveryTime: this.shipmentselecteddetails[3],
+  //  //  Location: this.shipmentselecteddetails[5],
+  //  //  Status: this.Status,
+  //  //  Description: this.Description,
+  //  //  BlobPath: "",
+  //  //  UploadFile: "",
      
 
-    }])
+  //  //}])
 
 
 
-    var jsonprams: any = JSON.stringify(this.shipmentdetails);
-    console.log(this.shipmentdetails)
-    var spsname = "[AWS].[sp_shipment_details]";
-    var Connection = "";
-    var data = { jsonprams, spsname };
-    this.service.postData(Connection,jsonprams, spsname).subscribe(
-      (response: any) => {
-        console.log('Response:', response);
-      },
-      (error: any) => {
-        console.error('Error:', error);
-      });
-    console.log(this.shipmentdetails)
-    //var jsonprams: any = JSON.stringify(this.shipmentdetails);
-    //console.log(this.shipmentdetails)
-    //var spsname = "[AWS].[sp_shipment_details]";
-    //this.submitshipmentdetails(jsonprams, spsname).subscribe(response => {
-    //  console.warn("response", response)
-    //  this.datasubmitshipmentdetails = response
+  //  //var jsonprams: any = JSON.stringify(this.shipmentdetails);
+  //  //console.log(this.shipmentdetails)
+  //  //var spsname = "[AWS].[sp_shipment_details]";
+  //  //var Connection = "";
+  //  //var data = { JSONFileparams, spname };
+  //  //this.service.postData(data).subscribe(
+  //  //  data => {
+
+  //  //  }
+          
+         
+  //  //);
+  //  //console.log(data)
+  //  //var jsonprams: any = JSON.stringify(this.shipmentdetails);
+  //  //console.log(this.shipmentdetails)
+  //  //var spsname = "[AWS].[sp_shipment_details]";
+  //  //this.submitshipmentdetails(jsonprams, spsname).subscribe(response => {
+
+  //  //  //this.listshipmentpost = response
+  //  //  //console.warn("response", response)
+  //  //  //this.datasubmitshipmentdetails = response
 
 
-    //  if (this.datasubmitshipmentdetails == "success") {
+  //  //  //if (this.datasubmitshipmentdetails == "success") {
 
 
-    //    this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Shipment saved sucessfully." } });
+  //  //  //  this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Shipment saved sucessfully." } });
 
-    //  }
-    //});
-  }
+  //  //  //}
+  //  //});
+  //}
 
    
  
@@ -236,4 +315,16 @@ export class ShipmentComponent implements OnInit {
     //  ];
   }
 
+}
+export class shipmentpost {
+  ShipmentId: string = "";
+  OrderId: string = "";
+  TrackingId: string = "";
+  TaskName: string = "";
+  EstimatedDeliveryTime: string = "";
+  Location: string = "";
+  Status: string = "";
+  Description: string = "";
+  BlobPath: string = "";
+  UploadFile: string="";
 }

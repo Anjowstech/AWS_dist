@@ -14,14 +14,37 @@ export class BrandingComponent {
   active: any;
   innerTabset: any;
   loadpackagingloaddata: any;
+  packagingID: any;
   constructor(public dialog: MatDialog, private http: HttpClient,) { }
 
 
   Createcomponent() {
-    let dialogRef = this.dialog.open(AddComponentComponent, {
-        height: '400px',
-        width: '600px',
-      });
+    const dialogRef = this.dialog.open(AddComponentComponent, {
+      width: '80%',
+      height: '85%',
+      disableClose:true,
+     // data: [this.packagingID] // Pass the selected packagingID  to the dialog
+      //let dialogRef = this.dialog.open(AddComponentComponent, {
+      //    height: '400px',
+      //    width: '600px',
+      //  });
+    })
+  }
+
+
+  //update packaging
+  selectpackaginggrid(rowvalue:any) {
+    this.packagingID = rowvalue.ID
+    const dialogRef = this.dialog.open(AddComponentComponent, {
+      width: '80%',
+      height: '85%',
+      disableClose: true,
+      data: { displaydata: this.packagingID } // Pass the selected packagingID  to the dialog
+      //let dialogRef = this.dialog.open(AddComponentComponent, {
+      //    height: '400px',
+      //    width: '600px',
+      //  });
+    })
   }
 
 

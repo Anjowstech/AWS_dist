@@ -28,6 +28,7 @@ import { BrandingComponent } from './branding/branding.component';
 import { MsgBoxComponent } from './msg-box/msg-box.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddComponentComponent } from './branding/add-component/add-component.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
@@ -59,7 +60,8 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     ShipmentComponent,
     BrandingComponent,
     MsgBoxComponent,
-    AddComponentComponent
+    AddComponentComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -71,12 +73,14 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatTabsModule,
     MatMenuModule,
     MatButtonModule,
+    MatSnackBarModule ,
     RouterModule.forRoot(appRoutes, { useHash: false }),
     MatDialogModule,
     BrowserAnimationsModule,
     NgbModule,
+    
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, AddComponentComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

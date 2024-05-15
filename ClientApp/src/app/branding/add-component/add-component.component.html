@@ -1,5 +1,5 @@
-<body>
-  <div>
+
+  <div mat-dialog-content>
     <div>
       <h1>Create Component</h1>
 
@@ -38,9 +38,11 @@
 
       <div class="createtask">
         <button class="save-button1 hover-effect:hover" (click)="Cleardata()" matDialogClose>Clear</button>
-        <button class="save-button pulse-effect hover-effect:hover" (click)="savecomponent()">Save</button>
+        <button class="save-button pulse-effect hover-effect:hover" [hidden]="hidsave" (click)="savecomponent()">Save</button>
+        <button class="save-button pulse-effect hover-effect:hover" [hidden]="hidupdate"  (click)="Updatecomponent()">update</button>
+
       </div>
 
     </div>
   </div>
-</body>
+

@@ -122,7 +122,7 @@
 
       <div class="data">
         <label class="label1">Description</label><br>
-        <textarea type="text" name="title" [(ngModel)]="Description" rows="5"></textarea>
+        <textarea type="text"  [(ngModel)]="Description" rows="5"></textarea>
       </div>
       <div class="uploadimage">
         <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">

@@ -1,7 +1,7 @@
 <div width="100%">
-<div class="image" style="background-image: url(../../assets/product34.jpg) "  width="100%" >
-<img src="../../assets/nw-logo-jpg.jpg"/>
-</div>
+  <div class="image" style="background-image: url(../../assets/product34.jpg) " width="100%">
+    <img src="../../assets/nw-logo-jpg.jpg" />
+  </div>
   <h3>Branding</h3>
   <div style="margin-top: 5px;background-color:white">
     <div class="tasktable">
@@ -45,442 +45,381 @@
 
     </div>
 
-</div>
-
-
-
-
-<div style="background-color:white;" width="100%">
-
-  <div style="overflow-y:auto;overflow-x:hidden;">
-
-    <div>
-      <div class="row">
-        <div class="col-md-12">
-
-          <div>
-            <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="padding-top: 5px;">
-              <ng-container ngbNavItem="1" style="margin-left:20px;">
-                <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Packaging</a>
-                <ng-template ngbNavContent>
-                  <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
-                  <div class="tasktable">
-
-                    <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px;" (click)="Createcomponent()">Add Component</button>
-                    <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
-                      <thead>
-                        <tr>
-                          <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Image</th>
-                          <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Component Name</th>
-                          <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Specification</th>
-                          <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Size</th>
-                          <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Unit Cost $</th>
-                          <!--<th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Browse</th>-->
-                        </tr>
-                      </thead>
-                      <tbody>
-
-
-                        <tr class="active-row" *ngFor="let a of loadpackagingloaddata">
-
-                          <td style="font-size:medium;text-align:center;" width="15%">
-                           
-
-                          </td>
-                          <td style="border: 2px solid lightgrey;">
-                            {{a.ComponentName}}
-                          </td>
-                          <td style="border: 2px solid lightgrey;">
-                            {{a.Specification}}
-                          </td>
-                          <td style="border: 2px solid lightgrey;">
-                            {{a.Size}}
-                          </td>
-
-                          <td style="border: 2px solid lightgrey;">
-                            {{a.UnitCost}}
-                          </td>
-                        
-                        </tr>
-
-                      </tbody>
-                    </table>
-                  </div>
-
-                </ng-template>
-
-
-
-              </ng-container>
-              <ng-container ngbNavItem="2" style="margin-left:20px;">
-                <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Label</a>
-                <ng-template ngbNavContent>
-                  <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="form-row">
-
-
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-4">
-                            <table width="100%">
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
-                                <td style="width: 24%; text-align: left; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-
-                              </tr>
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
-                                <td style="width: 24%; text-align: left; padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                              </tr>
-
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
-                                <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                              </tr>
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
-                                <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                              </tr>
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
-                                <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                              </tr>
-
-
-                            </table>
-                          </div>
-                          <div class="col-md-6">
-
-                            <table width="100%">
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
-                                <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Add Barcode image" style=" margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller;  height: 30px;">Browse</button></td>
-                                <td width="10%">
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
-                                <td style="width: 24%; text-align: left;padding-top: 20px; ">
-                                  <input class="inputclass" type="text" placeholder="Add Product image" style="margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%;   width: 100px; font-size: smaller; height: 30px;"> Browse</button>
-                                </td>
-                                <td width="10%">
-                                </td>
-                              </tr>
-                            </table>
-
-                          </div>
-                          <div class="col-md-2">
-                            <div style=" border: none;  width: 100%; ">
-                              <img src="../assets/barcode.jpg " height="150" width="250" />
-
-                            </div>
-                            <div style=" margin-top: 30px; border: none; width: 100%">
-                              <img src="../assets/DreamHost-howto-prod-descrips-full.jpeg " height="150" width="250" />
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </ng-template>
-
-
-
-              </ng-container>
-
-              <ng-container ngbNavItem="3" style="margin-left:20px;">
-                <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Artwork</a>
-                <ng-template ngbNavContent>
-                  <div class="form-inline" style="margin-top:25px;">
-                    <label class="label1" for="inputcust" style="margin-left:45px;font-size: smaller;font-family: Verdana;">Picture File</label>
-                    <input type="text" style="width: 60%; margin-left: 45px;" class="form-control" placeholder="" id="PDR" name="pt1" value="">
-                    <button type="submit" class="save-button pulse-effect hover-effect:hover" style="margin-top: .5%; width: 100px; font-size: smaller; height: 30px; margin-left: 45px; ">Browse</button>
-
-
-                  </div>
-                  <div class="form-inline" style="margin-top: 25px; margin-left: 45px;">
-                    <div style=" margin-top: 30px; border: none; width: 100%">
-                      <img src="../assets/packagingart.jfif " height="150" width="350" />
-                      <img src="../assets/pack2art.jfif " height="150" width="150" />
-                      <img src="../assets/pack2art.jfif " height="150" width="150" />
-
-                    </div>
-
-                  </div>
-
-                </ng-template>
-
-
-
-              </ng-container>
-
-
-              <ng-container ngbNavItem="4">
-                <a class="tabcolor tabbutto tabrowli textsize" ngbNavLink>Approvals</a>
-                <ng-template ngbNavContent>
-                  <p style="font-family:Verdana;margin-top:10px;margin-left:5px;font-size:small"><b><u>Product Registration Approvals</u></b></p>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 1</Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 2</Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right ">Region 3</Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 4</Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 5</Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-                        </td>
-
-                      </tr>
-
-                      <tr>
-                        <td width="20%">
-                          <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">
-                            Region 6
-                          </Label>
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />yes
-
-                        </td>
-                        <td width="10%">
-                          <input type="radio" />No
-
-                        </td>
-                        <td width="50%">
-                          <input class="inputclass" type="text" />
-                        </td>
-                        <td width="10%">
-                          <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-                        </td>
-
-                      </tr>
-                    </tbody>
-                  </table>
-
-
-
-
-
-                </ng-template>
-              </ng-container>
-
-              <ng-container ngbNavItem="5" style="margin-left:20px;">
-                <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Product Specification</a>
-                <ng-template ngbNavContent>
-                  <table>
-                    <tr>
-                      <td width="5%">
-                        <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Product Description</label>
-
-                      </td>
-                      <td width="50%">
-                        <form class="form-inline" style="    background-color: white">
-                          <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
-                        </form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td width="5%">
-                        <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Applications</label>
-
-                      </td>
-                      <td width="50%">
-                        <form class="form-inline" style="    background-color: white">
-                          <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
-                        </form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td width="5%">
-                        <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana;">Technical Information</label>
-
-                      </td>
-                      <td width="50%">
-                        <form class="form-inline" style="    background-color: white">
-                          <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
-                        </form>
-                      </td>
-                    </tr>
-                  </table>
-
-                </ng-template>
-
-
-
-              </ng-container>
-            
-
-
-              <ng-container ngbNavItem="6" style="margin-left:20px;">
-                <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Audit</a>
-                <ng-template ngbNavContent>
-                  <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
-                  <div style="margin-top: 1%;  overflow-y:scroll; width: 100%; background-color: white;">
-                    <table class="styled-table" style="background-color: white;" width="100%">
-                      <thead>
-                        <tr>
-                          <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Date</th>
-                          <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Task</th>
-                          <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let a of Auditlist">
-                          <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Date}}</td>
-                          <td style="border: 2px solid lightgrey;font-size:medium;text-align:left;">{{a.TaskName}}</td>
-                          <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Username}}</td>
-
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </ng-template>
-
-
-
-              </ng-container>
-            </nav>
-
-
-        <div [ngbNavOutlet]="nav" class="mt-2"></div>
-      </div>
-    </div>
   </div>
-</div>
+
+  <mat-tab-group animationDuration="1000ms">
+    <mat-tab label="Packaging" style=" color: #1F528E; font-family: system-ui; font-size: medium;">
+      <ng-template matTabContent>
+        <div class="tasktable">
+
+          <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px;" (click)="Createcomponent()">Add Component</button>
+          <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+            <thead>
+              <tr>
+                <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Image</th>
+                <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Component Name</th>
+                <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Specification</th>
+                <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Size</th>
+                <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Unit Cost $</th>
+                <!--<th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Browse</th>-->
+              </tr>
+            </thead>
+            <tbody>
+
+
+              <tr class="active-row" *ngFor="let a of loadpackagingloaddata" (click)="selectpackaginggrid(a)">
+
+                <td style="font-size:medium;text-align:center;" width="15%">
+                </td>
+                <td style="border: 2px solid lightgrey;">
+                  {{a.ComponentName}}
+                </td>
+                <td style="border: 2px solid lightgrey;">
+                  {{a.Specification}}
+                </td>
+                <td style="border: 2px solid lightgrey;">
+                  {{a.Size}}
+                </td>
+
+                <td style="border: 2px solid lightgrey;">
+                  {{a.UnitCost}}
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Label">
+      <ng-template matTabContent>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-row">
+
+
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <table width="100%">
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
+                      <td style="width: 24%; text-align: left; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+
+
+                    </tr>
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
+                      <td style="width: 24%; text-align: left; padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+
+                    </tr>
+
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
+                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+
+                    </tr>
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
+                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+
+                    </tr>
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
+                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+
+                    </tr>
+
+
+                  </table>
+                </div>
+                <div class="col-md-6">
+
+                  <table width="100%">
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
+                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Add Barcode image" style=" margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller;  height: 30px;">Browse</button></td>
+                      <td width="10%">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
+                      <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                        <input class="inputclass" type="text" placeholder="Add Product image" style="margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%;   width: 100px; font-size: smaller; height: 30px;"> Browse</button>
+                      </td>
+                      <td width="10%">
+                      </td>
+                    </tr>
+                  </table>
+
+                </div>
+                <div class="col-md-2">
+                  <div style=" border: none;  width: 100%; ">
+                    <img src="../assets/barcode.jpg " height="150" width="250" />
+
+                  </div>
+                  <div style=" margin-top: 30px; border: none; width: 100%">
+                    <img src="../assets/DreamHost-howto-prod-descrips-full.jpeg " height="150" width="250" />
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Artwork">
+      <div class="form-inline" style="margin-top:25px;">
+        <label class="label1" for="inputcust" style="margin-left:45px;font-size: smaller;font-family: Verdana;">Picture File</label>
+        <input type="text" style="width: 60%; margin-left: 45px;" class="form-control" placeholder="" id="PDR" name="pt1" value="">
+        <button type="submit" class="save-button pulse-effect hover-effect:hover" style="margin-top: .5%; width: 100px; font-size: smaller; height: 30px; margin-left: 45px; ">Browse</button>
+
+
+      </div>
+      <div class="form-inline" style="margin-top: 25px; margin-left: 45px;">
+        <div style=" margin-top: 30px; border: none; width: 100%">
+          <img src="../assets/packagingart.jfif " height="150" width="350" />
+          <img src="../assets/pack2art.jfif " height="150" width="150" />
+          <img src="../assets/pack2art.jfif " height="150" width="150" />
+
+        </div>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="Approvals">
+      <p style="font-family:Verdana;margin-top:10px;margin-left:5px;font-size:small"><b><u>Product Registration Approvals</u></b></p>
+      <table>
+        <tbody>
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 1</Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+
+            </td>
+
+          </tr>
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 2</Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+            </td>
+
+          </tr>
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right ">Region 3</Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+            </td>
+
+          </tr>
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 4</Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+            </td>
+
+          </tr>
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 5</Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+            </td>
+
+          </tr>
+
+          <tr>
+            <td width="20%">
+              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">
+                Region 6
+              </Label>
+
+            </td>
+            <td width="10%">
+              <input type="radio" />yes
+
+            </td>
+            <td width="10%">
+              <input type="radio" />No
+
+            </td>
+            <td width="50%">
+              <input class="inputclass" type="text" />
+            </td>
+            <td width="10%">
+              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Product Specification">
+      <table>
+        <tr>
+          <td width="5%">
+            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Product Description</label>
+
+          </td>
+          <td width="50%">
+            <form class="form-inline" style="    background-color: white">
+              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td width="5%">
+            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Applications</label>
+
+          </td>
+          <td width="50%">
+            <form class="form-inline" style="    background-color: white">
+              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td width="5%">
+            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana;">Technical Information</label>
+
+          </td>
+          <td width="50%">
+            <form class="form-inline" style="    background-color: white">
+              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Audit">
+     
+    
+
+      <div style="margin-top: 1%;  overflow-y:scroll; width: 100%; background-color: white;">
+        <table class="styled-table" style="background-color: white;" width="100%">
+          <thead>
+            <tr>
+              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Date</th>
+              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Task</th>
+              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of Auditlist">
+              <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Date}}</td>
+              <td style="border: 2px solid lightgrey;font-size:medium;text-align:left;">{{a.TaskName}}</td>
+              <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Username}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+  <div style="background-color:white;" width="100%">
 
 
 
 
 
 
-<div style="background-color: white;padding-top:40px; ">
-  <table width="100%">
-    <tr>
-      <td width="80%"></td>
 
-      <td width="10%">
-        <label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>
-         <input type="checkbox" style="float: right; margin-top: 1.5%;  " />
 
-</td>
-<td width="10%">
-  <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;">Submit</button>
 
-</td>
-  </tr>
-</table>
+    <div style="background-color: white;padding-top:40px; ">
+      <table width="100%">
+        <tr>
+          <td width="80%"></td>
 
-</div>
-</div>
+          <td width="10%">
+            <label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>
+            <input type="checkbox" style="float: right; margin-top: 1.5%;  " />
+
+          </td>
+          <td width="10%">
+            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;">Submit</button>
+
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
   </div>
 </div>

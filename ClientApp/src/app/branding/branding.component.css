@@ -5,8 +5,16 @@
   background-size: cover;
 }
 
+mat-tab {
+  color: #1F528E;
+  font-family: system-ui;
+  font-size: medium;
 
+}
 
+.mat-tab-group {
+  margin-bottom: 48px;
+}
 .styled-table {
   border-collapse: collapse;
   margin: 25px 0;
