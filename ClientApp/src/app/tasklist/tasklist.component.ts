@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { WorkflowComponent } from '../workflow/workflow.component';
 
 @Component({
   selector: 'app-tasklist',
@@ -48,15 +49,27 @@ export class TasklistComponent {
   selectedFile: any;
   constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
   ViewAWSWorkFlow(rowvalue: any) {
-    //var data = [rowvalue]
+    var data = [rowvalue]
 
-    //const dialogRef = this.dialog.open(AWSWorkFlowComponent, {
-    //  height: '70%',
-    //  width: '50%',
-    //  data: { displaydata: data }, disableClose: true
-    //});
+    const dialogRef = this.dialog.open(WorkflowComponent, {
+      height: '70%',
+      width: '50%',
+      data: { displaydata: data }, disableClose: true
+    });
   }
+  openedittask() {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
+      width: '80%', height: '80%', disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      //     console.log('The dialog was closed', result);
 
+      if (result != "") {
+
+      }
+    });
+
+  }
   CreateTask(rowvalue: any) {
     //const dialogRef = this.dialog.open(CreateTaskComponent, {
     //  height: '85%',
@@ -232,7 +245,7 @@ export class TasklistComponent {
 
 
   }
-
+ 
   addtask() {
     const dialogRef = this.dialog.open(CreateTaskComponent, {
       width: '80%', height: '80%', disableClose: true
@@ -244,8 +257,9 @@ export class TasklistComponent {
 
       }
     });
+    
   }
-
+  
   ngOnInit() {
     throw new Error('Method not implemented.');
   }

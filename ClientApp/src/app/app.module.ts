@@ -35,6 +35,7 @@ import { ViewImagesComponent } from './view-images/view-images.component';
 
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { LuggageReportComponent } from './luggage-report/luggage-report.component';
+import { WorkflowComponent } from './workflow/workflow.component';
 
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
@@ -77,6 +78,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
  
     CreateTaskComponent,
     LuggageReportComponent,
+    WorkflowComponent,
    
   ],
   imports: [

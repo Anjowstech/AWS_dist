@@ -1,0 +1,90 @@
+
+<div style="background-color: white; height: 100%; overflow-y: scroll;overflow-x:hidden;" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+
+  <mat-icon style="color: #4f4d49; float: right;margin-right:2%;" matDialogClose>close</mat-icon>
+
+
+  <div style="background-color: white;">
+
+    <h3 style="margin-top: 5px; font-family: Playfair Display; background-color: none; color: black; text-align: center; font-weight: 700; font-family: Calibri;">{{TaskName}}</h3>
+
+
+    <div style="display:flex;justify-content:center;width:100%;margin-top:2%;">
+
+      <div>
+
+
+        <label class="Workflowtab">
+
+          <label class="headLabel ">Task Creation</label>
+
+          <label class="SubInnerLabel">
+            Assigned On  <input disabled class="dataclass" value="{{Assigenddate}}" /><br />
+            Assigned To  <input disabled class="dataclass" value="{{InitiallyAssigned}}" />
+          </label>
+
+        </label><br>
+
+
+        <label [hidden]="isPending" style="display: flex; justify-content: center;">
+          <img src="../../assets/down-arrow-new.png" height="80" width="55" /><br>
+        </label>
+
+        <label [hidden]="isPending" class="Workflowtab" style=" border: 3px solid #ada451;">
+
+          <label class="headLabel" style="background-color: #ada451;">Pending</label>
+
+          <label class="SubInnerLabel">
+            Assigned On  <input disabled class="dataclass" value="{{Assigenddate}}" /><br />
+            Assigned To  <input disabled class="dataclass" value="{{InitiallyAssigned}}" />
+          </label>
+
+        </label><br>
+
+
+
+        <label [hidden]="isInProgress" style="display: flex; justify-content: center;">
+          <img src="../../assets/down-arrow-new.png" height="80" width="55" /><br>
+        </label>
+
+        <label [hidden]="isInProgress" class="Workflowtab" style="border: 3px solid #758551; ">
+
+          <label class="headLabel" style="background-color: #758551; ">InProgress</label>
+
+          <label class="SubInnerLabel">
+            Assigned On  <input disabled class="dataclass" value="{{Assigenddate}}" /><br />
+            Assigned To  <input disabled class="dataclass" value="{{InitiallyAssigned}}" />
+          </label>
+
+        </label><br>
+
+        <label [hidden]="isCompleted" style="display: flex; justify-content: center;">
+          <img src="../../assets/down-arrow-new.png" height="80" width="55" /><br>
+        </label>
+
+        <label [hidden]="isCompleted" class="Workflowtab" style=" border: 3px solid #3d9c81;">
+
+          <label class="headLabel" style="background-color: #3d9c81;">Completed</label>
+
+          <label class="SubInnerLabel">
+            Assigned On  <input disabled class="dataclass" value="{{Assigenddate}}" /><br />
+            Assigned To  <input disabled class="dataclass" value="{{InitiallyAssigned}}" />
+          </label>
+
+        </label><br>
+
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+
