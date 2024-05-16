@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+
+
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
@@ -87,7 +92,10 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatToolbarModule,
     MatDividerModule,
     NgbModule,
+MatSidenavModule ,
+  FlexLayoutModule ,
     FormsModule,
+    MatListModule,
     MatIconModule,
     MatTabsModule,
     MatMenuModule,

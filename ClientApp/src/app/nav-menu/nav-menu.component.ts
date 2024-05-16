@@ -13,8 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class NavMenuComponent implements OnInit {
 
   isExpanded = false;
-  public screenHeight!: number;
-  public screenWidth!: number;
+  public screenHeight:any;
+  public screenWidth:any;
   textlogo: boolean = true;
   logo: boolean = false;
   collapse() {
@@ -25,8 +25,9 @@ export class NavMenuComponent implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
   ngOnInit() {
-    this.screenHeight = (window.screen.height);
-    this.screenWidth = (window.screen.width);
+    this.screenHeight = (window.innerHeight * 0.90).toString() + "px";  
+    this.screenWidth = window.innerWidth;
+    
     if (this.screenWidth >= 500) {
       this.textlogo = false;
       this.logo = true;
