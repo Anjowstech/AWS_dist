@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -41,8 +42,12 @@ import { ViewImagesComponent } from './view-images/view-images.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { LuggageReportComponent } from './luggage-report/luggage-report.component';
 import { WorkflowComponent } from './workflow/workflow.component';
+import { FaceAPILogInComponent } from './face-apilog-in/face-apilog-in.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { UserAddComponent } from './user-add/user-add.component';
 
-const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
+const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceAPILogInComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
     { path: 'Dashboardreport', component: DashboardreportComponent },
@@ -52,7 +57,8 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'Branding', component: BrandingComponent },
     { path: 'ordermanagement', component: OrderManagementComponent },
     { path: 'Shipment', component: ShipmentComponent },
-    { path: 'Reorder', component: ReorderComponent }
+    { path: 'Reorder', component: ReorderComponent },
+    { path: 'admin', component: UserManagementComponent }
   ]
 }
 ];
@@ -84,6 +90,10 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     CreateTaskComponent,
     LuggageReportComponent,
     WorkflowComponent,
+    FaceAPILogInComponent,
+    AdminComponent,
+    UserManagementComponent,
+    UserAddComponent,
    
   ],
   imports: [
@@ -92,6 +102,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatToolbarModule,
     MatDividerModule,
     NgbModule,
+  
 MatSidenavModule ,
   FlexLayoutModule ,
     FormsModule,
@@ -104,7 +115,7 @@ MatSidenavModule ,
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent,ViewImagesComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

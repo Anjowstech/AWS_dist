@@ -1,0 +1,80 @@
+
+.layoutHead {
+  text-align: left;
+  color: #1f538e;
+  padding: 0px;
+  margin-left: 0px;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.input {
+  width: 80%;
+  /*  display: inline-block;*/
+  font-family: "Arial", sans-serif;
+  width: 90%;
+  height: 35px;
+  max-width: 80%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+  margin-left: 10%;
+}
+
+.label {
+  display: flex;
+  width: 150px;
+  font-weight: 500;
+  text-align: right;
+  margin-left: 10%;
+}
+
+.create-btn {
+  cursor: pointer;
+  background-color: white;
+  color: #1F528E;
+  border: 1px solid #1f538e;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  padding: 8px;
+  margin-left: 81%;
+  margin-top: 5px;
+}
+
+.layoutHead {
+  text-align: left;
+  color: #1f538e;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.dialogehead {
+  margin-top: 10px;
+}
+
+.button2 {
+  float: right;
+  margin-right: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px; /* Adjust the top distance as needed */
+  right: 10px; /* Adjust the right distance as needed */
+  padding: 0; /* Remove padding */
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  cursor: pointer;
+  font-size: 25px; /* Adjust font size as needed */
+  color: #1F528E; /* Color of the 'x' symbol */
+  box-shadow: none; /* Remove box shadow */
+}

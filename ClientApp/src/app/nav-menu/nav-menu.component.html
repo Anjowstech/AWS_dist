@@ -112,7 +112,7 @@
           <button mat-menu-item style="background-color:white;color:gray; border:none" [routerLink]="'/login'">
             Logout
           </button>
-          <button mat-menu-item style="background-color:white;color:gray; border:none">
+          <button mat-menu-item style="background-color:white;color:gray; border:none" [routerLink]="['admin']">
             Admin
           </button>
         </mat-menu>
@@ -148,7 +148,7 @@
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <a (click)="sidenav.toggle()"  mat-list-item>Close</a>
         <a [routerLink]="['Dashboardreport']" mat-list-item>Dashboard</a>
         <a [routerLink]="['TaskList']" mat-list-item>Task List</a>
         <a [routerLink]="['marketresearch']" mat-list-item>Market Research</a>
@@ -158,7 +158,7 @@
         <a [routerLink]="['Shipment']" mat-list-item>Shipment</a>
         <a [routerLink]="['Reorder']" mat-list-item>Reorder</a>
         <a  mat-list-item>Reports</a>
-        <a [routerLink]="'/login'" mat-list-item  style="color:red" >Logout</a>
+        <a [routerLink]="'/login'" mat-list-item style="background-color: #F2D7D5" >Logout</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill><div style=" height:100%;background-color:whitesmoke">

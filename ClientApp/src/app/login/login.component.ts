@@ -1,7 +1,9 @@
+
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { DataShareServiceService } from 'src/app/data-share-service.service';
 
 
 @Component({
@@ -23,8 +25,8 @@ export class LoginComponent implements OnInit {
   pass: any;
   dataListsave1: login[][] = [];
 
-
-  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver) { }
+  UserList: string[] = [];
+  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver, private datashare: DataShareServiceService) { }
   userdata(username: string, password: string) {
     var usern: string = username;
     var passw: string = password;
@@ -70,6 +72,7 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
   login() {
     this.userdata(this.username, this.password).subscribe((userdetails) => {
       console.warn("userdetails", userdetails)
@@ -79,10 +82,16 @@ export class LoginComponent implements OnInit {
       this.role = this.connection;
       /* this.pass = item.Password;*/
 
+      this.UserList.push(this.username);
+      this.UserList.push(this.password);
+      this.datashare.sendpdrlist(this.UserList);
 
       if (this.role !== null) {
         this.router.navigate(['/main/Dashboardreport']);
         /* this.Datashare.sendrole(this.role);*/
+
+       // this.router.navigate(['/Facelogin']);
+
 
       } else {
         alert("Invalid credentials");
@@ -90,16 +99,7 @@ export class LoginComponent implements OnInit {
     })
 
   }
-  //login(): void {
 
-
-  //  if (this.username == 'aws@gmail.com' && this.password == 'aws@123') {
-
-  //    this.router.navigate(['/main/Dashboardreport']);
-  //  } else {
-  //    alert("Invalid credentials");
-  //  }
-  //}
 }
 export class login {
   Usernam!: string;

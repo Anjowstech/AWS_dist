@@ -74,10 +74,10 @@
       <table style="margin-left:1%;width:90%;margin-top:1%;">
         <tr>
           <td width="35%">
-            <input type="text" placeholder="Search here" style="background-color: white; width: 100%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" />
+            <input type="text" placeholder="Search here" style="background-color: white; width: 100%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;"[(ngModel)]="filtdata" id="myInput" />
           </td>
           <td width="5%">
-            <mat-icon style="font-size:x-large;margin-left:1%;">mic</mat-icon>
+            <mat-icon style="font-size:x-large;margin-left:1%;" (click)="startListening()">mic</mat-icon>
           </td>
           <td width="35%">
             <input type="date" id="prodfrm" class="form-control inputtextbox" style="height:28px;background-color: white; width: 90%;margin-left:7%; border: none; font-family: Calibri; font-size: large;display:inline; border-radius: 5px;" [(ngModel)]="ngassigneddate" name="prddatefrm" value="" />
@@ -107,8 +107,7 @@
         <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family: Calibri; font-size: x-small; margin-left: 1%; overflow-x: auto;">
           <thead>
             <tr>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;"></th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;"></th>
+          
               <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;">Task ID</th>-->
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:10%;">Task Name</th>
               <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Brand</th>-->
@@ -122,15 +121,14 @@
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Department</th>
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Workflow</th>
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Report</th>
-              <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Images</th>
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;"></th>
+      
             </tr>
           </thead>
 
           <tbody>
             <tr class="active-row" *ngFor="let item of AssignedTaskList" #conten >
-              <td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><button mat-button class="buttonicon"> <mat-icon class="maticoncolorblue">camera_alt</mat-icon></button></td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><mat-icon class="maticoncolorblue">video_call</mat-icon></td>
+         
               <!--<td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;">{{item.TaskID}}</td>-->
               <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; "(click)="opentaskdetail()">{{item.Product}}</td>
               <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; "(click)="opentaskdetail()">{{item.TaskName}}</td>
@@ -140,7 +138,7 @@
               <!--<td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.DueDate}}</td>-->
               <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; "(click)="opentaskdetail()">{{item.Assigenddate}}</td>
               <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; "(click)="opentaskdetail()">{{item.InitiallyAssigned}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; "(click)="opentaskdetail()">{{item.CurrentlyAssigned}}</td>
+              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; "(click)="opentaskdetail()">{{item.CurrentlyAssigned}}</td>-->
 
 
 

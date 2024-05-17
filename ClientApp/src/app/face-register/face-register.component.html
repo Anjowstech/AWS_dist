@@ -1,0 +1,42 @@
+<!--<video id="videoC" #videoC autoplay height="500" width="500"></video>-->
+<!--<canvas [hidden]="isCaptured" #canvas id="canvas" height="500" width="500"></canvas>-->
+<!--<div style="height:500px;width:500px;">
+  <button (click)="capture()">capture</button>
+
+
+</div>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Recognition Login</title>
+
+</head>
+<body>
+  <div class="login-container">
+
+    <p>Fast and Secure Login</p>
+    <p>{{response}}</p>
+    <!--<div class="card-image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/musicalproject-8c68a.appspot.com/o/facelogo.avif?alt=media&token=43730056-56ca-457c-8b3f-4c1692b685f2" alt="Card Image">
+
+    </div>-->
+    <div class="face-capture" style="height:500px;">
+      <video id="videoC" #videoC [hidden]="isRecord" autoplay height="450" width="450"></video>
+      <canvas id="canvas" [hidden]="isCaptured" #canvas height="450" width="450"></canvas>
+
+    </div>
+
+    <button (click)="FaceRegister()" style="margin-right:4px;">Register</button>
+    <!--<button (click)="stop()" style="margin-right:4px;">Stop</button>-->
+
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

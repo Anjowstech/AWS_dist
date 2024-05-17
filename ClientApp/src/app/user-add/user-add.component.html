@@ -1,0 +1,83 @@
+<div class="main">
+  <!--<form id="addUserForm" (ngSubmit)="addUser()">-->
+  <form id="addUserForm">
+    <div class="dialogehead">
+      <label class="layoutHead">Add User</label>
+      <button class="close-button" (click)="closeDialog()"><mat-icon>close</mat-icon></button>
+    </div>
+    <br> 
+    <label for="add_firstname" class="label">First Name</label>
+
+    <input type="text" id="add_firstname" name="add_firstname" class="input" [(ngModel)]="firstName">
+    <br>
+    <br>
+    <label for="add_lastname" class="label">Last Name</label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="LastName">
+    <br>
+    <br>
+    <label for="add_ContactNumber" class="label">Contact Number</label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="ContactNumber">
+    <br>
+    <br>
+    <label for="add_Address" class="label">Address</label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="Address">
+    <br>
+    <br>
+    <label for="add_Designation" class="label">Designation </label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="Designation">
+    <br>
+    <br>
+    <label for="add_username" class="label">User Name</label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="username">
+    <br>
+    <br>
+    <label for="add_Password" class="label">Password</label>
+    <input type="text" id="add_lastname" name="add_lastname" class="input" [(ngModel)]="Password">
+    <br>
+    <br>
+    <!--<label for="add_department" class="label">Department</label>
+  <select id="add_department" name="add_contact" class="input" [(ngModel)]="user.ContactNumber">
+    <option value="option1">Distribution</option>
+    <option value="option2">Clearance</option>
+    <option value="option3">Purchaser </option>
+  </select>
+  <br>
+  <br>-->
+    <label for="add_role" class="label">Role</label>
+    <select id="add_role" name="add_role" class="input" [(ngModel)]="Role">
+      <option value="option1">Admin</option>
+      <option value="option2">Super Admin</option>
+      <option value="option3">Security Admin</option>
+      <option value="option3">Normal Users</option>
+    </select>
+    <br>
+    <!--<br>
+    <label for="add_page" class="label">Page for Access</label>
+    <select id="add_page" name="add_page" class="input" [(ngModel)]="PageAccess">
+      <option value="option1">All Pages</option>
+      <option value="option2">Admin</option>
+      <option value="option3">Branding</option>
+      <option value="option3">Supplier</option>
+
+    </select>
+    <br>-->
+    <br>
+    <label for="add_module" class="label">Module Name</label>
+    <select id="add_module" name="add_page" class="input" [(ngModel)]="ModuleName">
+      <option value="option1">All Pages</option>
+      <option value="option2">Admin</option>
+      <option value="option3">Branding</option>
+      <option value="option3">Supplier</option>
+
+    </select>
+    <br>
+    <div class="button-container1">
+      <!--<button type="submit">Add User</button>-->
+      <button type="button" class="create-btn" (click)="handleButtonClick()">Create</button>
+
+
+
+    </div>
+  </form>
+</div>
+

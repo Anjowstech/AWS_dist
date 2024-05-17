@@ -1,0 +1,29 @@
+<div class="header">
+  <header>
+    <div class="logo">
+      <img src="assets/AwsLogo.png" alt="Logo">
+    </div>
+    <div class="navDiv">
+      <nav>
+        <ul>
+          <li><a routerLink="#" routerLinkActive="active">Admin</a></li>
+          <li><a routerLink="#" routerLinkActive="active">Task</a></li>
+          <li><a routerLink="#" routerLinkActive="active">Orders</a></li>
+
+        </ul>
+
+      </nav>
+    </div>
+
+    <!--<div class="userLogo">
+      <img src=" assets/UserLogo.png" alt="Logo">
+
+    </div>-->
+ 
+  </header>
+</div>
+<mat-tab-group>
+  <mat-tab class="tab1" label="User Management"><app-user-management></app-user-management></mat-tab>
+  <mat-tab class="tab1" label="SKU Management"><app-sku-management></app-sku-management></mat-tab>
+  <mat-tab class="tab1" label="Supplier Management"><app-supplier-management></app-supplier-management></mat-tab>
+</mat-tab-group>

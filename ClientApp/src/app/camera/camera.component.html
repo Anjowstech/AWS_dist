@@ -1,4 +1,13 @@
-
 <mat-icon type="button" class="btn-close" aria-label="Close" style="float: right;margin-right:5px;" matDialogClose>clear</mat-icon>
-<h1>Camera Device is on</h1>
-<img src="../../assets/camera1.png" class="center"/>
+<div id="app">
+  <div><video #video id="video" style="width:fit-content;height:fit-content" autoplay></video></div>
+  <div class="form-inline"><button id="snap" (click)="capture()"  class="save-button pulse-effect hover-effect:hover">Snap Photo</button>
+       <button id="snap" (click)="submitphotos()" class="save-button pulse-effect hover-effect:hover"
+               style="margin-left:1%">Submit</button></div>
+  <canvas #canvas id="canvas" width="640" height="480"></canvas>
+  <ul>
+    <li *ngFor="let c of captures">
+      <img src="{{ c }}" height="50" />
+    </li>
+  </ul>
+</div>

@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { WorkflowComponent } from '../workflow/workflow.component';
-
+declare var webkitSpeechRecognition: any;
 @Component({
   selector: 'app-tasklist',
   templateUrl: './tasklist.component.html',
@@ -47,6 +47,9 @@ export class TasklistComponent {
   uniqueDataDepartment: any;
   ngSearch: string = "";
   selectedFile: any;
+  results: any;
+  filtdata: any;
+
   constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
   ViewAWSWorkFlow(rowvalue: any) {
     var data = [rowvalue]
@@ -69,6 +72,32 @@ export class TasklistComponent {
       }
     });
 
+  }
+  startListening() {
+
+    // let voiceHandler = this.hiddenSearchHandler?.nativeElement;
+    if ('webkitSpeechRecognition' in window) {
+      const vSearch = new webkitSpeechRecognition();
+      vSearch.continuous = false;
+      vSearch.interimresults = false;
+      vSearch.lang = 'en-US';
+      vSearch.start();
+      vSearch.onresult = (e: any) => {
+        //   console.log(e);
+        // voiceHandler.value = e?.results[0][0]?.transcript;
+        this.results = e.results[0][0].transcript;
+        this.getResult();
+        // console.log(this.results);
+        vSearch.stop();
+
+      };
+    } else {
+      alert('Your browser does not support voice recognition!');
+    }
+  }
+  getResult() {
+    this.filtdata = this.results.replace(".", "");
+    //  console.log(this.results);
   }
   CreateTask(rowvalue: any) {
     //const dialogRef = this.dialog.open(CreateTaskComponent, {
