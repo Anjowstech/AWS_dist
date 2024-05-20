@@ -1,39 +1,36 @@
 <div width="100%">
-  <div class="image" style="background-image: url(../../assets/product34.jpg) " width="100%">
-    <img src="../../assets/nw-logo-jpg.jpg" />
-  </div>
   <h3>Branding</h3>
   <div style="margin-top: 5px;background-color:white">
     <div class="tasktable">
 
       <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
         <thead>
-          <tr>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Task ID</th>
+          <tr style="position: sticky; top: 0; ">
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto" hidden>Task ID</th>
             <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Task Name</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">PO No</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Supplier</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Location</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">PMI</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Name</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Designation</th>
-            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Contact No</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Category</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;" hidden>Product ID</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Product</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Supplier</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto" hidden>Brand ID</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Brand</th>
+            <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Assigned To</th>
             <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr class="active-row" *ngFor="let item of OrderManagementList" #conten>
-            <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;">{{item.Taskid}}</td>
+          <tr class="active-row" *ngFor="let item of BrandingList let i=index let even=even" #conten (click)="clickbrandinggrid(item,i);"
+              [style.background-color]="statusClicked == i ? '#CECECE' : (even ? 'white' : 'white')">
+            <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;" hidden>{{item.TaskID}}</td>
             <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
-            <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.PurOrderNo}}</td>
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Supplier}}</td>
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Location}}</td>
-
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.PMI}}</td>
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Name}}</td>
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Designation}}</td>
-            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.ContactNo}}</td>
+            <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.Category}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " hidden>{{item.ProductID}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Product}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.SupplierName}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " hidden>{{item.BrandID}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Brand}}</td>
+            <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.AssignedTo}}</td>
 
             <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " title="Double Click to Update">
               {{item.Status}}
@@ -47,15 +44,15 @@
 
   </div>
 
-  <mat-tab-group animationDuration="1000ms">
+  <mat-tab-group animationDuration="1000ms" [hidden]="brandingtabshid">
     <mat-tab label="Packaging" style=" color: #1F528E; font-family: system-ui; font-size: medium;">
       <ng-template matTabContent>
         <div class="tasktable">
 
-          <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px;" (click)="Createcomponent()">Add Component</button>
+          <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px; " (click)="Createcomponent()">Add Component</button>
           <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
             <thead>
-              <tr>
+              <tr style="position: sticky; top: 0; ">
                 <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Image</th>
                 <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Component Name</th>
                 <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Specification</th>
@@ -70,6 +67,7 @@
               <tr class="active-row" *ngFor="let a of loadpackagingloaddata" (click)="selectpackaginggrid(a)">
 
                 <td style="font-size:medium;text-align:center;" width="15%">
+                  <img style="width:120px" src="{{a.ImageUrl}}" alt="">
                 </td>
                 <td style="border: 2px solid lightgrey;">
                   {{a.ComponentName}}
@@ -81,7 +79,7 @@
                   {{a.Size}}
                 </td>
 
-                <td style="border: 2px solid lightgrey;">
+                <td style="border: 2px solid lightgrey;text-align:right">
                   {{a.UnitCost}}
                 </td>
 
@@ -93,240 +91,155 @@
       </ng-template>
     </mat-tab>
     <mat-tab label="Label">
-      <ng-template matTabContent>
+      <div >
+
         <div class="card">
           <div class="card-body">
-            <div class="form-row">
+            <div class="row">
+              <div class="col-md-4">
+                <table width="100%">
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
+                    <td style="width: 24%; text-align: left; ">
+                      <input class="inputclass" [(ngModel)]="brandname" type="text" placeholder="Enter the brand name" />
+                      <mat-icon (click)="startServicebrandname()" [hidden]="Listenbrandname">mic</mat-icon>
+                      <mat-icon (click)="stopServicebrandname()" [hidden]="Stopbrandname">stop</mat-icon>
+                    </td>
 
 
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <table width="100%">
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
-                      <td style="width: 24%; text-align: left; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+                  </tr>
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
+                    <td style="width: 24%; text-align: left; padding-top: 20px; ">
+                      <input class="inputclass" [(ngModel)]="Uses" type="text" placeholder="Enter uses" />
+                      <mat-icon (click)="startServiceuses()" [hidden]="Listenuses">mic</mat-icon>
+                      <mat-icon (click)="stopServiceuses()" [hidden]="Stopuses">stop</mat-icon>
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                      <input class="inputclass" [(ngModel)]="Warnings" type="text" placeholder="Enter warnings" />
+                      <mat-icon (click)="startServicewarnings()" [hidden]="Listenwarnings">mic</mat-icon>
+                      <mat-icon (click)="stopServicewarnings()" [hidden]="Stopwarnings">stop</mat-icon>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                      <input class="inputclass" [(ngModel)]="Directions" type="text" placeholder="Enter directions" />
+                      <mat-icon (click)="startServiceDirections()" [hidden]="ListenDirections">mic</mat-icon>
+                      <mat-icon (click)="stopServiceDirections()" [hidden]="StopDirections">stop</mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                      <input class="inputclass" [(ngModel)]="Questions" type="text" placeholder="Enter questions" />
+                      <mat-icon (click)="startServiceQuestions()" [hidden]="ListenQuestions">mic</mat-icon>
+                      <mat-icon (click)="stopServiceQuestions()" [hidden]="StopQuestions">stop</mat-icon>
+                    </td>
+
+                  </tr>
 
 
-                    </tr>
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
-                      <td style="width: 24%; text-align: left; padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+                </table>
+              </div>
+              <div class="col-md-6">
 
-                    </tr>
+                <table width="100%">
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclassbarcode" id="Bar" [(ngModel)]="barname" name="brnum" value="" maxlength="12" type="text" placeholder="Add Barcode image" style=" margin-left: 10px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 180px; font-size: smaller;  height: 30px;" (click)='geraBarCode()'>Generate Barcode</button></td>
+                    <td width="10%">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                      <div class="uploadimage">
+                        <input type="file" #fileInput2 (change)="handleFileInputproductimage($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+                        <div class="upload-area" (click)="fileInput2.click()">
+                          <p>Drag & drop approval file here or click to upload</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td width="10%">
+                    </td>
+                  </tr>
+                </table>
 
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
-                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
+              </div>
+              <div class="col-md-2">
+                <div style=" border: none;  width: 100%; " [hidden]="hidbarcode">
 
-                    </tr>
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
-                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                    </tr>
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
-                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Enter here" /></td>
-
-                    </tr>
-
-
-                  </table>
+                  <form>
+                    <svg #barcode id="barcod" name="barval" value=""></svg>
+                  </form>
                 </div>
-                <div class="col-md-6">
+                <div style=" margin-top: 30px; border: none; width: 100%">
 
-                  <table width="100%">
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
-                      <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclass" type="text" placeholder="Add Barcode image" style=" margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller;  height: 30px;">Browse</button></td>
-                      <td width="10%">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
-                      <td style="width: 24%; text-align: left;padding-top: 20px; ">
-                        <input class="inputclass" type="text" placeholder="Add Product image" style="margin-left: 40px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%;   width: 100px; font-size: smaller; height: 30px;"> Browse</button>
-                      </td>
-                      <td width="10%">
-                      </td>
-                    </tr>
-                  </table>
-
-                </div>
-                <div class="col-md-2">
-                  <div style=" border: none;  width: 100%; ">
-                    <img src="../assets/barcode.jpg " height="150" width="250" />
-
-                  </div>
-                  <div style=" margin-top: 30px; border: none; width: 100%">
-                    <img src="../assets/DreamHost-howto-prod-descrips-full.jpeg " height="150" width="250" />
-
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </ng-template>
+        </div>
     </mat-tab>
     <mat-tab label="Artwork">
       <div class="form-inline" style="margin-top:25px;">
-        <label class="label1" for="inputcust" style="margin-left:45px;font-size: smaller;font-family: Verdana;">Picture File</label>
-        <input type="text" style="width: 60%; margin-left: 45px;" class="form-control" placeholder="" id="PDR" name="pt1" value="">
-        <button type="submit" class="save-button pulse-effect hover-effect:hover" style="margin-top: .5%; width: 100px; font-size: smaller; height: 30px; margin-left: 45px; ">Browse</button>
-
+      
+        <div class="uploadimage">
+          <input type="file" #fileInput (change)="handleFileInputartwork($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder" accept="image/png, image/jpeg">
+          <div class="upload-area" (click)="fileInput.click()">
+            <p>Drag & drop artwork images here or click to upload</p>
+          </div>
+        </div>
 
       </div>
-      <div class="form-inline" style="margin-top: 25px; margin-left: 45px;">
-        <div style=" margin-top: 30px; border: none; width: 100%">
-          <img src="../assets/packagingart.jfif " height="150" width="350" />
-          <img src="../assets/pack2art.jfif " height="150" width="150" />
-          <img src="../assets/pack2art.jfif " height="150" width="150" />
-
-        </div>
+      <div style="margin-top: 25px; margin-left: 45px;">
+        <table>
+          <tr>
+            <td  *ngFor="let image of loadartworkloaddata">    <img style="width:120px" src="{{image.Bloburl}}" alt=""></td>
+          </tr>
+        </table>
+      
 
       </div>
     </mat-tab>
     <mat-tab label="Approvals">
-      <p style="font-family:Verdana;margin-top:10px;margin-left:5px;font-size:small"><b><u>Product Registration Approvals</u></b></p>
-      <table>
-        <tbody>
+      <p style="font-family:Verdana;margin-top:10px;margin-left:5px;font-size:small"><b><u></u></b></p>
+      <div class="form-inline" style="margin-top:25px;">
+
+        <div class="uploadimage">
+          <input type="file" #fileInput1 (change)="handleFileInputapproval($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+          <div class="upload-area" (click)="fileInput1.click()">
+            <p>Drag & drop approval file here or click to upload</p>
+          </div>
+        </div>
+
+      </div>
+      <div  style="margin-top: 25px;">
+        <table>
           <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 1</Label>
-
-            </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-
-            </td>
-
+            <th>Upload Approval Documents</th>
           </tr>
-          <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 2</Label>
-
+          <tr >
+            <td>
+              <ul *ngFor="let file of loadApproveloaddata">
+                <li>
+                  {{file.Filename}}
+                </li>
+              </ul>
             </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-            </td>
-
           </tr>
-          <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right ">Region 3</Label>
+        </table>
+       
 
-            </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-            </td>
-
-          </tr>
-          <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 4</Label>
-
-            </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-            </td>
-
-          </tr>
-          <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">Region 5</Label>
-
-            </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-            </td>
-
-          </tr>
-
-          <tr>
-            <td width="20%">
-              <Label class="label1" style="margin-left: 10px; font-size: smaller; font-family: Verdana; text-align: right">
-                Region 6
-              </Label>
-
-            </td>
-            <td width="10%">
-              <input type="radio" />yes
-
-            </td>
-            <td width="10%">
-              <input type="radio" />No
-
-            </td>
-            <td width="50%">
-              <input class="inputclass" type="text" />
-            </td>
-            <td width="10%">
-              <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
-            </td>
-
-          </tr>
-        </tbody>
-      </table>
+      </div>
     </mat-tab>
     <mat-tab label="Product Specification">
       <table>
@@ -337,70 +250,45 @@
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+              <textarea class="textareaclass" id="prddes" [(ngModel)]="proddescription" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter product description"></textarea>
+              <mat-icon (click)="startServiceProdspec()" [hidden]="ListenProdspec">mic</mat-icon>
+              <mat-icon (click)="stopServiceProdspec()" [hidden]="StopProdspec">stop</mat-icon>
             </form>
           </td>
         </tr>
         <tr>
           <td width="5%">
-            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Applications</label>
+            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana; ">Label Information</label>
 
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+              <textarea class="textareaclass" id="ddes" [(ngModel)]="prodapplication" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter label information"></textarea>
+              <mat-icon (click)="startServiceProdappln()" [hidden]="ListenProdappln">mic</mat-icon>
+              <mat-icon (click)="stopServiceProdappln()" [hidden]="StopProdappln">stop</mat-icon>
             </form>
           </td>
         </tr>
         <tr>
           <td width="5%">
-            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana;">Technical Information</label>
+            <label class="label1" for="inputcust" style="font-size: smaller; font-family: Verdana;">Other Information</label>
 
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="prddes" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value=""></textarea>
+              <textarea class="textareaclass" id="pres" rows="3" [(ngModel)]="prodtechinfo" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter other information"></textarea>
+              <mat-icon (click)="startServiceotherinfo()" [hidden]="Listenotherinfo">mic</mat-icon>
+              <mat-icon (click)="stopServiceotherinfo()" [hidden]="Stopotherinfo">stop</mat-icon>
             </form>
           </td>
         </tr>
       </table>
     </mat-tab>
-    <mat-tab label="Audit">
-     
-    
-
-      <div style="margin-top: 1%;  overflow-y:scroll; width: 100%; background-color: white;">
-        <table class="styled-table" style="background-color: white;" width="100%">
-          <thead>
-            <tr>
-              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Date</th>
-              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Task</th>
-              <th scope="col" style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let a of Auditlist">
-              <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Date}}</td>
-              <td style="border: 2px solid lightgrey;font-size:medium;text-align:left;">{{a.TaskName}}</td>
-              <td style="border: 2px solid lightgrey;font-size:medium;text-align:center;">{{a.Username}}</td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </mat-tab>
+   
   </mat-tab-group>
 
 
   <div style="background-color:white;" width="100%">
-
-
-
-
-
-
-
-
 
     <div style="background-color: white;padding-top:40px; ">
       <table width="100%">
@@ -408,12 +296,24 @@
           <td width="80%"></td>
 
           <td width="10%">
-            <label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>
-            <input type="checkbox" style="float: right; margin-top: 1.5%;  " />
+            <!--<label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>
+           <input type="checkbox" style="float: right; margin-top: 1.5%;  " />-->
+            <div>
+              <label style=" color: #1f538e; font-size: large; margin-left: -76px; "><b>Status</b></label>
+              <select [(ngModel)]="Brandingstatus">
+                <!--<option [hidden]="hidbrandstatus">{{Brandingstatus}}</option>-->
+                <option *ngFor="let a of loadBrandstatusloaddata">{{a.StatusDescription}}</option>
+              </select>
+
+            </div>
+            <!--<div *ngIf="Brandingstatus=='Branding Assigned'">
+              <label style=" color: #1f538e; font-size: large; margin-left: -76px; "><b>Assigned To</b></label>
+              <input class="inputclass" [(ngModel)]="AssignedTo" value="" />
+            </div>-->
 
           </td>
           <td width="10%">
-            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;">Submit</button>
+            <button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;" (click)="Submitbranding()">Submit</button>
 
           </td>
         </tr>

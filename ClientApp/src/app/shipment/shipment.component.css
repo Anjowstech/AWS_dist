@@ -614,6 +614,70 @@ body {
     margin-top: 7px
   }
 
+
+
+.trackwithinreachwarehouse {
+  position: relative;
+  background-color: #d9eb34;
+  height: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 60px;
+  margin-top: 50px
+}
+
+  .trackwithinreachwarehouse .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+  }
+
+
+    .trackwithinreachwarehouse .step.active:before {
+      background: #d9eb34
+    }
+
+    .trackwithinreachwarehouse .step::before {
+      height: 7px;
+      position: absolute;
+      content: "";
+      width: 100%;
+      left: 0;
+      top: 18px;
+      background: grey
+    }
+
+    .trackwithinreachwarehouse .step.active .icon {
+      background: #d9eb34;
+      color: #fff
+    }
+
+  .trackwithinreachwarehouse .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+  }
+
+  .trackwithinreachwarehouse .step.active .text {
+    font-weight: 400;
+    color: black
+  }
+
+  .trackwithinreachwarehouse .text {
+    display: block;
+    margin-top: 7px
+  }
+
+
 .itemside {
   position: relative;
   display: -webkit-box;

@@ -7,6 +7,7 @@ import { MsgBoxComponent } from 'src/app/msg-box/msg-box.component';
 import { ShipmentService } from 'src/app/shipment/service/shipment.service';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 
 @Component({
   selector: 'app-shipment',
@@ -36,8 +37,16 @@ export class ShipmentComponent implements OnInit {
   Description: any;
   datasubmitshipmentdetails: any;
   shipmentselecteddetails: any = [];
-  listshipmentpost: shipmentpost [] =[];
-  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService, private _snackBar: MatSnackBar) {
+  listshipmentpost: shipmentpost[] = [];
+
+  uploadfilename: any ="";
+  fileToUpload: any;
+  input: any | undefined;
+
+
+  filedrop: boolean = false
+  fileshow:boolean =true
+  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService, private _snackBar: MatSnackBar, private blobService: AzureBlobStorageService,) {
   
   
 
@@ -68,12 +77,28 @@ export class ShipmentComponent implements OnInit {
     this.trackinghid = false
     this.taskname = rowvalue.TaskName;
     this.oderID = rowvalue.OrderId;
+    this.uploadfilename = rowvalue.Uploadfile
+    
+    if (this.uploadfilename == "" || this.uploadfilename == null || this.uploadfilename == undefined) {
+      this.filedrop = false
+      this.fileshow = true
+    }
+    else {
+      this.filedrop = true
+      this.fileshow = false
+    }
+    //this.input = document.getElementById("shipfile");
+    //this.input.value = this.uploadfilename
     if (this.Status == "" || this.Status == null || this.Status == undefined) {
+      this.Status = rowvalue.Status
     }
     else {
       this.Status = this.Status
+      
       this.Statusselected = "selectedstatus"
     }
+
+    console.log(this.Status)
     this.TrackingID = rowvalue.TrackingId;
     this.EstimatedDeliverytime = rowvalue.EstimatedDeliverytime;
     this.Description = rowvalue.Description
@@ -84,7 +109,7 @@ export class ShipmentComponent implements OnInit {
 
 
   shipmentstatusloaddata() {
-    var query: string = "SELECT StatusDescription as [Status] from [AWS].[tbl_Status] where StatusType='Shipment Status'";
+    var query: string = "SELECT StatusDescription as [Status] from [AWS].[tbl_Status] where StatusType='Shipment'";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
@@ -102,10 +127,7 @@ export class ShipmentComponent implements OnInit {
     console.log('Selected date:', event.target.value);
   }
 
-  handleFileInput(event: any) {
-    const files: FileList = event.target.files;
-    this.uploadFiles(files);
-  }
+  
 
   handleDrop(event: any) {
     event.preventDefault();
@@ -129,7 +151,7 @@ export class ShipmentComponent implements OnInit {
 
   //Shipment grid load
   shipmentloaddata() {
-    var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,* from AWS.tbl_shipment_details";
+    var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,[Upload file] Uploadfile,* from AWS.tbl_shipment_details";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
@@ -139,44 +161,89 @@ export class ShipmentComponent implements OnInit {
   //submit shipment
 
 
-  submitclick():void {
-    const shipment = {
-      ShipmentId: this.shipmentselecteddetails[4],
-      OrderId: this.shipmentselecteddetails[1],
-      TrackingId: this.shipmentselecteddetails[2],
-      TaskName: this.shipmentselecteddetails[0],
-      EstimatedDeliveryTime: this.shipmentselecteddetails[3],
-      Location: this.shipmentselecteddetails[5],
-      Status: this.Status,
-      Description: this.Description,
-      BlobPath: "",
-      UploadFile: "",
-    };
-    console.log(shipment)
-    this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment )
-      .subscribe(
-        (response) => {
-          console.log('Data inserted successfully:', response);
-          this.openSnackBar('Shipment updated successfully', 'close');
-        },
-        (error) => {
-          console.error('Error inserting data:', error);
-          if (error && error.error && error.error.errors) {
-            const validationErrors = error.error.errors;
-            console.log('Validation errors:', validationErrors);
-          }
-          this.openSnackBar('Failed to update Shipment', 'close');
-        }
-      );
+  handleFileInput(event: any) {
+    const files: FileList = event.target.files;
+    this.fileToUpload = files[0];
+    this.uploadfilename = files[0].name;
+    
+    console.log(this.fileToUpload, this.uploadfilename)
   }
+
+
+  submitclick() {
+    console.log(this.uploadfilename, this.filedrop, this.fileshow)
+    if (this.uploadfilename == "" || this.uploadfilename == null || this.uploadfilename == undefined ||
+      this.fileshow == false) {
+
+
+      if (this.uploadfilename == "" || this.uploadfilename == null || this.uploadfilename == undefined) {
+        this.uploadfilename =" "
+      }
+      const shipment = {
+        ShipmentId: this.shipmentselecteddetails[4],
+        OrderId: this.shipmentselecteddetails[1],
+        TrackingId: this.shipmentselecteddetails[2],
+        TaskName: this.shipmentselecteddetails[0],
+        EstimatedDeliveryTime: this.shipmentselecteddetails[3],
+        Location: this.shipmentselecteddetails[5],
+        Status: this.Status,
+        Description: this.Description,
+        BlobPath: "",
+        UploadFile: this.uploadfilename,
+      };
+      console.log(shipment)
+      this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment)
+        .subscribe(
+          (response) => {
+            console.log('Data inserted successfully:', response);
+            this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Shipment submitted successfully." } });
+
+          },
+          (error) => {
+            console.error('Error inserting data:', error);
+            if (error && error.error && error.error.errors) {
+              const validationErrors = error.error.errors;
+              console.log('Validation errors:', validationErrors);
+            }
+          }
+        );
+    }
+    else {
+      this.blobService.updateshipmentupload(this.fileToUpload, this.uploadfilename, this.shipmentselecteddetails[4], this.shipmentselecteddetails[1], this.shipmentselecteddetails[2], this.shipmentselecteddetails[0], this.shipmentselecteddetails[3], this.shipmentselecteddetails[5], this.Status, this.Description, () => {
+
+        this.shipmentloaddata().subscribe((shipmentloaddata) => {
+          console.warn("shipmentloaddata", shipmentloaddata)
+          this.ShipmentList = shipmentloaddata
+        })
+
+        this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Shipment submitted successfully." } });
+
+
+      })
+    }
+
+    
+  }
+  //submitclick() {
+  //  const shipment = {
+  //    ShipmentId: this.shipmentselecteddetails[4],
+  //    OrderId: this.shipmentselecteddetails[1],
+  //    TrackingId: this.shipmentselecteddetails[2],
+  //    TaskName: this.shipmentselecteddetails[0],
+  //    EstimatedDeliveryTime: this.shipmentselecteddetails[3],
+  //    Location: this.shipmentselecteddetails[5],
+  //    Status: this.Status,
+  //    Description: this.Description,
+  //    BlobPath: "",
+  //    UploadFile: "",
+  //  };
+  //  this.handleFileInput(this.shipmentselecteddetails[4], this.shipmentselecteddetails[1], this.shipmentselecteddetails[2], this.shipmentselecteddetails[0], this.shipmentselecteddetails[3], this.shipmentselecteddetails[5], this.Status, this.Description, () => {
+
+  //  })
+  //}
   
 
-  //submitshipmentdetails(jsonprams: any, spsname: any) {
-  //  let params1 = new HttpParams().set('JSONFileparams', jsonprams).set('spname', spsname);
-  //  console.log(params1)
-  //  console.log(jsonprams, spsname)
-  //  return this.http.get('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', { params: params1 });
-  //}
+
 
  
   

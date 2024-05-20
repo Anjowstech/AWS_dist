@@ -17,7 +17,8 @@
       </thead>
 
       <tbody>
-        <tr class="active-row" *ngFor="let item of ShipmentList; let i=index let even=even" #conten (click)="Trackingshipment(item);">
+        <tr class="active-row" *ngFor="let item of ShipmentList; let i=index let even=even" #conten (click)="changestatus($event,i);hidtablestatus();Trackingshipment(item);"
+                      [style.background-color]="statusClicked == i ? '#CECECE' : (even ? 'white' : 'white')" >
           <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;" >
             <label class="Highligh"> {{item.OrderId}}</label>
           </td>
@@ -96,11 +97,11 @@
               <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
 
             </div>
-            <div class="track" *ngIf="Status== 'Within reach of warehouse'">
+            <div class="trackwithinreachwarehouse" *ngIf="Status=='Within reach of warehouse'">
               <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
               <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
               <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
-              <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>
 
               <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
 
@@ -114,6 +115,16 @@
               <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered to warehouse</span> </div>
 
             </div>
+
+            <div class="trackfail to warehouse" *ngIf="Status== 'Failed Attempt'">
+              <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Ready for shipment</span> </div>
+              <div class="step active "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Left from warehouse</span> </div>
+              <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">In Transit </span> </div>
+              <!--<div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Within reach of warehouse</span> </div>-->
+
+              <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Failed Attempt</span> </div>
+
+            </div>
           </div>
         </article>
       </div>
@@ -125,8 +136,9 @@
         <textarea type="text"  [(ngModel)]="Description" rows="5"></textarea>
       </div>
       <div class="uploadimage">
-        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <input [hidden]="filedrop" type="file" #fileInput    (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
         <div class="upload-area" (click)="fileInput.click()">
+          <input [hidden]="fileshow" value="{{uploadfilename}}"/>
           <p>Drag & drop media here or click to upload</p>
         </div>
       </div>
