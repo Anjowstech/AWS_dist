@@ -1,0 +1,61 @@
+
+  <div>
+    <div>
+      <h3>Create Component</h3>
+     
+    </div>
+    <!--<div>
+      <mat-icon>clear</mat-icon>
+    </div>-->
+
+    <div>
+      <div class="data">
+        <label style="color:black">Component Name</label><br>
+        <input type="text" [(ngModel)]="ComponentName" placeholder="Enter Component Name" name="title">
+        <mat-icon (click)="startServiceComponentname()" [hidden]="ListenComponentname">mic</mat-icon>
+        <mat-icon (click)="stopServiceComponentname()" [hidden]="StopComponentname">stop</mat-icon>
+        <br />
+      </div>
+      <div class="data">
+        <label style="color:black">Specification</label><br>
+        <input type="text" [(ngModel)]="Specification" placeholder="Enter Specification" name="title">
+        <mat-icon (click)="startServicespecification()" [hidden]="Listenspecification">mic</mat-icon>
+        <mat-icon (click)="stopServicespecification()" [hidden]="Stopspecification">stop</mat-icon>
+      </div>
+      <div class="data">
+        <label style="color:black">Size</label><br>
+        <input type="text" [(ngModel)]="Size" placeholder="Enter Size of the component" name="title">
+        <mat-icon (click)="startServicesize()" [hidden]="Listensize">mic</mat-icon>
+        <mat-icon (click)="stopServicesize()" [hidden]="Stopsize">stop</mat-icon>
+      </div>
+
+
+      <div class="data">
+        <label style="color:black">Unit Cost $</label><br>
+        <input type="number" maxlength="7" [(ngModel)]="UnitCost" placeholder="Enter Cost of the component" name="title">
+        <mat-icon (click)="startServicecost()" [hidden]="Listencost">mic</mat-icon>
+        <mat-icon (click)="stopServicecost()" [hidden]="Stopcost">stop</mat-icon>
+      </div>
+     
+
+
+     
+      <div class="uploadimage">
+        <input [hidden]="filedrop" type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <input [hidden]="fileshow"  value="{{ImageName}}" />
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+
+      <div class="createtask">
+        <button class="save-button pulse-effect hover-effect:hover" [hidden]="hidsave" (click)="savecomponent()" >Save</button>
+        <button class="save-button pulse-effect hover-effect:hover" [hidden]="hidupdate" (click)="Updatecomponent()" >update</button>
+
+        <button class="save-button1 hover-effect:hover"  matDialogClose>close</button>
+
+      </div>
+
+    </div>
+  </div>
+
