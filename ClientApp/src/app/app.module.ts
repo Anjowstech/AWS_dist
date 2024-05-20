@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { AddComponentComponent } from '../app/branding/add-component/add-component.component';
+import { MsgBoxComponent } from '../app/msg-box/msg-box.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -75,6 +76,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     LoginLayoutComponent,
     TasklistComponent,
     FaceloginComponent,
+    AddComponentComponent,
     DashboardreportComponent,
     CreatesupplierComponent,
     ShipmentComponent,
@@ -93,7 +95,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     AdminComponent,
     UserManagementComponent,
     UserAddComponent,
-   
+    MsgBoxComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -114,7 +116,7 @@ MatSidenavModule ,
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent, AddComponentComponent,MsgBoxComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

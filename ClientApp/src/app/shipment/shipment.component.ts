@@ -6,7 +6,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { MsgBoxComponent } from 'src/app/msg-box/msg-box.component';
 import { ShipmentService } from 'src/app/shipment/service/shipment.service';
 import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+/*import { MatSnackBar } from '@angular/material/snack-bar';*/
 import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 
 @Component({
@@ -46,7 +46,7 @@ export class ShipmentComponent implements OnInit {
 
   filedrop: boolean = false
   fileshow:boolean =true
-  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService, private _snackBar: MatSnackBar, private blobService: AzureBlobStorageService,) {
+  constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService,/* private _snackBar: MatSnackBar*/private blobService: AzureBlobStorageService,) {
   
   
 
@@ -55,11 +55,11 @@ export class ShipmentComponent implements OnInit {
 
 
   openSnackBar(message: string, action: string, ) {
-    this._snackBar.open(message, action,{
-      duration: 2000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-    })
+    //this._snackBar.open(message, action,{
+    //  duration: 2000,
+    //  verticalPosition: 'top',
+    //  horizontalPosition: 'center',
+    //})
   }
 
   //To highlight the row clicked in dropdown
