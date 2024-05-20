@@ -2,6 +2,10 @@
   <div>
     <div>
       <h1>Create Task</h1>
+      <div style="display: inline;">
+        <mat-icon class="maticoncolorblue"style="float:right;width:100px">camera_alt</mat-icon>
+        <mat-icon class="maticoncolorblue" style=" float: right; width: 100px">video_call</mat-icon>
+      </div>
 
     </div>
 
@@ -9,45 +13,57 @@
     <div>
       <div class="data">
         <label>Task Name</label><br>
-        <input type="text" name="title" style="width:90%"><mat-icon>mic</mat-icon><br>
+
+        <input type="text" name="title"placeholder="Plese enter---" style="width:90%"[(ngModel)]="TaskName"><mat-icon (click)="startListening()">mic</mat-icon><br>
       </div>
       <div class="data">
         <label>Assigned To</label><br>
-        <input type="text" name="title" style=" width:90%"><mat-icon>mic</mat-icon><br>
+                                  <select id="dropdown" style="width:90%" class="dropdown" [(ngModel)]="IntiallyAssigned" value="" name="list4">
+                                    <option style="color: grey; font-style: italic" selected></option>
+                                    <option>praveen</option>
+                                    <option>john</option>
+                                    <option>steve</option>
+                                    <option>Edward</option>
+                                    <option>Ali</option>
+                                  </select>
+         
+          <mat-icon>mic</mat-icon>
+          <br>
       </div>
       <div class="data">
         <label>Description</label><br>
-<textarea type="text" name="title" rows="5" style=" width:90%"></textarea><mat-icon>mic</mat-icon>
+<textarea type="text" name="title" rows="5" placeholder="Plese enter---" style=" width:90%"[(ngModel)]="Description"></textarea><mat-icon>mic</mat-icon>
       </div>
 
-
+      
       <div class="dataSelect">
+
+        
         <label>Brand</label><br>
-                            <div class="form-inline">
-                        
-                              <select>
-                                <option style="color: grey; font-style: italic" disabled selected hidden></option>
-                                <option>Create new</option>
-                                <option>MP</option>
-                                <option>European Tourister</option>
-                                <option>Panda Cola</option>
-                                <option>Mont Carlo</option>
-                                <option>Delita</option>
-                              </select>
-                            </div>
+                            <select id="dropdown" class="dropdown"  [(ngModel)]="Brand" value="" name="list4">
+                              <option style="color: grey; font-style: italic" selected>Please enter--</option>
+                              <option>MP</option>
+                              <option>European Tourister</option>
+                              <option>Panda Cola</option>
+                              <option>Mont Carlo</option>
+                              <option>Delita</option>
+                            </select>
+       
       </div>
+        
       <div class="dataSelect">
         <label>Category</label><br>
-        <select>
-          <option style="color: grey; font-style: italic" disabled selected hidden></option>
-          <option>Food Item</option>
-          <option>Non Food Item</option>
-          <option>Carbonated Water</option>
-          <option>Spices</option>
-          <option>Processed food</option>
+                               <select id="dropdown" class="dropdown" [(ngModel)]="ProductCategory" value="" name="list3">
+                                 <option style="color: grey; font-style: italic" disabled selected hidden></option>
+                                 <option>Food Item</option>
+                                 <option>Non Food Item</option>
+                                 <option>Carbonated Water</option>
+                                 <option>Spices</option>
+                                 <option>Processed food</option>
 
 
-        </select>
+                               </select>
+        <!--<button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover"(click)="Addcategory()">+</button>-->
       </div>
       <!--<div class="dataSelect">
         <label>Product</label><br>
@@ -60,8 +76,9 @@
           <option>Dates</option>
           <option>Pastry</option>
         </select>
-      </div>
-      <div class="dataSelect">
+        <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
+      </div>-->
+      <!--<div class="dataSelect">
         <label>Supplier</label><br>
         <select>
           <option style="color: grey; font-style: italic" disabled selected hidden></option>
@@ -73,54 +90,58 @@
 
 
         </select>
+        <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
       </div>-->
 
       <div class="dataSelect">
         <label>Status</label><br>
-        <select>
-          <option style="color: grey; font-style: italic" disabled selected hidden></option>
-          <option>In-Progress</option>
-          <option>Pending for approval</option>
-          <option>Not started</option> 
-        </select>
+                           <select id="dropdown" class="dropdown" [(ngModel)]="Status"  value="" name="list2">
+                               <option style="color: grey; font-style: italic" selected >Task created</option>
+                               <option>In-Progress</option>
+                               <option>Pending for approval</option>
+                               <option>Not started</option>
+                             </select>
+      
       </div>
-      <!--<div class="dataSelect">
+      <div class="dataSelect">
         <label>Department</label><br>
-        <select>
-          <option style="color: grey; font-style: italic" disabled selected hidden></option>
+        <select id="dropdown" class="dropdown" [(ngModel)]="Department" value="" name="list1">
+          <option style="color: grey; font-style: italic" selected>Purchase department</option>
           <option>Clearance</option>
           <option>Orders</option>
           <option>Purchaser</option>
           <option>Design</option>
         </select>
-      </div>-->
+       
+      </div>
 
 
-      <div class="dataDate">
-        <label>Due Date : </label><br>
-        <input type="date" name="title"><br />
-      </div>
-      <div class="dataDate">
-        <label>Assigned Date : </label><br>
-        <input type="date" name="title">
-      </div>
-      <div class="dataDate">
-        <label>Created Date : </label><br>
-        <input type="date" name="title" [(ngModel)]="currentDate">
-      </div>
-      <div class="uploadimage">
-        <input type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-        <div class="upload-area" (click)="fileInput.click()">
-          <p>Drag & drop media here or click to upload</p>
+        <div class="dataDate">
+          <label>Due Date : </label><br>
+          <input type="date" name="title"[(ngModel)]="Duedate"><br />
         </div>
-      </div>
+        <div class="dataDate">
+          <label>Assigned Date : </label><br>
+          <input type="date" name="title"[(ngModel)]="Assigneddate">
+        </div>
+        <!--<div class="dataDate">
+          <label>Created Date : </label><br>
+          <input type="date" name="title" [(ngModel)]="createddate">
+        </div>-->
+        <div class="uploadimage">
+          <input type="file" #fileInput (change)="handleFileInput($event)" [(ngModel)]="DocURL" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+          <div class="upload-area" (click)="fileInput.click()">
+            <p>Drag & drop media here or click to upload</p>
+          </div>
+        </div>
 
-      <div class="createtask">
-        <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
-        <button class="save-button pulse-effect hover-effect:hover">Save</button>
-      </div>
+        <div class="createtask">
+          <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
+          <button type="submit" class="save-button pulse-effect hover-effect:hover" (click)=" updatetask()" matDialogClose>Save</button>
+          <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-right: 10px" [hidden]="isproductupdate" (click)="savemmain();">Update</button>-->
+        </div>
 
+      </div>
     </div>
-  </div>
 </body>
 

@@ -12,41 +12,47 @@
       <table style="margin-left:1%;width:90%;">
         <tr>
           <td width="4%">
-            <button type="submit" class="btn btn-primary" style="margin-right: 10px; box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 41px; border-radius: 2px; color: black; background-color: #98ad8e; font-size: large; font-family: Calibri; padding: 0px 28px; font-weight: 600; border: none; ">All</button>
+            <button type="submit" class="btn btn-primary" style="margin-right: 10px; box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 41px; border-radius: 2px; color: black; background-color: #98ad8e; font-size: large; font-family: Calibri; padding: 0px 28px; font-weight: 600; border: none; " (click)="AllTabclickload()">All</button>
           </td>
           <td>
             <div class="dropdown hover">
               <a style="background-color: #a9d5d6;color:black;">Status</a>
               <ul>
-                <li (click)="statusfilter('InProgress')"><a>InProgress</a></li>
-                <li (click)="statusfilter('Pending')"><a>Pending</a></li>
-                <li (click)="statusfilter('Not Started')"><a>Not Started</a></li>
-                <li (click)="statusfilter('Completed')"><a>Completed</a></li>
-                <li (click)="statusfilter('Approved')"><a>Approved</a></li>
+                <li (click)="statusInProgress()"><a>InProgress</a></li>  <!--(click)="statusfilter('InProgress')"-->
+                <li (click)="statusPending()"><a>Pending</a></li><!--(click)="statusfilter('Pending')"-->
+                <li (click)="statusNotstarted()"><a>Not Started</a></li><!--(click)="statusfilter('Not Started')"-->
+                <li (click)="statusCompleted()"><a>Completed</a></li><!--(click)="statusfilter('Completed')"-->
+                <li (click)="statusApproved()"><a>Approved</a></li><!--(click)="statusfilter('Approved')"-->
               </ul>
             </div>
           </td>
-          <td>
+          <!--<td>
             <div class="dropdown hover">
               <a style="background-color: #a6c2e0; color: black;">Brand</a>
               <ul>
-                <li *ngFor="let a of uniqueDataBrand"><a (click)="brandfilter(a.Brand)">{{a.Brand}}</a></li>
+                <li *ngFor="let a of uniqueDataBrand"><a (click)="brandLoad()">{{a.Brand}}</a></li>
               </ul>
             </div>
-          </td>
+          </td>-->
           <td>
             <div class="dropdown hover">
               <a style="background-color: #91c49c; color: black;">Category</a>
               <ul>
-                <li *ngFor="let a of uniqueDataCategory"><a (click)="categoryfilter(a.Category)">{{a.Category}}</a></li>
+                <!--<li *ngFor="let item of loadtaskdata"><a (click)="categoryLoad()">{{item.Category}}</a></li>-->
+                <li (click)="statusInProgress()"><a>Food Item</a></li>  
+                <li (click)="statusPending()"><a>Non Food Item</a></li>
+                <li (click)="statusNotstarted()"><a>Carbonated Water</a></li>
+                <li (click)="statusCompleted()"><a>Spices</a></li>
+                <li (click)="statusApproved()"><a>Processed food</a></li>
               </ul>
+               
             </div>
           </td>
           <td>
             <div class="dropdown hover">
               <a style="background-color: #b5c491; color: black;">Product</a>
               <ul>
-                <li *ngFor="let a of uniqueDataProduct"><a (click)="productfilter(a.Product)">{{a.Product}}</a></li>
+                <li *ngFor="let item of loadtaskdata"><a (click)="productLoad()">{{item.Product}}</a></li><!--let a of product_data_load--><!--*ngFor="let a of product_data_load"-->
               </ul>
             </div>
           </td>
@@ -54,7 +60,12 @@
             <div class="dropdown hover">
               <a style="background-color: #c2a98d; color: black;">AssignedTo</a>
               <ul>
-                <li *ngFor="let a of uniqueDataAssigned"><a (click)="assignedtofilter(a.AssignedTo)">{{a.AssignedTo}}</a></li>
+                <!--<li *ngFor="let item of loadtaskdata"><a (click)="assignedTo()">{{item.CurrentlyAssigned}}</a></li>--><!--let a of asgn_data_load--><!--*ngFor="let a of asgn_data_load">-->
+                <li (click)="statusInProgress()"><a>praveen</a></li>
+                <li (click)="statusPending()"><a>john</a></li>
+                <li (click)="statusNotstarted()"><a>steve</a></li>
+                <li (click)="statusCompleted()"><a>ali</a></li>
+                <li (click)="statusApproved()"><a>edward</a></li>
               </ul>
             </div>
           </td>
@@ -62,7 +73,10 @@
             <div class="dropdown hover">
               <a style="background-color: #c2998d; color: black;">Department</a>
               <ul>
-                <li *ngFor="let a of uniqueDataDepartment"><a (click)="departmentfilter(a.Department)">{{a.Department}}</a></li>
+                <li (click)="statusInProgress()"><a>Clearance</a></li>
+                <li (click)="statusPending()"><a>Orders</a></li>
+                <li (click)="statusNotstarted()"><a>Purchase</a></li>
+
               </ul>
             </div>
           </td>
@@ -70,14 +84,14 @@
         </tr>
       </table>
 
-
+        
       <table style="margin-left:1%;width:90%;margin-top:1%;">
         <tr>
           <td width="35%">
-            <input type="text" placeholder="Search here" style="background-color: white; width: 100%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;"[(ngModel)]="filtdata" id="myInput" />
+            <input  type="text"  style="background-color: white; width: 100%; border:none; font-family: Calibri; font-size: large; border-radius: 5px;" id="myInput" [(ngModel)]="filterdata" name="filtt" value="" />
           </td>
           <td width="5%">
-            <mat-icon style="font-size:x-large;margin-left:1%;" (click)="startListening()">mic</mat-icon>
+            <mat-icon style="font-size:x-large;margin-left:1%;"(click)="startListening()">mic</mat-icon>
           </td>
           <td width="35%">
             <input type="date" id="prodfrm" class="form-control inputtextbox" style="height:28px;background-color: white; width: 90%;margin-left:7%; border: none; font-family: Calibri; font-size: large;display:inline; border-radius: 5px;" [(ngModel)]="ngassigneddate" name="prddatefrm" value="" />
@@ -107,7 +121,8 @@
         <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family: Calibri; font-size: x-small; margin-left: 1%; overflow-x: auto;">
           <thead>
             <tr>
-          
+              <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;"></th>-->
+              <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;"></th>-->
               <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:4%;">Task ID</th>-->
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:10%;">Task Name</th>
               <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Brand</th>-->
@@ -121,63 +136,32 @@
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Department</th>
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Workflow</th>
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:6%;">Report</th>
+              <!--<th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;">Images</th>-->
               <th style="border: 2px solid lightgrey;font-size:15px;text-align:center;width:7%;"></th>
-      
             </tr>
           </thead>
 
           <tbody>
-            <tr class="active-row" *ngFor="let item of AssignedTaskList" #conten >
-         
+            <tr class="active-row" *ngFor="let item of loadtaskdata" #conten (dblclick)="OpenAddtask(item)">
+              <!--*ngFor="let item of loadtaskdata"-->
+              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><button mat-button class="buttonicon"> <mat-icon class="maticoncolorblue">camera_alt</mat-icon></button></td>
+  <td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><mat-icon class="maticoncolorblue">video_call</mat-icon></td>-->
               <!--<td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;">{{item.TaskID}}</td>-->
-              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; "(click)="opentaskdetail()">{{item.Product}}</td>
-              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; "(click)="opentaskdetail()">{{item.TaskName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; ">{{item.TaskName}}</td>
+              <td style="border: 2px solid lightgrey; text-align:left; width: 10%;color: black; ">{{item.Category}}</td>
               <!--<td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; ">{{item.Brand}}</td>-->
-              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; "(click)="opentaskdetail()">{{item.Category}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; "(click)="opentaskdetail()">{{item.DueDate}}</td>
-              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.DueDate}}</td>-->
-              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; "(click)="opentaskdetail()">{{item.Assigenddate}}</td>
-              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; "(click)="opentaskdetail()">{{item.InitiallyAssigned}}</td>
-              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; "(click)="opentaskdetail()">{{item.CurrentlyAssigned}}</td>-->
+              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; ">{{item.Product}}</td>
+              <td style="border: 2px solid lightgrey; text-align:center; width: 5%; color: black; ">{{item.AssignedDate}}</td>
+              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.InitiallyAssigned}}</td>-->
+              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.InitiallyAssigned}}</td>
+              <td style="border: 2px solid lightgrey; text-align:center; width: 6%; color: black; ">{{item.CurrentlyAssigned}}</td>
+              <!--<td style="border: 2px solid lightgrey; text-align:center; width: 7%; color: black; ">{{item.CurrentlyAssigned}}</td>-->
 
 
 
-              <td *ngIf="item.Status =='InProgress'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small;font-family:Calibri; font-weight: 400; color: black;">
+              <td style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small;font-family:Calibri; font-weight: 400; color: black;">
                 <div class="form-inline">
-                  <mat-icon style="color: lightgreen;">play_circle_outline</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-              <td *ngIf="item.Status =='Pending for approval'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e8e843; ">pause_circle_outline</mat-icon>
-                  <!--{{item.Status}}--> Pending
-                </div>
-              </td>
-              <td *ngIf="item.Status =='Not started'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e8e843; ">pause_circle_outline</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-              <td *ngIf="item.Status =='Approved'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: forestgreen;">check_circle</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-              <td *ngIf="item.Status =='Completed'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: forestgreen;">check_circle</mat-icon>
-                  {{item.Status}}
-                </div>
-              </td>
-
-              <td *ngIf="item.Status =='Cancelled'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
-                <div class="form-inline">
-                  <mat-icon style="color: #e36959;">highlight_off</mat-icon>
+                  <mat-icon style="color: lightgreen;">play_circle_outline</mat-icon><!--*ngIf="item.Status =='InProgress'"-->
                   {{item.Status}}
                 </div>
               </td>
@@ -189,15 +173,19 @@
 
 
               <td style="border: 2px solid lightgrey; text-align: center; width: 6%; color: black;">
-                <button title="Click to View Workflow" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;" (click)="ViewAWSWorkFlow(item)">Workflow</button>
+
+                <button title="Click to View Workflow" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;">Workflow</button>
               </td>
               <td style="border: 2px solid lightgrey; text-align: center; width: 6%; color: black;">
                 <button title="Click to View Report" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;" (click)="OpenTaskReport(item)">Report</button>
               </td>
+              <!--<td style="border: 2px solid lightgrey; text-align: center; width: 7%; color: black;">
+                <button title="Click to View Images" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;">View</button>
+              </td>-->
               <td style="border: 2px solid lightgrey; text-align: center; width: 7%; color: black;">
-                <button title="Click to View Images" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;"(click)="openedittask()">edit</button>
+                <button title="Click to View Images" style="color: white; background-color: #1F528E; font-family: Calibri; border-radius: 10px; padding: 0px 11px; border: 1px thin lightgrey; font-weight: 600;"(click)="OpenAddtask(item)">Edit</button>
               </td>
-
+               
 
 
 
@@ -222,3 +210,40 @@
 
 
 
+  <!--<td *ngIf="item.Status =='Pending for approval'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
+    <div class="form-inline">
+      <mat-icon style="color: #e8e843; ">
+        pause_circle_outline<
+
+      </mat-icon>-->
+
+
+      <!--{{item.Status}}--> <!--Pending
+    </div>
+  </td>
+  <td *ngIf="item.Status =='Not started'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
+    <div class="form-inline">
+      <mat-icon style="color: #e8e843; ">pause_circle_outline</mat-icon>
+      {{item.Status}}
+    </div>
+  </td>-->
+
+  <!--<td *ngIf="item.Status =='Approved'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
+    <div class="form-inline">
+      <mat-icon style="color: forestgreen;">check_circle</mat-icon>
+      {{item.Status}}
+    </div>
+  </td>-->
+  <!--<td *ngIf="item.Status =='Completed'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
+    <div class="form-inline">
+      <mat-icon style="color: forestgreen;">check_circle</mat-icon>
+      {{item.Status}}
+    </div>
+  </td>
+
+  <td *ngIf="item.Status =='Cancelled'" style="border: 2px solid lightgrey; text-align: center; width: 7%; font-size: small; font-family: Calibri; font-weight: 400; color: black; ">
+    <div class="form-inline">
+      <mat-icon style="color: #e36959;">highlight_off</mat-icon>
+      {{item.Status}}
+    </div>
+  </td>-->

@@ -111,6 +111,16 @@
     vertical-align: top;
     /*  background-color: #f3f3f3;*/
   }
+  .dataSelect1 {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 10px;
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+  }
 
   .dataDate {
     border-radius: 5px;
@@ -404,5 +414,218 @@
   .hover-effect:hover {
     background-color: #1F528E; /* Change to your desired color */
     transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  .box {
+    position: relative;
+  }
+
+  .circle_ripple {
+    height: 38px;
+    width: 38px;
+    background: #a13532;
+    border-radius: 50%;
+    -webkit-animation-name: ripple 2s infinite;
+    -webkit-animation: ripple 2s infinite;
+    animation: ripple 2s infinite;
+    position: relative;
+    left: 7px;
+    top: 6px;
+    z-index: 0;
+  }
+
+  .circle_ripple-2 {
+    height: 31px;
+    width: 42px;
+    background: #a13532;
+    border-radius: 50%;
+    -webkit-animation-name: ripple 2s infinite;
+    -webkit-animation: ripple-2 2s infinite;
+    animation: ripple-2 2s infinite;
+    position: -webkit-sticky;
+    position: relative;
+    left: 5px;
+    top: -27px;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(2);
+      opacity: 0.3;
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes ripple-2 {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(2.5);
+      opacity: 0.3;
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+  .circle {
+    width: 60px;
+    height: 58px;
+    border-radius: 50%;
+    background: #a13532;
+    position: relative;
+    left: -3px;
+    top: -74px;
+  }
+
+  .circle-2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ffffff;
+    position: relative;
+    left: 5px;
+    top: 4px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+
+  @keyframes loading-1 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  }
+
+  @keyframes loading-2 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(144deg);
+      transform: rotate(144deg);
+    }
+  }
+
+  @keyframes loading-3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes loading-4 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(36deg);
+      transform: rotate(36deg);
+    }
+  }
+
+  @keyframes loading-5 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(126deg);
+      transform: rotate(126deg);
+    }
+  }
+
+  @media only screen and (max-width: 990px) {
+    .progress {
+      margin-bottom: 20px;
+    }
+  }
+
+
+
+
+
+  .circle1 {
+    width: 52px;
+    height: 50px;
+    border-radius: 50%;
+    background: #3273a1;
+    left: 0;
+  }
+
+
+  .miccircle {
+    width: 48px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ffffff;
+    position: relative;
+    left: 2px;
+    top: 2px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.16);
+  }
+
+    .miccircle .mat-icon {
+      font-size: 20px;
+      color: #A7A7A7;
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      cursor: pointer;
+      height: 43px;
+      width: 45px;
+    }
+
+  .loader {
+    width: 50px;
+    margin-left: 2%;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#2926266b 90%,#0000);
+    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+    background-size: calc(100% / 3) 100%;
+    -webkit-animation: l7 1s infinite linear;
+    animation: l7 1s infinite linear;
+    vertical-align: inherit;
+  }
+
+  @keyframes l7 {
+    33% {
+      background-size: calc(100%/3) 0%,calc(100%/3) 100%,calc(100%/3) 100%
+    }
+
+    50% {
+      background-size: calc(100%/3) 100%,calc(100%/3) 0%,calc(100%/3) 100%
+    }
+
+    66% {
+      background-size: calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%
+    }
   }
 }
