@@ -496,6 +496,7 @@ export class BrandingComponent {
       this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Your Input has the wrong length or contains characters,which can not be encoded with the barcode with 12-digit UPC-A format' } });
     }
     else {
+      this.hidbarcode = false;
       JsBarcode(this.barcode.nativeElement, this.barname, {
         format: 'CODE128',
       });

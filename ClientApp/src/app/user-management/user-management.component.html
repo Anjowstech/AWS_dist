@@ -1,13 +1,13 @@
 
 
 
-<button class="button2" (click)="openDialog()">Add User</button>
+<button  class="button2" (click)="openDialog()">Add User</button>
 
 
 
 
-<h2>List Of Users</h2>
-<h4 style="color:orange;font-weight:400;text-align:left;margin-left:1%">Click on the row to modify user details</h4>
+<h2 style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1.75rem; ">List Of Users</h2>
+<!--<h4 style="color:orange;font-weight:400;text-align:left;margin-left:1%">Click on the row to modify user details</h4>-->
 
 <br>
 
@@ -18,32 +18,33 @@
 <table class="table">
   <thead>
     <tr>
-      <th>UserID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Contact Number</th>
-      <th>Address</th>
-      <th>Designation ID</th>
-      <th>Username</th>
-      <th>ImageID</th>
-      <!--<th>Updated Date</th>
-      <th>Inserted Date</th>-->
+      <!--<th>ImageID</th>-->
+      <!--<th>UserID</th>-->
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">First Name</th>
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Last Name</th>
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Contact Number</th>
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Address</th>
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Designation ID</th>
+      <th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Username</th>
+
+
+      <!--<th style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1 rem; ">Page Access</th>-->
+
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data">
-      <td>{{ item.UserID }}</td>
+    <tr *ngFor="let item of data" (click)="openEditDialog(item)">
+      <!--<td>{{ item.UserID }}</td>-->
       <td>{{ item.FirstName }}</td>
       <td>{{ item.LastName }}</td>
       <td>{{ item.ContactNumber }}</td>
       <td>{{ item.Address }}</td>
       <td>{{ item.Designation }}</td>
       <td>{{ item.UserName }}</td>
-      <td>{{ item.ImageId }}</td>
+      <!--<td>{{ item.ImageId }}</td>-->
 
-      <!--<td>{{ item.Password }}</td>
-  <td>{{ item.Updateddate }}</td>
-  <td>{{ item.Inserteddate }}</td>-->
+      <!--<td>{{ item.PageAccess }}</td>-->
+  
     </tr>
   </tbody>
 </table>

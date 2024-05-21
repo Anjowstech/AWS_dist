@@ -3,7 +3,7 @@
 
   <div>
 
-    <h1 class=" layoutHead":style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1.75rem; ">Add User</h1>
+    <h1 class=" layoutHead":style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1.75rem; ">Edit User</h1>
 
     <button class="close-button" matDialogClose><mat-icon>close</mat-icon></button>
 
@@ -11,27 +11,36 @@
 
 
 
-  <div class="DivContent">
+  <div>
+   
 
-  
 
- 
 
     <div class=" dataselect">
       <div class="dataSelect">
 
         <label class="SupplierLabel">First Name </label><br>
 
-        <input type="text" name="firstName" class="input" [(ngModel)]="firstName"><br>
+        <input type="text" name="FirstName" class="input" [(ngModel)]="FirstName"><br>
 
       </div>
-
 
       <div class="dataSelect">
 
         <label class="SupplierLabel">Last Name</label><br>
 
         <input type="text" name="LastName" class="input" [(ngModel)]="LastName">
+
+      </div>
+
+
+
+
+      <div class="dataSelect ">
+
+        <label class="SupplierLabel">Contact Number</label><br>
+
+        <input type="text" class="input" [(ngModel)]="ContactNumber"><br />
 
       </div>
 
@@ -42,38 +51,22 @@
         <input type="text" class="input" [(ngModel)]="Address"><br />
 
       </div>
-
-
-      <div class="dataSelect">
-
-        <label class="SupplierLabel">Contact Number</label><br>
-
-        <input type="text" name="ContactNumber" class="input" [(ngModel)]="ContactNumber"><br />
-
-      </div>
-
-
-
-      <div class="dataSelect">
+      <div class="dataSelect ">
 
         <label class="SupplierLabel">Designation</label><br>
 
-        <input type="text" name="Designation" class="input" [(ngModel)]="Designation"><br />
+        <input type="text" class="input" [(ngModel)]="Designation"><br />
 
       </div>
-
 
 
       <div class="dataSelect">
 
         <label class="SupplierLabel">User Name</label><br>
 
-        <input type="text" name="username" class="input" [(ngModel)]="username"><br />
+        <input type="text" name="Password" class="input" [(ngModel)]="username"><br />
 
       </div>
-
-
-
 
 
 
@@ -81,9 +74,11 @@
 
         <label class="SupplierLabel">Password</label><br>
 
-        <input type="tel" name="Password" class="input" [(ngModel)]="Password"><br />
+        <input type="text" name="Password" class="input" [(ngModel)]="Password"><br />
 
       </div>
+
+
 
 
       <div class="dataSelect ">
@@ -107,19 +102,20 @@
         </select>
 
       </div>
+     
+
+
 
       <div class="createtask">
 
         <button class="save-button1 hover-effect:hover" (click)="clearFields()">Clear</button>
 
-        <button class="save-button pulse-effect hover-effect:hover" (click)="handleButtonClick()">Create</button>
+        <button class="save-button pulse-effect hover-effect:hover" (click)="handleButtonClick()">Modify</button>
 
       </div>
 
     </div>
 
-    </div>
-
   </div>
 
-
+</div>

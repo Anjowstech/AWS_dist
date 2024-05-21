@@ -109,23 +109,23 @@
           <mat-icon style="height:auto;width:auto">perm_identity</mat-icon>
         </button>
         <mat-menu #menu style="background-color:white;color:gray">
-          <button mat-menu-item style="background-color:white;color:gray; border:none" [routerLink]="'/login'">
+          <button mat-menu-item style="background-color: white; color: gray; font-weight: 400; border:none; font-family: ''Yu Gothic UI''" [routerLink]="'/login'">
             Logout
           </button>
-          <button mat-menu-item style="background-color:white;color:gray; border:none" [routerLink]="['admin']">
+          <button mat-menu-item style="background-color: white; color: gray; border: none; font-weight: 400; font-family: ''Yu Gothic UI''" [routerLink]="['admin']">
             Admin
           </button>
         </mat-menu>
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float:right;margin-right:1%; font-family:sans-serif">Reports</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['Reorder']">Reorder</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['Shipment']">Shipment</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['ordermanagement']">Order Management</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['Branding']">Branding</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['TaskdetailpageComponent']">Task Detail</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['marketresearch']">Market Research</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['TaskList']">Task List</button>
-        <button mat-button style="color: white; font-size: medium; font-weight: 500; float: right; margin-right: 1%; font-family: sans-serif" [routerLink]="['Dashboardreport']">Dashboard</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%;font-family: ''Yu Gothic UI''">Reports</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family: ''Yu Gothic UI''" [routerLink]="['Reorder']">Reorder</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%;font-family: ''Yu Gothic UI''" [routerLink]="['Shipment']">Shipment</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%;font-family: ''Yu Gothic UI''" [routerLink]="['ordermanagement']">Order Management</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family:''Yu Gothic UI''" [routerLink]="['Branding']">Branding</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family: ''Yu Gothic UI''" [routerLink]="['TaskdetailpageComponent']">Task Detail</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family: ''Yu Gothic UI''" [routerLink]="['marketresearch']">Market Research</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family: ''Yu Gothic UI''" [routerLink]="['TaskList']">Task List</button>
+        <button mat-button style="color: white; font-size: medium; font-weight: 400; float: right; margin-right: 1%; font-family: ''Yu Gothic UI''" [routerLink]="['Dashboardreport']">Dashboard</button>
 
 
 
@@ -148,7 +148,7 @@
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <a (click)="sidenav.toggle()"  mat-list-item>Close</a>
+        <a (click)="sidenav.toggle()"  mat-list-item><mat-icon style="float:right">close</mat-icon></a>
         <a [routerLink]="['Dashboardreport']" mat-list-item>Dashboard</a>
         <a [routerLink]="['TaskList']" mat-list-item>Task List</a>
         <a [routerLink]="['marketresearch']" mat-list-item>Market Research</a>

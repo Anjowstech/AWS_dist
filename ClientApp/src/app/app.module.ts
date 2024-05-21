@@ -38,7 +38,7 @@ import { OrderManagementComponent } from './order-management/order-management.co
 import { ReorderComponent } from './reorder/reorder.component';
 import { CameraComponent } from './camera/camera.component';
 import { ViewImagesComponent } from './view-images/view-images.component';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { LuggageReportComponent } from './luggage-report/luggage-report.component';
 import { WorkflowComponent } from './workflow/workflow.component';
@@ -46,7 +46,7 @@ import { FaceAPILogInComponent } from './face-apilog-in/face-apilog-in.component
 import { AdminComponent } from './admin/admin.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserAddComponent } from './user-add/user-add.component';
-
+import { UserEditComponent } from '../app/user-edit/user-edit.component';
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceAPILogInComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -87,7 +87,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     ReorderComponent,
     CameraComponent,
     ViewImagesComponent,
- 
+    UserEditComponent,
     CreateTaskComponent,
     LuggageReportComponent,
     WorkflowComponent,
@@ -103,7 +103,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatToolbarModule,
     MatDividerModule,
     NgbModule,
-  
+    NoopAnimationsModule,
 MatSidenavModule ,
   FlexLayoutModule ,
     FormsModule,
@@ -116,7 +116,7 @@ MatSidenavModule ,
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent, AddComponentComponent,MsgBoxComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent, AddComponentComponent, MsgBoxComponent, UserEditComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

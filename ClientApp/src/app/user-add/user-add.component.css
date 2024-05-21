@@ -10,10 +10,10 @@
 }
 
 .input {
-  width: 80%;
-  /*  display: inline-block;*/
+  width: 45%;
+  display: inline-block;
   font-family: "Arial", sans-serif;
-  width: 90%;
+  align-content: center;
   height: 35px;
   max-width: 80%;
   border: none;
@@ -23,13 +23,13 @@
   margin-left: 10%;
 }
 
-.label {
-  display: flex;
-  width: 150px;
-  font-weight: 500;
-  text-align: right;
-  margin-left: 10%;
+.container {
+  width: 100%;
+  display: inline-block;
+  justify-content: center;
 }
+
+
 
 .create-btn {
   cursor: pointer;
@@ -68,13 +68,516 @@
 
 .close-button {
   position: absolute;
-  top: 10px; /* Adjust the top distance as needed */
-  right: 10px; /* Adjust the right distance as needed */
-  padding: 0; /* Remove padding */
-  background-color: transparent; /* Transparent background */
-  border: none; /* Remove border */
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-  font-size: 25px; /* Adjust font size as needed */
-  color: #1F528E; /* Color of the 'x' symbol */
-  box-shadow: none; /* Remove box shadow */
+  font-size: 25px;
+  color: #1F528E;
+  box-shadow: none;
+}
+
+/* New CSS to handle input pairs */
+.input-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+@media (max-width: 500px) {
+  input {
+    /*border-radius: 10px;*/
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+    input:focus {
+      border: none;
+      box-shadow: 0 1px 8px lightslategrey;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    input[type="date"] {
+      border-left: #ff0000;
+      /*color: darkgray;*/
+    }
+
+    input[type="file"] {
+      border-left: 3px solid #1F528E;
+      /*color: darkgray;*/
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      border-left: #ff0000; /* Change #1F528E to the desired shade of red */
+    }
+
+
+  select {
+    /*border-radius: 10px;*/
+    height: 35px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  button {
+    height: 35px;
+    margin: 0px 5px 10px;
+    background-color: #1F528E;
+    border: none;
+    cursor: pointer;
+    /*border: 0.5px solid lightslategrey; 
+    border-radius: 5px;
+    box-shadow: 0 1px 15px #1F528E;*/
+    font-weight: bold;
+    font-size: 11px;
+    padding: 5px 5px;
+    text-align: center;
+  }
+
+  h1 {
+    text-align: left;
+    color: #1f538e;
+    padding: 10px
+  }
+
+  
+
+  p {
+    color: gray;
+  }
+
+  td {
+    text-align: left;
+  }
+
+
+
+  .id {
+    width: 15%;
+    height: 25px;
+  }
+
+  .content {
+    background-color: #f3f3f3;
+    box-shadow: 0 1px 13px lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  .data {
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .dataSelect {
+    border-radius: 5px;
+    margin-left: 20px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 10px;
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+    border-left: 3px solid #1F528E;
+  }
+
+  .dataDate {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 10px;
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    /*  background-color: #f3f3f3;*/
+  }
+
+  .createtask {
+    /*width:100%;
+  margin-right: 13%;*/
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .uploadimage {
+    padding: 5px 10px;
+    /*  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 8px #2828284d;
+  background-color: #f3f3f3;*/
+  }
+
+    .uploadimage input {
+      height: 50px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 90%;
+      min-width: 250px;
+      background-color: white;
+      cursor: pointer;
+      border-left: 3px solid #1F528E;
+    }
+
+    .uploadimage button {
+      /*position: absolute;*/
+      cursor: pointer;
+      box-shadow: none;
+      background-color: #f3f3f3;
+      border: 1px solid lightgray;
+    }
+
+  body {
+    /*background-color: #f3f3f3;*/
+    font-family: Calibri;
+  }
+
+  .save-button {
+    background-color: #1F528E;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60px;
+  }
+
+  .save-button1 {
+    background-color: white;
+    color: #1F528E;
+    border: 1px solid #1f538e;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60px;
+  }
+
+  .pulse-effect {
+    animation: pulse 1s infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .hover-effect:hover {
+    background-color: #1F528E; 
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+}
+
+
+
+@media (min-width: 500px) {
+
+
+  input:focus {
+    border: none;
+    box-shadow: 0 1px 8px lightslategrey;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  input[type="date"] {
+    border-left: 3px solid #1F528E;
+    /*color: darkgray;*/
+  }
+
+  input[type="file"] {
+    border-left: 3px solid #1F528E; 
+  }
+
+
+  select {
+    /*border-radius: 10px;*/
+    height: 35px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  textarea {
+    width: 98%;
+    max-width: 100%;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    border-left: 3px solid #1F528E;
+  }
+
+  h1 {
+    text-align: center;
+    color: #1f538e;
+    padding: 1px
+  }
+
+
+  p {
+    color: gray;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  button {
+    height: 35px;
+    margin: 10px;
+    color: white;
+    background-color: #1F528E;
+    border: none;
+    /*border: 0.5px solid lightslategrey; */
+    border-radius: 5px;
+    box-shadow: 0 1px 15px #1F528E;
+  }
+
+  .id {
+    width: 15%;
+    height: 25px;
+  }
+
+  .content {
+    background-color: #f3f3f3;
+    box-shadow: 0 1px 13px lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  .DivContent{
+      align-content:center;
+  }
+  .data {
+    border-radius: 5px;
+    padding: 5px 20px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  .dataSelect {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 1px 10px;
+    width: 47%;
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+    text-align: left;
+    margin-left: 20px;
+    padding-top:20px;
+  }
+
+    .dataSelect input,
+    .dataSelect select,
+    .dataSelect textarea {
+      text-align: center; /* Aligning text boxes to the left */
+    }
+
+    .dataSelect > * {
+      width: 98%; /* Stretching the width of child elements */
+    }
+
+
+  .dataDate {
+    border-radius: 5px;
+    /*box-shadow: 0 6px 8px #2828284d;*/
+    /*  border: 1px solid #ddd;*/
+    padding: 5px 50px;
+    width: calc(27.80% - 30px);
+    display: inline-block;
+    vertical-align: top;
+    /*  background-color: #f3f3f3;*/
+    text-align: left;
+  }
+
+  .createtask {
+    /*width:100%;
+  margin-right: 13%;*/
+    text-align: center;
+    margin-left: 8px;
+    padding-top:55px;
+  }
+
+  .uploadimage {
+    padding: 10px 10px;
+    /*  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 8px #2828284d;
+  background-color: #f3f3f3;*/
+  }
+
+    .uploadimage input {
+      height: 40px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 94%;
+      min-width: 250px;
+      background-color: white;
+      cursor: pointer;
+      border-left: 3px solid #1F528E;
+      margin-top: 10px;
+    }
+
+    .uploadimage button {
+      /*position: absolute;*/
+      cursor: pointer;
+      box-shadow: none;
+      background-color: #f3f3f3;
+      border: 1px solid lightgray;
+    }
+
+
+  body {
+    /*background-color: #f3f3f3;*/
+    font-family: Calibri;
+  }
+
+  .save-button {
+    cursor: pointer;
+    background-color: #1F528E;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .save-button1 {
+    cursor: pointer;
+    background-color: white;
+    color: #1F528E;
+    border: 1px solid #1f538e;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px; /* Adjust the top distance as needed */
+    right: 10px; /* Adjust the right distance as needed */
+    padding: 0; /* Remove padding */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+    cursor: pointer;
+    font-size: 25px; /* Adjust font size as needed */
+    color: #1F528E; /* Color of the 'x' symbol */
+    box-shadow: none; /* Remove box shadow */
+  }
+
+    .close-button:hover {
+      color: #70a8e9; /* Hover color of the 'x' symbol */
+    }
+
+
+  .pulse-effect {
+    animation: pulse 1s infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .hover-effect:hover {
+    background-color: #1F528E; /* Change to your desired color */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+}
+
+
+.input {
+  width: 100%;
+  /*  display: inline-block;*/
+  font-family: "Arial", sans-serif;
+  height: 35px;
+  max-width: 95%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-left: 3px solid #1F528E;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.label {
+  display: flex;
+  width: 150px;
+  font-weight: 900;
+  text-align: right;
+  margin-left: 1%;
+  color: gray;
+  font-family: Yu Gothic UI;
+}
+
+.SupplierLabel {
+  display: flex;
+  width: 150px;
+  font-weight: 900;
+  text-align: right;
+  margin-left: 1%;
+  font-family: Yu Gothic UI;
+}
+
+.layoutHead {
+  text-align: left;
+  color: #1f538e;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  margin-left:2%;
+}
+/* In styles.css or user-add.component.css */
+.blue-snackbar {
+  background-color: blue;
+  color: white;
 }

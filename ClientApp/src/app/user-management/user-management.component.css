@@ -259,6 +259,7 @@ th {
   text-align: center;
   font-weight: 300;
   padding: 4px 5px;
+  font-family: Yu Gothic UI;
 }
 
 /* CSS for table data */
@@ -283,6 +284,7 @@ h2 {
   margin-left: 10px;
   font-family: "Arial", sans-serif;
   font-weight:900;
+
 }
 
 .layoutHead {
@@ -326,9 +328,10 @@ h2 {
   border: none;
   /*border: 0.5px solid lightslategrey; #1F528E*/
   border-radius: 15px;
-  margin-top: 5px;
+  margin-top: 60px;
   text-align: center;
   vertical-align: central;
+  font-family: Yu Gothic UI;
 }
 /*popup style*/
 .overlay {
@@ -813,4 +816,10 @@ nav ul {
 .ng-container {
   float: left;
   width: 100%;
+}
+
+.th {
+  font-family: Yu Gothic UI;
+  font-weight: 500;
+  font-size: 1 rem;
 }

@@ -1,87 +1,4 @@
 
-/*.layoutHead {
-  text-align: left;
-  color: #1f538e;
-  padding: 0px;
-  margin-left: 0px;
-  font-family: "Arial", sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.input {
-  width: 80%;*/
-/*  display: inline-block;*/
-/*font-family: "Arial", sans-serif;
-  width: 90%;
-  height: 35px;
-  max-width: 80%;
-  border: none;
-  border-radius: 5px;
-  border: 1px solid lightgray;
-  border-left: 3px solid #1F528E;
-  margin-left: 10%;
-}
-
-.label {
-  display: flex;
-  width: 150px;
-  font-weight: 500;
-  text-align: right;
-  margin-left: 10%;
-}
-
-.create-btn {
-  cursor: pointer;
-  background-color: white;
-  color: #1F528E;
-  border: 1px solid #1f538e;
-  border-radius: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100px;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
-  padding: 8px;
-  margin-left: 81%;
-  margin-top: 5px;
-}
-
-.layoutHead {
-  text-align: left;
-  color: #1f538e;
-  padding: 10px;
-  margin-top: 10px;
-  font-family: "Arial", sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.dialogehead {
-  margin-top: 10px;
-}
-
-.button2 {
-  float: right;
-  margin-right: 10px;
-}*/
-/* CSS for screens smaller */
-/*.popup {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  max-width: 80%;
-}*/
-
-/* Close button */
-/*.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-.popup-content {*/
 
 @media (max-width: 500px) {
   input {
@@ -202,6 +119,8 @@
     vertical-align: top;
     /*  background-color: #f3f3f3;*/
     border-left: 3px solid #1F528E;
+    margin-left: 20px;
+    padding-top: 20px;
   }
 
   .dataDate {
@@ -224,10 +143,7 @@
 
   .uploadimage {
     padding: 5px 10px;
-    /*  margin-left: 10px;
-  border-radius: 10px;
-  box-shadow: 0 6px 8px #2828284d;
-  background-color: #f3f3f3;*/
+   
   }
 
     .uploadimage input {
@@ -385,15 +301,18 @@
   }
 
   .dataSelect {
-    border-radius: 5px;
-    /*box-shadow: 0 6px 8px #2828284d;*/
-    /*  border: 1px solid #ddd;*/
-    padding: 1px 10px;
-    width: 30%;
-    display: inline-block;
-    vertical-align: top;
-    /*  background-color: #f3f3f3;*/
-    text-align: left;
+   
+  border-radius: 5px;
+ 
+  padding: 1px 10px;
+  width: 47%;
+  display: inline-block;
+  vertical-align: top;
+  /*  background-color: #f3f3f3;*/
+  text-align: left;
+  margin-left: 20px;
+  padding-top: 20px;
+
   }
 
     .dataSelect input,
@@ -423,6 +342,7 @@
     /*width:100%;
   margin-right: 13%;*/
     text-align: center;
+    padding-top:20px;
     margin-left: 10px;
   }
 
@@ -550,9 +470,10 @@
 .SupplierLabel {
   display: flex;
   width: 150px;
-  font-weight: 700;
+  font-weight: 900;
   text-align: right;
   margin-left: 1%;
+  font-family: Yu Gothic UI;
 }
 
 .layoutHead {
