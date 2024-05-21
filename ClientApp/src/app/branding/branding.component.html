@@ -161,8 +161,9 @@
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
                     <td style="width: 24%; text-align: left;padding-top: 20px; ">
                       <div class="uploadimage">
-                        <input type="file" #fileInput2 (change)="handleFileInputproductimage($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+                        <input [hidden]="filedrop" type="file" #fileInput2 (change)="handleFileInputproductimage($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
                         <div class="upload-area" (click)="fileInput2.click()">
+                          <input [hidden]="fileshow" value="{{uploadfilenameprodimage}}" />
                           <p>Drag & drop approval file here or click to upload</p>
                         </div>
                       </div>
@@ -181,7 +182,7 @@
                   </form>
                 </div>
                 <div style=" margin-top: 30px; border: none; width: 100%">
-
+                  <img src="{{bloburlprodimage}}" style="width:150px" alt=""/>
                 </div>
               </div>
             </div>

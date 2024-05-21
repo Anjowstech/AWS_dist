@@ -59,7 +59,7 @@ export class BrandingComponent {
   Uses: any;
 
   statusClicked: any;
-
+  bloburlprodimage: any;
   approvalsavelist: any = [];
   Brandingstatus:any;
   loadBrandstatusloaddata: any;
@@ -92,7 +92,9 @@ export class BrandingComponent {
   AssignedTo: any;
   Comments: any;
   hidbarcode: boolean = true
-  hidbrandstatus: boolean =false
+  hidbrandstatus: boolean = false
+  filedrop: boolean = false
+  fileshow: boolean = true
   constructor(public dialog: MatDialog, private http: HttpClient, private blobService: AzureBlobStorageService,public service: VoiceRecognitionService) {
     this.service.init()
   }
@@ -269,7 +271,8 @@ export class BrandingComponent {
         console.warn("Prodimageloaddata", Prodimageloaddata)
         this.loadProdimageloaddata = Prodimageloaddata
         this.uploadfilenameprodimage = this.loadProdimageloaddata[0].product_image_name
-        
+        this.bloburlprodimage = this.loadProdimageloaddata[0].ProdImageUrlID
+
 
       })
     })
@@ -405,7 +408,8 @@ export class BrandingComponent {
     this.ProductID = rowvalue.ProductID,
     this.CategoryID = rowvalue.CategoryID,
       this.AssignedTo = rowvalue.AssignedTo,
-      this.Brandingstatus = rowvalue.brandingstatus
+      this.Brandingstatus = rowvalue.brandingstatus,
+      this.bloburlprodimage = rowvalue.ProdImageUrlID,
     console.log(this.BrandID, this.TaskDetailID, this.SupplierID, this.ProductID, this.CategoryID, this.Brandingstatus)
 
    
@@ -431,6 +435,15 @@ export class BrandingComponent {
       console.warn("Prodimageloaddata", Prodimageloaddata)
       this.loadProdimageloaddata = Prodimageloaddata
       this.Brandingdata(this.loadProdimageloaddata)
+
+      if (this.uploadfilenameprodimage == "" || this.uploadfilenameprodimage == undefined || this.uploadfilenameprodimage == null) {
+        this.filedrop = false
+        this.fileshow = true
+      }
+      else {
+        this.filedrop = true
+        this.fileshow = false
+      }
       if (this.barname == "" || this.barname == undefined || this.barname == null) {
         this.hidbarcode = true
       }
@@ -475,6 +488,7 @@ export class BrandingComponent {
       this.Brandingstatus = item.brandingstatus
       this.uploadfilenameprodimage = item.product_image_name
       this.brandname = item.brand_name
+      this.bloburlprodimage = item.ProdImageUrlID
     }
 
   }
