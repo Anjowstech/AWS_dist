@@ -1,0 +1,534 @@
+<div width="100%">
+  <!--<div class="image" style="background-image: url(../../assets/product34.jpg) "  width="100%" >-->
+  <!--<img src="../../assets/nw-logo-jpg.jpg"/>-->
+  <div>
+    <h3>Market Research</h3>
+    <div style="margin-top: 5px;background-color:white">
+      <div class="tasktable">
+
+        <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+          <thead> 
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Task ID</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Task Name</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Category</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Status</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Assigned To</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Assigned Date</th>
+             
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="active-row" *ngFor="let item of OrderManagementList" #conten>
+              <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;">{{item.TaskID}}</td>
+              <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
+              <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.PurOrderNo}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Supplier}}</td>
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.Location}}</td>
+
+              <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">{{item.PMI}}</td>
+            
+
+            
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    
+    </div>
+
+  </div>
+
+
+  <div style="background-color:white;" width="100%">
+
+    <div style="overflow-y:auto;overflow-x:hidden;">
+
+      <div>
+        <div class="row">
+          <div class="col-md-12">
+
+            <div>
+              <nav ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="padding-top: 5px;">
+                <ng-container ngbNavItem="1" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Images</a>
+                  <ng-template ngbNavContent>
+                    <button type="submit" (click)="opencamera()" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;"><mat-icon>add</mat-icon></button>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+                    <div style="overflow-x: auto;">
+                      <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+                        <thead>
+                          <tr style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px">Image</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px">Product Name</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px ">Category</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px">COO</th>
+                            <!--<th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Unit Cost $</th>-->
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px">Market Name</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px">AWS Name</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px"> Comments</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px"> Market Price </th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; min-width: 200px"> AWS Price</th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center; "> </th>
+                            <th style="border: 2px solid lightgrey; font-size: medium; text-align: center;"> </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+
+                          <tr class="active-row">
+
+                            <td style="font-size:medium;text-align:center;">
+                              <img src="../../assets/jam1.jpg" height="150" width="150" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height: 60px; width: 80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" (click)="viewimages()" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">View Images</button>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Submit</button>
+                            </td>
+                          </tr>
+
+                          <tr class="active-row">
+                            <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+                              <img src="../../assets/jam2.jpg" height="150" width="150" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit"  class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">View Images</button>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Submit</button>
+                            </td>
+                          </tr>
+                          <tr class="active-row">
+
+                            <td style="font-size:medium;text-align:center;" width="15%">
+                              <img src="../../assets/jam3.jpg" height="150" width="150" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit"  class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">View Images</button>
+                            </td>
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Submit</button>
+                            </td>
+                          </tr>
+                          <!--<tr class="active-row">
+    <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+      <img src="../assets/imagescap.jfif " height="150" width="150" />
+
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      CAP
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      CAP
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      1 CAP
+    </td>
+
+    <td style="border: 2px solid lightgrey;">
+      No
+    </td>
+    <td style="border: 2px solid lightgrey; text-align: center;">
+      <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+    </td>
+  </tr>-->
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </ng-template>
+
+
+
+                </ng-container>
+                <ng-container ngbNavItem="2" style="margin-left:20px;">
+                  <a class="tabcolor tabbutto tabrowli textsize " ngbNavLink>Documents</a>
+                  <ng-template ngbNavContent>
+                    <!--<ng-container *ngTemplateOutlet="innerTabset"></ng-container>-->
+
+
+                    <div class="tasktable">
+                      <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+                        <thead>
+                          <tr>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Image</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Product Name</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Category</th>
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Document name</th>
+                            <!--<th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Unit Cost $</th>-->
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;">Document Type</th>
+                           
+                  
+                            <th style="border: 2px solid lightgrey;font-size:medium;text-align:center;"> </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+
+                          <tr class="active-row">
+
+                            <td style="font-size:medium;text-align:center;" width="15%">
+                              <img src="../../assets/jam1.jpg" height="150" width="150" />
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" (click)="viewimages()" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 50px;">Upload Documents</button>
+                            </td>
+
+                          </tr>
+
+                          <tr class="active-row">
+                            <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+                              <img src="../../assets/jam3.jpg" height="150" width="150" />
+
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" (click)="viewimages()" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 50px;">Upload Documents</button>
+                            </td>
+                          </tr>
+                          <tr class="active-row">
+                            <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+                              <img src="../../assets/jam2.jpg" height="150" width="150" />
+
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey;">
+                              <div class="form-inline">
+                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <mat-icon>mic</mat-icon>
+                              </div>
+                            </td>
+
+                            <td style="border: 2px solid lightgrey; text-align: center;">
+
+                              <button type="submit" (click)="viewimages()" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 50px;">Upload Documents</button>
+                            </td>
+                          </tr>
+                          <!--<tr class="active-row">
+    <td style="border: 2px solid lightgrey; text-align: center;" width="15%">
+      <img src="../assets/imagescap.jfif " height="150" width="150" />
+
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      CAP
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      CAP
+    </td>
+    <td style="border: 2px solid lightgrey;">
+      1 CAP
+    </td>
+
+    <td style="border: 2px solid lightgrey;">
+      No
+    </td>
+    <td style="border: 2px solid lightgrey; text-align: center;">
+      <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Browse</button>
+    </td>
+  </tr>-->
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                  </ng-template>
+
+
+
+                </ng-container>
+             
+              </nav>
+
+
+              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div style="background-color: white;padding-top:40px; ">
+        <table width="100%">
+          <tr>
+            <td width="80%"></td>
+
+            <td width="10%">
+              <!--<label style="float: right; color: #1f538e;  font-size: large; margin-left: 10px; "><b>Approve SKU</b></label>-->
+              <!--<input type="checkbox" style="float: right; margin-top: 1.5%;  " />-->
+              <!--<input type="checkbox" class="largerCheckbox" style="float: right; "
+                     name="checkBox2">-->
+            </td>
+            <td width="10%">
+              <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: -0.5%; width: 100px; margin-left: 60px; font-size: smaller; height: 30px;">Submit</button>-->
+              <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 200px; font-size: smaller; height: 30px;">Approve Product</button>-->
+
+            </td>
+          </tr>
+        </table>
+        <!--<input class="form-check-input" style="margin-left:90%; margin-top: -2.5%;" id="apprform" type="checkbox" value="">
+        <label style="float: right; margin-left: 2%; margin-top: -3.5%; color: #1f538e; font-size: large;"><b>Approve Product</b></label>-->
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
