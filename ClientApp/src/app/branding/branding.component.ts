@@ -16,8 +16,12 @@ import { VoiceRecognitionService } from '../service/voice-recognition.service'
 })
 export class BrandingComponent {
   @ViewChild('barcode', { static: false }) barcode: ElementRef | any;
+  @ViewChild('conten', { static: false }) conten: ElementRef | any;
   Listen: boolean = false;
   Stop: boolean = true;
+  isLoading =true
+  approvalcheck: boolean = false
+  hidapprovalcheck: boolean = false
   BrandingList: any = []
   Auditlist: any = [];
   active: any;
@@ -288,6 +292,10 @@ export class BrandingComponent {
 
       this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Please select the status" } });
     }
+    else if (this.Brandingstatus == 'Branding Approved') {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Branding is approved and cannot be edited." } });
+
+    }
     else {
 
       if (this.barname == "" || this.barname == null || this.barname == undefined) {
@@ -392,7 +400,7 @@ export class BrandingComponent {
   //clickbrandgrid to load
 
   clickbrandinggrid(rowvalue: any,index:any) {
-
+    
     console.log(index)
     this.brandingtabshid = false
     this.hidbrandstatus = false
@@ -403,33 +411,6 @@ export class BrandingComponent {
       this.statusClicked = index;
     }
     this.BrandID = rowvalue.BrandID
-    this.TaskDetailID = rowvalue.TaskID
-    this.SupplierID = rowvalue.SupplierID,
-    this.ProductID = rowvalue.ProductID,
-    this.CategoryID = rowvalue.CategoryID,
-      this.AssignedTo = rowvalue.AssignedTo,
-      this.Brandingstatus = rowvalue.brandingstatus,
-      this.bloburlprodimage = rowvalue.ProdImageUrlID,
-    console.log(this.BrandID, this.TaskDetailID, this.SupplierID, this.ProductID, this.CategoryID, this.Brandingstatus)
-
-   
-    this.artworkloaddata().subscribe((artworkloaddata) => {
-      console.warn("artworkloaddata", artworkloaddata)
-      this.loadartworkloaddata = artworkloaddata
-    })
-    this.packagingloaddata().subscribe((packagingloaddata) => {
-      console.warn("packagingloaddata", packagingloaddata)
-      this.loadpackagingloaddata = packagingloaddata
-    })
-    this.Approveloaddata().subscribe((Approveloaddata) => {
-      console.warn("Approveloaddata", Approveloaddata)
-      this.loadApproveloaddata = Approveloaddata
-
-    })
-    this.Brandstatusloaddata().subscribe((Brandstatusloaddata) => {
-      console.warn("Brandstatusloaddata", Brandstatusloaddata)
-      this.loadBrandstatusloaddata = Brandstatusloaddata
-    })
 
     this.Prodimageloaddata().subscribe((Prodimageloaddata) => {
       console.warn("Prodimageloaddata", Prodimageloaddata)
@@ -448,10 +429,71 @@ export class BrandingComponent {
         this.hidbarcode = true
       }
       else {
-        this.hidbarcode =false
+        this.hidbarcode = false
         this.geraBarCode();
       }
+
+
+      this.TaskDetailID = rowvalue.TaskID
+      this.SupplierID = rowvalue.SupplierID,
+        this.ProductID = rowvalue.ProductID,
+        this.CategoryID = rowvalue.CategoryID,
+        this.AssignedTo = rowvalue.AssignedTo,
+        this.Brandingstatus = rowvalue.Status,
+        this.bloburlprodimage = rowvalue.ProdImageUrlID,
+        console.log(this.BrandID, this.TaskDetailID, this.SupplierID, this.ProductID, this.CategoryID, this.Brandingstatus)
+
+
+      this.artworkloaddata().subscribe((artworkloaddata) => {
+        console.warn("artworkloaddata", artworkloaddata)
+        this.loadartworkloaddata = artworkloaddata
+      })
+      this.packagingloaddata().subscribe((packagingloaddata) => {
+        console.warn("packagingloaddata", packagingloaddata)
+        this.loadpackagingloaddata = packagingloaddata
+      })
+      this.Approveloaddata().subscribe((Approveloaddata) => {
+        console.warn("Approveloaddata", Approveloaddata)
+        this.loadApproveloaddata = Approveloaddata
+
+      })
     })
+
+   
+  
+
+ 
+    if (this.Brandingstatus == 'Branding Approved') {
+      this.approvalcheck = true
+      this.Listenbrandname = true;
+      this.Stopbrandname = true;
+      this.Listenuses = true;
+      this.Stopuses = true;
+      this.Listenwarnings = true;
+      this.Stopwarnings = true;
+      this.StopDirections = true;
+      this.ListenDirections = true;
+      this.StopQuestions = true;
+      this.ListenQuestions = true;
+      this.StopProdspec = true;
+      this.ListenProdspec = true;
+      this.StopProdappln = true;
+      this.ListenProdappln = true;
+      this.Stopotherinfo = true;
+      this.Listenotherinfo = true;
+    }
+    else {
+      this.approvalcheck = false
+      this.Listenbrandname = false;
+      this.Listenuses = false
+      this.Listenwarnings = false;
+      this.ListenDirections = false;
+      this.ListenQuestions = false;
+      this.ListenProdspec = false;
+      this.ListenProdappln = false;
+      this.Listenotherinfo = false;
+    }
+ 
 
   }
 
@@ -485,7 +527,7 @@ export class BrandingComponent {
       this.proddescription = item.Product_description
       this.prodapplication = item.Applications
       this.prodtechinfo = item.Technical_Information
-      this.Brandingstatus = item.brandingstatus
+      //this.Brandingstatus = item.brandingstatus
       this.uploadfilenameprodimage = item.product_image_name
       this.brandname = item.brand_name
       this.bloburlprodimage = item.ProdImageUrlID
@@ -494,7 +536,7 @@ export class BrandingComponent {
   }
   //statusload
   Brandstatusloaddata() {
-    var query: string = "SELECT * from aws.tbl_Status where ModuleID =5";
+    var query: string = "SELECT * from aws.tbl_Status where ModuleID =3";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
@@ -510,6 +552,7 @@ export class BrandingComponent {
       this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Your Input has the wrong length or contains characters,which can not be encoded with the barcode with 12-digit UPC-A format' } });
     }
     else {
+      this.hidbarcode = false
       JsBarcode(this.barcode.nativeElement, this.barname, {
         format: 'CODE128',
       });
@@ -654,9 +697,11 @@ export class BrandingComponent {
     //  var SupplierReportdata = SupplierReport
     //  console.log(SupplierReportdata)
     //})
+   
 
     this.brandingloaddata().subscribe((brandingloaddata) => {
       console.warn("brandingloaddata", brandingloaddata)
+      this.isLoading =false
       this.BrandingList = brandingloaddata
     })
 

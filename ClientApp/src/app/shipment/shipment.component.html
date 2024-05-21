@@ -1,7 +1,7 @@
 <h3>Shipment</h3>
 <div style="margin-top: 5px;background-color:white">
 
-  <h5 style="padding-top: 40px;">Select the status dropdown to view the tracking details</h5>
+  <!--<h5 style="padding-top: 40px;">Select the status dropdown to view the tracking details</h5>-->
   <div class="tasktable">
 
     <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: hidden;">
@@ -10,8 +10,12 @@
           <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Order ID</th>
           <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Tracking ID</th>
           <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Task Name</th>
-          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Estimated Delivery Time</th>
-          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Location</th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">
+            Product
+          </th>
+          <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">
+            Category
+          </th>
           <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>
         </tr>
       </thead>
@@ -23,16 +27,16 @@
             <label class="Highligh"> {{item.OrderId}}</label>
           </td>
           <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">
-            {{item.TrackingId}}
+            {{item.Brand }}
           </td>
           <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">
-            {{item.Taskname}}
+            {{item.TaskName}}
           </td>
-          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
-            {{item.EstimatedDeliverytime}}
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">
+            {{item.Product  }}
           </td>
-          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " >
-            {{item.Location}}
+          <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; ">
+            {{item.Category  }}
           </td>
 
           <td style="border: 2px solid lightgrey; text-align: center; width: auto; color: black; " title="Double Click For tracking">
@@ -64,9 +68,11 @@
             <h6>Order ID: {{oderID}}</h6>
             <article class="card">
               <div class="card-body row">
-                <div class="col"> <strong>Estimated Delivery time:</strong> <br>{{EstimatedDeliverytime}} </div>
+                <div class="col"> <strong>Product:</strong> <br>{{product}} </div>
                 <div class="col"> <strong>Status:</strong> <br> {{Status}} </div>
-                <div class="col"> <strong>Tracking #:</strong> <br> {{TrackingID}} </div>
+                <div class="col"> <strong>Brand :</strong> <br> {{Brand}} </div>
+                <div class="col"> <strong>Category:</strong> <br> {{Category}} </div>
+
               </div>
             </article>
             <div class="track" *ngIf="Status== 'Ready for Shipment'">
@@ -133,12 +139,16 @@
 
       <div class="data">
         <label class="label1">Description</label><br>
-        <textarea type="text"  [(ngModel)]="Description" rows="5"></textarea>
+        <textarea type="text" [(ngModel)]="Description" rows="5"></textarea>
+      </div>
+      <div class="dataDate">
+        <label class="label1" style=" margin-left: 20px;">Estimated Delivery Time : </label><br>
+        <input type="date" name="title" [(ngModel)]="Estimateddeliverytime"><br />
       </div>
       <div class="uploadimage">
-        <input [hidden]="filedrop" type="file" #fileInput    (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <input [hidden]="filedrop" type="file" #fileInput (change)="handleFileInput($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
         <div class="upload-area" (click)="fileInput.click()">
-          <input [hidden]="fileshow" value="{{uploadfilename}}"/>
+          <input [hidden]="fileshow" value="{{uploadfilename}}" />
           <p>Drag & drop media here or click to upload</p>
         </div>
       </div>

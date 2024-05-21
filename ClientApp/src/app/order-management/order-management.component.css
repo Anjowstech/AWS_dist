@@ -1,0 +1,69 @@
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  /*font-family: sans-serif;*/
+  min-width: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+  .styled-table thead tr {
+    background-color: #1F528E;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 4px 5px;
+  }
+
+  .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+    .styled-table tbody tr:nth-of-type(even) {
+      /*background-color: #f3f3f3;*/
+      background-color: white;
+    }
+
+    .styled-table tbody tr:last-of-type {
+      border-bottom: 2px solid #009879;
+    }
+
+    .styled-table tbody tr.active-row {
+      font-size: 14px;
+      font-weight: 500;
+      color: #009879;
+    }
+
+
+.taskbutton button {
+  height: 29px;
+  /* margin: 0px 5px 10px; */
+  background-color: #1F528E;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 5px 5px;
+  text-align: center;
+  background-color: white;
+  color: #1F528E;
+  border: 1px solid white;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60px;
+}
+
+
+@media (max-width: 1000px) {
+  /*  .tasktable{
+      overflow-x:scroll;
+      width:98%;
+  }*/
+  .taskbutton {
+    overflow-x: scroll;
+    width: 98%;
+  }
+}

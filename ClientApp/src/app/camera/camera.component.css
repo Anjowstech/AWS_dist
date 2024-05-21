@@ -1,0 +1,30 @@
+body {
+  background-color: #F0F0F0;
+}
+
+#app {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+#video {
+  background-color: #000000;
+}
+
+#canvas {
+  display: none;
+}
+
+li {
+  display: inline;
+  padding: 5px;
+}
+.save-button {
+  background-color: #1F528E;
+  color: white;
+  border: 1px solid white;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: auto;
+}

@@ -3,7 +3,7 @@
   <div style="margin-top: 5px;background-color:white">
     <div class="tasktable">
 
-      <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+      <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: Yu Gothic UI; font-size: x-small; margin-left: 1%; overflow-x: auto;">
         <thead>
           <tr style="position: sticky; top: 0; ">
             <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto" hidden>Task ID</th>
@@ -20,8 +20,11 @@
         </thead>
 
         <tbody>
-          <tr class="active-row" *ngFor="let item of BrandingList let i=index let even=even" #conten (click)="clickbrandinggrid(item,i);"
-              [style.background-color]="statusClicked == i ? '#CECECE' : (even ? 'white' : 'white')">
+          <mat-progress-spinner class="center" style="display: flex; justify-content: center; align-items: center; " *ngIf="isLoading;else conten" color="accent"
+                                mode="indeterminate">
+          </mat-progress-spinner>
+          <tr class="active-row" *ngFor="let item of BrandingList let i=index let even=even"  (click)="clickbrandinggrid(item,i);"
+              [style.background-color]="statusClicked == i ? '#CECECE' : (even ? 'white' : 'white')" #conten>
             <td style="border: 2px solid lightgrey; text-align:center; width: auto; color:black;" hidden>{{item.TaskID}}</td>
             <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
             <td style="border: 2px solid lightgrey; text-align: left; width: auto; color: black; ">{{item.Category}}</td>
@@ -49,7 +52,7 @@
       <ng-template matTabContent>
         <div class="tasktable">
 
-          <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px; " (click)="Createcomponent()">Add Component</button>
+          <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%;float:right; width: 180px; font-size: smaller; height: 30px; "  [disabled]="approvalcheck" (click)="Createcomponent()">Add Component</button>
           <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; overflow-y: auto; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
             <thead>
               <tr style="position: sticky; top: 0; ">
@@ -101,9 +104,9 @@
                   <tr>
                     <td class="labelclass" style="width: 10%; text-align: left; ">Brand Name</td>
                     <td style="width: 24%; text-align: left; ">
-                      <input class="inputclass" [(ngModel)]="brandname" type="text" placeholder="Enter the brand name" />
-                      <mat-icon (click)="startServicebrandname()" [hidden]="Listenbrandname">mic</mat-icon>
-                      <mat-icon (click)="stopServicebrandname()" [hidden]="Stopbrandname">stop</mat-icon>
+                      <input class="inputclass" [disabled]="approvalcheck" [(ngModel)]="brandname" type="text" placeholder="Enter the brand name" />
+                      <mat-icon  (click)="startServicebrandname()" [hidden]="Listenbrandname">mic</mat-icon>
+                      <mat-icon  (click)="stopServicebrandname()" [hidden]="Stopbrandname">stop</mat-icon>
                     </td>
 
 
@@ -111,9 +114,9 @@
                   <tr>
                     <td class="labelclass" style="width: 10%; text-align: left; ">Uses</td>
                     <td style="width: 24%; text-align: left; padding-top: 20px; ">
-                      <input class="inputclass" [(ngModel)]="Uses" type="text" placeholder="Enter uses" />
-                      <mat-icon (click)="startServiceuses()" [hidden]="Listenuses">mic</mat-icon>
-                      <mat-icon (click)="stopServiceuses()" [hidden]="Stopuses">stop</mat-icon>
+                      <input [disabled]="approvalcheck" class="inputclass" [(ngModel)]="Uses" type="text" placeholder="Enter uses" />
+                      <mat-icon  (click)="startServiceuses()" [hidden]="Listenuses">mic</mat-icon>
+                      <mat-icon  (click)="stopServiceuses()" [hidden]="Stopuses">stop</mat-icon>
                     </td>
 
                   </tr>
@@ -122,23 +125,23 @@
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Warnings</td>
                     <td style="width: 24%; text-align: left;padding-top: 20px; ">
                       <input class="inputclass" [(ngModel)]="Warnings" type="text" placeholder="Enter warnings" />
-                      <mat-icon (click)="startServicewarnings()" [hidden]="Listenwarnings">mic</mat-icon>
-                      <mat-icon (click)="stopServicewarnings()" [hidden]="Stopwarnings">stop</mat-icon>
+                      <mat-icon  (click)="startServicewarnings()" [hidden]="Listenwarnings">mic</mat-icon>
+                      <mat-icon  (click)="stopServicewarnings()" [hidden]="Stopwarnings">stop</mat-icon>
                     </td>
 
                   </tr>
                   <tr>
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Directions</td>
                     <td style="width: 24%; text-align: left;padding-top: 20px; ">
-                      <input class="inputclass" [(ngModel)]="Directions" type="text" placeholder="Enter directions" />
+                      <input class="inputclass" [disabled]="approvalcheck" [(ngModel)]="Directions" type="text" placeholder="Enter directions" />
                       <mat-icon (click)="startServiceDirections()" [hidden]="ListenDirections">mic</mat-icon>
-                      <mat-icon (click)="stopServiceDirections()" [hidden]="StopDirections">stop</mat-icon>
+                      <mat-icon    (click)="stopServiceDirections()" [hidden]="StopDirections">stop</mat-icon>
                     </td>
                   </tr>
                   <tr>
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Questions</td>
                     <td style="width: 24%; text-align: left;padding-top: 20px; ">
-                      <input class="inputclass" [(ngModel)]="Questions" type="text" placeholder="Enter questions" />
+                      <input class="inputclass" [disabled]="approvalcheck" [(ngModel)]="Questions" type="text" placeholder="Enter questions" />
                       <mat-icon (click)="startServiceQuestions()" [hidden]="ListenQuestions">mic</mat-icon>
                       <mat-icon (click)="stopServiceQuestions()" [hidden]="StopQuestions">stop</mat-icon>
                     </td>
@@ -153,7 +156,8 @@
                 <table width="100%">
                   <tr>
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Barcode #</td>
-                    <td style="width: 24%; text-align: left;padding-top: 20px; "> <input class="inputclassbarcode" id="Bar" [(ngModel)]="barname" name="brnum" value="" maxlength="12" type="text" placeholder="Add Barcode image" style=" margin-left: 10px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 180px; font-size: smaller;  height: 30px;" (click)='geraBarCode()'>Generate Barcode</button></td>
+                    <td style="width: 24%; text-align: left;padding-top: 20px; ">
+                    <input class="inputclassbarcode" [disabled]="approvalcheck" id="Bar" [(ngModel)]="barname" name="brnum" value="" maxlength="12" type="number" placeholder="Add Barcode image" style=" margin-left: 10px;" /><button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-top: .5%; width: 180px; font-size: smaller;  height: 30px;" [disabled]="approvalcheck" (click)='geraBarCode()'>Generate Barcode</button></td>
                     <td width="10%">
                     </td>
                   </tr>
@@ -161,9 +165,9 @@
                     <td class="labelclass" style="width: 10%; text-align: left;padding-top: 20px; ">Product Image</td>
                     <td style="width: 24%; text-align: left;padding-top: 20px; ">
                       <div class="uploadimage">
-                        <input [hidden]="filedrop" type="file" #fileInput2 (change)="handleFileInputproductimage($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-                        <div class="upload-area" (click)="fileInput2.click()">
-                          <input [hidden]="fileshow" value="{{uploadfilenameprodimage}}" />
+                        <input [disabled]="approvalcheck" [hidden]="filedrop" type="file" #fileInput2 (change)="handleFileInputproductimage($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+                        <div  class="upload-area" (click)="fileInput2.click()">
+                          <input [disabled]="approvalcheck" [hidden]="fileshow" value="{{uploadfilenameprodimage}}" />
                           <p>Drag & drop approval file here or click to upload</p>
                         </div>
                       </div>
@@ -194,7 +198,7 @@
       <div class="form-inline" style="margin-top:25px;">
       
         <div class="uploadimage">
-          <input type="file" #fileInput (change)="handleFileInputartwork($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder" accept="image/png, image/jpeg">
+          <input [disabled]="approvalcheck" type="file" #fileInput (change)="handleFileInputartwork($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder" accept="image/png, image/jpeg">
           <div class="upload-area" (click)="fileInput.click()">
             <p>Drag & drop artwork images here or click to upload</p>
           </div>
@@ -216,7 +220,7 @@
       <div class="form-inline" style="margin-top:25px;">
 
         <div class="uploadimage">
-          <input type="file" #fileInput1 (change)="handleFileInputapproval($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+          <input [disabled]="approvalcheck" type="file" #fileInput1 (change)="handleFileInputapproval($event)" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
           <div class="upload-area" (click)="fileInput1.click()">
             <p>Drag & drop approval file here or click to upload</p>
           </div>
@@ -251,7 +255,7 @@
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="prddes" [(ngModel)]="proddescription" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter product description"></textarea>
+              <textarea [disabled]="approvalcheck" class="textareaclass" id="prddes" [(ngModel)]="proddescription" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter product description"></textarea>
               <mat-icon (click)="startServiceProdspec()" [hidden]="ListenProdspec">mic</mat-icon>
               <mat-icon (click)="stopServiceProdspec()" [hidden]="StopProdspec">stop</mat-icon>
             </form>
@@ -264,7 +268,7 @@
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="ddes" [(ngModel)]="prodapplication" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter label information"></textarea>
+              <textarea [disabled]="approvalcheck" class="textareaclass" id="ddes" [(ngModel)]="prodapplication" rows="3" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter label information"></textarea>
               <mat-icon (click)="startServiceProdappln()" [hidden]="ListenProdappln">mic</mat-icon>
               <mat-icon (click)="stopServiceProdappln()" [hidden]="StopProdappln">stop</mat-icon>
             </form>
@@ -277,7 +281,7 @@
           </td>
           <td width="50%">
             <form class="form-inline" style="    background-color: white">
-              <textarea class="textareaclass" id="pres" rows="3" [(ngModel)]="prodtechinfo" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter other information"></textarea>
+              <textarea  [disabled]="approvalcheck" class="textareaclass" id="pres" rows="3" [(ngModel)]="prodtechinfo" style=" width: 80%; height: 50PX; margin-top: 1%; resize: none;" name="prddesc" value="" placeholder="Enter other information"></textarea>
               <mat-icon (click)="startServiceotherinfo()" [hidden]="Listenotherinfo">mic</mat-icon>
               <mat-icon (click)="stopServiceotherinfo()" [hidden]="Stopotherinfo">stop</mat-icon>
             </form>
@@ -301,7 +305,7 @@
            <input type="checkbox" style="float: right; margin-top: 1.5%;  " />-->
             <div>
               <label style=" color: #1f538e; font-size: large; margin-left: -76px; "><b>Status</b></label>
-              <select [(ngModel)]="Brandingstatus">
+              <select [(ngModel)]="Brandingstatus" [disabled]="approvalcheck" >
                 <!--<option [hidden]="hidbrandstatus">{{Brandingstatus}}</option>-->
                 <option *ngFor="let a of loadBrandstatusloaddata">{{a.StatusDescription}}</option>
               </select>

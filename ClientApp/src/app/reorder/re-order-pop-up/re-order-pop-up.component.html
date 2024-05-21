@@ -1,0 +1,73 @@
+
+<div style="background-color: whitesmoke; height: 100%; overflow-y: hidden;overflow-x:hidden;" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+
+
+  <div style="background-color: #f6f5f1;width:100%;">
+
+
+
+    <table width="100%" style="color:black;font-family:system-ui;margin-left:2%;">
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> PO No  </td>
+        <td style="padding-top:7px;"> <input [(ngModel)]="PONo" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; overflow-x: scroll; padding-left: 5px;"  />  </td>
+      </tr>
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> Product Name </td>
+        <td style="padding-top: 7px;"> <input [(ngModel)]="ProductName" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " disabled /> </td>
+      </tr>
+
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> Quantity </td>
+        <td style="padding-top: 7px;">  <input [(ngModel)]="Qty" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " disabled /> </td>
+      </tr>
+
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> Cost  </td>
+        <td style="padding-top: 7px;"> <input [(ngModel)]="Cost" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " disabled /> </td>
+      </tr>
+
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> Location  </td>
+        <td style="width: 10%; padding-top: 7px;">
+          <label style="width:100px;">   <input [(ngModel)]="Location" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " disabled />  </label>
+        </td>
+
+        <td style="width:30%;text-align:left;">
+          <select style="border: none; width:auto; color: black; border-left: 3px solid #1f538e;width:160px;" (change)="ChangeLocation($event)">
+            <option disabled hidden selected>Change Location</option>
+            <option *ngFor="let a of LocationListData">{{a.Location}}</option>
+          </select>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray;"> Name </td>
+        <td>   <input [(ngModel)]="Name" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " disabled /> </td>
+
+        <td style="width:30%;text-align:left;">
+          <select style="border: none; width: auto; color: black; border-left: 3px solid #1f538e; width: 160px;" (change)="ChangeName($event)">
+            <option disabled hidden selected>Change Name</option>
+            <option *ngFor="let a of UserNameListData">{{a.CustomerName}}</option>
+          </select>
+        </td>
+
+      </tr>
+
+      <!--<tr>
+        <td style="width: 20%; font-weight: 500; color: darkgray; padding-top: 7px;"> Contact No </td>
+        <td style="padding-top: 7px;">  <input [(ngModel)]="ContactNo" width="50" style="border-radius: 4px; background-color: white; font-weight: 400; color: black; border: none; padding-left: 5px; " /> </td>
+      </tr>-->
+
+    </table>
+
+    <div class="createtask">
+      <button class="save-button1 hover-effect:hover" matDialogClose>Cancel</button>
+      <button class="save-button pulse-effect hover-effect:hover" (click)="Confirm()" style="color:white" matDialogClose>Confirm</button>
+    </div>
+
+
+  </div>
+</div>
+
+
