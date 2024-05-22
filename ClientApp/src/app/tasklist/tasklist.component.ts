@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataShareServiceService } from 'src/app/data-share-service.service';
 
-
 declare var webkitSpeechRecognition: any;
 
 
@@ -43,7 +42,7 @@ export class TasklistComponent {
   loaddatedata: any = [];
   department_tabload_data: any = [];
   loadstatustasdataLoad: any = [];
-  category_tabload_data: any = [];
+  category_tabload_data:any=[]
   loadcatdata: any;
   TodayDate: any;
   Status: any;
@@ -78,7 +77,9 @@ export class TasklistComponent {
   results: string="";
   filterdata: any;
   IntiallyAssigned: string = "";
-  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, ) {
+  userID: any;
+  userId: string="";
+  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, private datashare: DataShareServiceService) {
   
 }
   ViewAWSWorkFlow(rowvalue: any) {
@@ -274,8 +275,9 @@ export class TasklistComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       this.alldata().subscribe((loadtask) => {
-
         this.loadtaskdata = loadtask
+        this.loadtaskdata = JSON.parse(loadtask);
+
 
       })
 
@@ -285,7 +287,9 @@ export class TasklistComponent {
 
 
     var spname = "[AWS].[Sp_Select_AssignedTo]";
-    
+    /*  var clientid = this.clientid;*/
+
+    //   console.log(spsname)
     let params1 = new HttpParams().set('spname', spname);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
 
@@ -295,27 +299,32 @@ export class TasklistComponent {
 
 
     var spname = "[AWS].[Sp_Select_DepartmentList]";
-    
+    /*  var clientid = this.clientid;*/
+
+    //   console.log(spsname)
     let params1 = new HttpParams().set('spname', spname);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
 
 
   }
-  category_Tabload() {
+  category_dropdownload() {
 
 
     var spname = "[AWS].[Sp_Select_ProductCategory]";
-   
+    /*  var clientid = this.clientid;*/
+
+    //   console.log(spsname)
     let params1 = new HttpParams().set('spname', spname);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
 
 
   }
   ngOnInit() {
-  
+    this.userId = this.datashare.getuserID();
     this.alldata().subscribe((loadtask) => {
-
       this.loadtaskdata = loadtask
+      this.loadtaskdata = JSON.parse(loadtask);
+      
 
     })
     this.statusTab_LoaDdata().subscribe((loadstatus:any) => {
@@ -339,7 +348,7 @@ export class TasklistComponent {
       this.department_tabload_data = department_load;
 
     })
-    this.category_Tabload().subscribe((category_tabload) => {
+    this.category_dropdownload().subscribe((category_tabload) => {
 
       console.warn("category_load", category_tabload)
 
@@ -351,16 +360,12 @@ export class TasklistComponent {
   
   AllTabclickload() {
     this.alldata().subscribe((loadtask) => {
-
       this.loadtaskdata = loadtask
+      this.loadtaskdata = JSON.parse(loadtask);
+
 
     })
   }
- 
-  
- 
-  
-  
  
   
   status_tabLoad(stat: any) {
@@ -465,23 +470,14 @@ export class TasklistComponent {
   AssignDateLoad_inputfilterLoad(event: any) {
     this.ngassigneddate = event.target.value;
     this.AssignDateLoad_filterLoad(this.ngassigneddate).subscribe((dateload) => {
-      console.warn("assinload", dateload)
+      console.warn("dateload", dateload)
       this.loaddatedata = JSON.parse(dateload);
       this.loadtaskdata = this.loaddatedata;
 
     })
   }
-  //radioChange(event) {
-  //  this.radiochange = event.value;
-  //  if (this.radiochange == 1) {
-  //    this.percentgrid();
-  //  }
-  assignedTo() {
-    this.assignperson_load().subscribe((asign_load) => {
-      console.warn("department_load", asign_load)
-      this.asgn_data_load = asign_load;
-    })
-  }
+  
+  
   statusTab_LoaDdata() {
 
 
@@ -536,120 +532,39 @@ export class TasklistComponent {
     
     //  console.log(this.results);
   }
-  alldata() {
+  //alldata() {
 
 
-    var spname = "[AWS].[Sp_Select_TaskList]";
-  /*  var clientid = this.clientid;*/
+  //  var spname = "[AWS].[Sp_Select_TaskList]";
+  ///*  var clientid = this.clientid;*/
 
-    //   console.log(spsname)
-    let params1 = new HttpParams().set('spname', spname);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+  //  //   console.log(spsname)
+  //  let params1 = new HttpParams().set('spname', spname);
+  //  return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
     
 
+  //}
+  alldata() {
+
+    /*var data: any = userID;*/
+    const selectspparam = {
+   
+      spname: "[AWS].[Sp_Select_TaskList]",
+      parameter: this.userId.toString(),
+      spparameter: "@UserId",
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
+   
   
-  assignperson_load() {
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "Approved")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-  }
-  approve() {
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "Approved")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-  }
-  completed() {
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "completed")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("/", fd)
-}
-  InProgress() {
-
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "InProgress")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-
-
-
-  }
+  
+  
  
-  Notstarted() {
-
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "Notstarted")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-
-
-
-  }
-   category_load(){
-     var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-     var parameter = "@status";
-     var clientid = this.clientid;
-     var fd = new FormData()
-     fd.set('spname', spsname)
-     fd.set('ticketid', "Notstarted")
-     fd.set('parameter', parameter)
-     fd.set('clientid', clientid)
-     return this.http.post("", fd)
-}
-  pending() {
-
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "pending")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-
-
-
-  }
-  department_load() {
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@department";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "pending")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-  }
+ 
+   
+  
+  
   OpenAddtask(item: any) {
     this.taskid=item.TaskID
     this.taskname = item.TaskName
@@ -669,10 +584,9 @@ export class TasklistComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       this.alldata().subscribe((loadtask) => {
-
-        //   console.warn("loadall", loadequip)
-        //  this.loaddata = [];
         this.loadtaskdata = loadtask
+        this.loadtaskdata = JSON.parse(loadtask);
+
 
       })
      
