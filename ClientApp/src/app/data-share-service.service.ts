@@ -21,7 +21,8 @@ export class DataShareServiceService {
   equipmenttag: any;
   reportl: any;
   repname: any;
-  ticket: any
+  ticket: any;
+  userID: any;
   
   sendlogin(loginuser: string) {
     this.louser = loginuser
@@ -29,9 +30,10 @@ export class DataShareServiceService {
   senduser(user: any) {
     this.uservalue = user;
   }
-  
-  
  
+  senduserID(userId: any) {
+    this.userID = userId;
+  }
 
   
   getlogin() {
@@ -40,7 +42,9 @@ export class DataShareServiceService {
   getuser() {
     return this.uservalue;
   }
-  
+  getuserID() {
+    return this.userID;
+  }
 
   constructor(private http: HttpClient) {
 

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   role: any;
   pass: any;
   dataListsave1: login[][] = [];
-
+  userid: any;
 
   constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver, private datashare: DataShareServiceService) { }
   userdata(username: string, password: string) {
@@ -86,12 +86,13 @@ export class LoginComponent implements OnInit {
       /* this.pass = item.Password;*/
       for (let item of this.connection) {
         this.role = item.Rolename;
-         this.user = item.Username;
-
+        this.user = item.Username;
+        this.userid = item.UserId;
       }
     
       if (this.role != null && this.role !=' ' ) {
         this.datashare.senduser(this.user);
+        this.datashare.senduserID(this.userid);
         this.router.navigate(['/main/Dashboardreport']);
         /* this.Datashare.sendrole(this.role);*/
        
