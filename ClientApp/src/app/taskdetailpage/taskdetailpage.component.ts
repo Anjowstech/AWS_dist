@@ -15,6 +15,11 @@ export class TaskdetailpageComponent {
   Category: string = "";
   OrderManagementList: any;
   QA: any;
+  filterMetadata = { count: 0 };
+  searchband: string = '';
+  Searchcategory: string = '';
+  Searchproduct: string = '';
+
   //OrderManagementList = [
   //  { ProductTask: "Task List", TaskID: "1", TaskName: "Date", Supplier: "Chocovic", Location: "India", PMI: "Chocovic", Name: "Sahil Gupta", Designation: "GM", ContactNo: "9876543210", Status: "Branding Completed", PurOrderNo: "PO00N001", ProdcutDescription: "Saji" },
   //  { ProductTask: "Marketing Research", TaskID: "2", TaskName: "Date", Supplier: "Chocovic", Location: "USA", PMI: "Esah(Rulio Tea Company)", Name: "Bijit Sharma", Designation: "CEO", ContactNo: "9876543210", Status: "Order Completed", PurOrderNo: "PO00N002", ProdcutDescription: "Anjo" },
@@ -313,7 +318,20 @@ export class TaskdetailpageComponent {
       width: '80%', height: '80%', disableClose: true
     });
   }
+  onRowClicksuplier(supplier: any): void {
+    //console.log('Clicked row:', supplier);   
+    //const dialogRef = this.matDialog.open(SupplierEditComponent, {
+    //  width: '80%',
+    //  height: '85%',
+    //  data: supplier 
+    //});
 
+    //dialogRef.afterClosed().subscribe(result => {
+
+    //  console.log('Dialog closed with result:', result);
+  
+    //});
+  }
   suppliersave() {
     if (this.taskmainstatus == '' || this.supplierassignment == '') {
       var messagebox = "validations";
@@ -331,6 +349,7 @@ export class TaskdetailpageComponent {
   ngOnInit() {
     var taskdata = this.datashare.gettasidfrmtasklist();
     this.TaskID = taskdata[0];
+    this.datashare.sendtaskdetail([]);
     //this.suppolierload().subscribe((loadworkflow: any) => {
     //  console.warn("loadworkflow", loadworkflow)
     //  this.suppliersection = loadworkflow

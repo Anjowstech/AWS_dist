@@ -26,7 +26,7 @@
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.CurrentQty}}</td>
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.OrderLevel}}</td>
         <td style="border: 2px solid lightgrey;">
-          <input type="number" name="quantity" placeholder="Enter Quantity" style="width:60%;border:none;margin-right:2px;" ([ngModel])="Qtyval" required (change)="SetCost($event,a.PurchaseOrderNo)">
+          <input type="number" name="quantity" placeholder="Enter Quantity" style="width:60%;border:none;margin-right:2px;" [(ngModel)]="Qtyval" required (change)="SetCost($event,a.PurchaseOrderNo)">
           <input type="submit" value="Reorder" class="button" (click)="RedirectToOrderMng(a.CurrentCost,a)">
         </td>
 
