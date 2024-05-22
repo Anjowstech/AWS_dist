@@ -44,7 +44,8 @@ export class DataShareServiceService {
   itemcodeval: string = '';
   suppna: any;
   samplelist: any = [];
-   searchpdritems: any=[];
+  searchpdritems: any = [];
+  taskdetailid: any = [];
   datashareitemcode: any;
   datasharecasdata: any;
   FormulaCode: any;
@@ -208,7 +209,9 @@ export class DataShareServiceService {
   sendpdrlist(listvalues: string[]) {
     this.searchpdritems = listvalues
   }
-
+  sendtaskdetail(taskiddata: string[]) {
+    this.taskdetailid = taskiddata
+  }
   searchItemlist(item1: any) {
     this.itemrisklist = item1;
 
@@ -406,8 +409,9 @@ getitemtosupplier(): string {
   getformulaproduct() {
     return this.searchpdritems
   }
-
-
+  gettasidfrmtasklist() {
+    return this.taskdetailid
+  }
   getitemcode1(): string {
     return this.datashareitemcode;
   }

@@ -18,6 +18,7 @@ interface Entity {
   Date: string;
   StatusID: string;
   operation: string;
+  Price: string;
 }
 
 @Component({
@@ -41,7 +42,7 @@ export class CreatesupplierComponent {
   selectedCategory: string = '';
   selectedStatus: string = '';
   selectedLocation: string = '';
-
+  Price: string = '';
 
 
   constructor(private http: HttpClient, /*private snackBar: MatSnackBar*/) {
@@ -63,6 +64,7 @@ export class CreatesupplierComponent {
       email: this.email,
       Date: this.currentDate,
       StatusID: this.selectedStatus,
+      Price: this.Price,
       operation: "insert"
     };
     //CreateSupplier
@@ -103,5 +105,7 @@ export class CreatesupplierComponent {
     this.selectedCategory = '';
     this.selectedStatus = '';
     this.selectedLocation = '';
+    this.Price = '';
+
   }
 }

@@ -1,14 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MsgBoxComponent } from 'src/app/msg-box/msg-box.component';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, } from '@angular/material/dialog';
+import { DataShareServiceService } from 'src/app/data-share-service.service';
 import { CreatesupplierComponent } from '../createsupplier/createsupplier.component';
 @Component({
   selector: 'app-taskdetailpage',
   templateUrl: './taskdetailpage.component.html',
   styleUrls: ['./taskdetailpage.component.css']
 })
-export class TaskdetailpageComponent  {
+export class TaskdetailpageComponent {
   rowClicked: any;
   rowClicked1: any;
   Category: string = "";
@@ -96,7 +97,7 @@ export class TaskdetailpageComponent  {
   //  { Productimage: "https://firebasestorage.googleapis.com/v0/b/fifth-compiler-381605.appspot.com/o/grocery1.jpg?alt=media&token=32592f0c-f98e-4b25-ae7c-f54a9fd32b6d", ProductName: "Coffe", Category: "Coffe", COO: "Nil", MarketName: "Coffepowder", AwsName: "Coffe", Comments: "Comments", MarketPrice: "$4", AWSPrice: "$2", Select: "" },
   //  { Productimage: "https://firebasestorage.googleapis.com/v0/b/fifth-compiler-381605.appspot.com/o/81IYIByQW%2BL.jpg?alt=media&token=9866bbda-d81e-4325-a65f-57abcc9607d2", ProductName: "Jaam", Category: "Jaam", COO: "Nil", MarketName: "Jaam", AwsName: "Jaam", Comments: "Comments", MarketPrice: "$1", AWSPrice: "$2", Select: "" },
   //];
-  constructor(private http: HttpClient, public dialog1: MatDialog ) { }
+  constructor(private http: HttpClient, public dialog: MatDialog, private dialogRef: MatDialog, private datashare: DataShareServiceService) { }
   changeTableRowColor(idx: any) {
     if (this.rowClicked === idx) this.rowClicked = -1;
     else this.rowClicked = idx;
@@ -115,7 +116,8 @@ export class TaskdetailpageComponent  {
     this.Category = item.Product;
     this.suppolierload().subscribe((suuplierloadc) => {
       console.warn("suuplierloadc", suuplierloadc)
-      this.suppliersection = suuplierloadc;
+      this.suppliersection = JSON.parse(suuplierloadc);
+      this.suppliersection = this.suppliersection;
     })
   }
   setvalueqa(item: any) {
@@ -138,19 +140,58 @@ export class TaskdetailpageComponent  {
   //    this.selectedSuppliers.delete(item.SupplierName);
   //  }
   //}
-  onCheckboxChange(item: any, event: any) {
-    if (this.taskmainstatus == '' || this.supplierassignment == '') {
-      this.dialog1.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Please select Status and Assigned person before saving!!." } });
-    } else {
-      const supplierProduct = { TaskID: this.TaskID.toString(), SupplierID: item.SupplierID.toString(), ProductID: item.ProductID.toString(), Status: this.taskmainstatus, AssignedTo: this.supplierassignment, Comments: this.taskmaindescription, Price: item.SupplierPrice.toString() };
+  //onCheckboxChange(item: any, event: any) {
+  //  if (this.taskmainstatus == '' || this.supplierassignment == '') {
+  //    this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Please select status and assigned person before sumbmitting the product' } });
+  //    event.target.checked = false; // Uncheck the checkbox
+  //    item.checked = false; // Reflect this change in the data model
+  //    return; // Exit the function
+  //  } else {
+  //    const supplierProduct = { TaskID: this.TaskID.toString(), SupplierID: item.SupplierID.toString(), ProductID: item.ProductID.toString(), Status: this.taskmainstatus, AssignedTo: this.supplierassignment, Comments: this.taskmaindescription, Price: item.SupplierPrice.toString() };
 
-      if (event.target.checked) {
-        if (!this.selectedSuppliers.some(sp => sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Status === supplierProduct.Status && sp.AssignedTo === supplierProduct.AssignedTo && sp.Comments === supplierProduct.Comments && sp.Price === supplierProduct.Price)) {
-          this.selectedSuppliers.push(supplierProduct);
-        }
-      } else {
-        this.selectedSuppliers = this.selectedSuppliers.filter(sp => !(sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Price === supplierProduct.Price));
+  //    if (event.target.checked) {
+  //      if (!this.selectedSuppliers.some(sp => sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Status === supplierProduct.Status && sp.AssignedTo === supplierProduct.AssignedTo && sp.Comments === supplierProduct.Comments && sp.Price === supplierProduct.Price)) {
+  //        this.selectedSuppliers.push(supplierProduct);
+  //      }
+  //    } else {
+  //      this.selectedSuppliers = this.selectedSuppliers.filter(sp => !(sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Price === supplierProduct.Price));
+  //    }
+  //  }
+  //}
+
+  onCheckboxChange(item: any, event: any) {
+    // Automatically uncheck the checkbox if taskmainstatus is empty
+    if (item.SupplierPrice === null || item.SupplierPrice === undefined) {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Please Add SupplierPrice  before sumbmitting the product' } });
+      event.target.checked = false; // Uncheck the checkbox
+      item.checked = false; // Reflect this change in the data model
+      return; // Exit the function
+    }
+    if (this.taskmainstatus == '' || this.supplierassignment == '') {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Please select status and assigned person before sumbmitting the product' } });
+      event.target.checked = false; // Uncheck the checkbox
+      item.checked = false; // Reflect this change in the data model
+      return; // Exit the function
+    }
+
+    const supplierProduct = {
+      TaskID: this.TaskID.toString(),
+      SupplierID: item.SupplierID.toString(),
+      ProductID: item.ProductID.toString(),
+      Status: this.taskmainstatus,
+      AssignedTo: this.supplierassignment,
+      Comments: this.taskmaindescription,
+      Price: item.SupplierPrice.toString()
+    };
+
+    if (event.target.checked) {
+      if (!this.selectedSuppliers.some(sp => sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Status === supplierProduct.Status && sp.AssignedTo === supplierProduct.AssignedTo && sp.Comments === supplierProduct.Comments && sp.Price === supplierProduct.Price)) {
+        this.selectedSuppliers.push(supplierProduct);
+        item.checked = true; // Reflect this change in the data model
       }
+    } else {
+      this.selectedSuppliers = this.selectedSuppliers.filter(sp => !(sp.TaskID === supplierProduct.TaskID && sp.SupplierID === supplierProduct.SupplierID && sp.ProductID === supplierProduct.ProductID && sp.Price === supplierProduct.Price));
+      item.checked = false; // Reflect this change in the data model
     }
   }
 
@@ -196,17 +237,38 @@ export class TaskdetailpageComponent  {
   //  fd.set('spparameter', 'Sweet and sault savoury')
   //  return this.http.post("https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam", fd)
   //}
+  //suppolierload() {
+  //  var Query = "SELECT distinct a.ID as SupplierID,a.SupplierName,isnull(b.Price, 0) as SupplierPrice,d.Name as Location,PL,h.ProductCategoryName Category,PMI,g.StatusDescription as [Status],'' ContactName,PhoneNo as ContactNo, Email, Website, [Website-2], a.Updateddate, c.ProductID, c.Product from AWS.tbl_Supplier a left join aws.tbl_Product c on a.ProductID = c.ProductID left join aws.tbl_Location d on a.LocationID = d.LocationID left join aws.tbl_Designation e on a.DesignationID = e.DesignationID left join aws.tbl_Brand f on a.BrandID = f.BrandID left join(select StatusId, StatusType, StatusDescription from[AWS].[tbl_Status] where StatusType = 'Supplier Selection' and ActiveStatus = 'Y') g on a.statusid = g.StatusId left join[AWS].[tbl_ProductCategory] h on a.ProductCategoryID = h.ProductCategoryID left join aws.tbl_SupplierPrice b on a.ID = b.SupplierID and a.ProductID = b.ProductID and ActiveStatus = 'Y' where c.Product = '" + this.Category +"'";
+  //  let catparams1 = new HttpParams().set('spname', Query);
+  //  console.log(catparams1);
+  //  return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: catparams1 })
+  //}
   suppolierload() {
-    var Query = "SELECT a.ID as SupplierID,a.SupplierName,b.Price as SupplierPrice,d.Name as Location,PL,h.ProductCategoryName Category,PMI,g.StatusDescription as [Status],'' ContactName,PhoneNo as ContactNo ,Email,Website,[Website-2],a.Updateddate,c.ProductID,c.Product from AWS.tbl_Supplier a left join aws.tbl_Product c on a.ProductID=c.ProductID left join aws.tbl_Location d on a.LocationID=d.LocationID left join aws.tbl_Designation e on a.DesignationID=e.DesignationID left join aws.tbl_Brand f on a.BrandID=f.BrandID left join (select StatusId,StatusType,StatusDescription from [AWS].[tbl_Status] where StatusType='Supplier' and ActiveStatus='Y') g on a.statusid=g.StatusId left join [AWS].[tbl_ProductCategory] h on a.ProductCategoryID=h.ProductCategoryID left join aws.tbl_SupplierPrice b on a.ID=b.SupplierID and a.ProductID=b.ProductID and ActiveStatus='Y' where c.Product='" + this.Category + "'";
-    let catparams1 = new HttpParams().set('spname', Query);
-    console.log(catparams1);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: catparams1 })
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_MRSupplier]",
+      parameter: this.Category,
+      spparameter: "@ProductName"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
-  marketreachload() {
-    var spname = "[AWS].[Sp_Select_MRTaskList]";
-    let params1 = new HttpParams().set('spname', spname);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+  //marketreachload() {
+  //  var spname = "[AWS].[Sp_Select_MRTaskList]";
+  //  let params1 = new HttpParams().set('spname', spname);
+  //  return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
 
+  //}
+  marketreachload(taskid: any) {
+    var taskidetail = taskid.toString();
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_MRTaskList]",
+      parameter: taskidetail,
+      spparameter: "@TaskId"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
   qaload() {
     var spname = "[AWS].[Sp_Select_SupplierSelectedList]";
@@ -246,32 +308,37 @@ export class TaskdetailpageComponent  {
   qastatuschange(event: any) {
     this.qastatus = event.target.value;
   }
-  addsupplier() {
-    const dialogRef = this.dialog1.open(CreatesupplierComponent, {
+  createsupplier() {
+    const dialogRef = this.dialog.open(CreatesupplierComponent, {
       width: '80%', height: '80%', disableClose: true
     });
   }
+
   suppliersave() {
     if (this.taskmainstatus == '' || this.supplierassignment == '') {
-      this.dialog1.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Please select Status and Assigned person before saving!!." } });
+      var messagebox = "validations";
     } else {
       this.suppplierselctiondata().subscribe((suppliersave: any) => {
         console.warn("suppliersave", suppliersave)
         this.supplerselectidetil = suppliersave
-        if (this.supplerselectidetil=='saved') {
-          this.dialog1.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: "Product submitted sucessfully" } });
+        if (this.supplerselectidetil == "saved") {
+          this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Product Submitted sucessfully' } });
         }
       })
     }
   }
+
   ngOnInit() {
-    this.suppolierload().subscribe((loadworkflow: any) => {
-      console.warn("loadworkflow", loadworkflow)
-      this.suppliersection = loadworkflow
-    })
-    this.marketreachload().subscribe((marketdata: any) => {
-      console.warn("marketdata", marketdata)
-      this.marketresarch = marketdata
+    var taskdata = this.datashare.gettasidfrmtasklist();
+    this.TaskID = taskdata[0];
+    //this.suppolierload().subscribe((loadworkflow: any) => {
+    //  console.warn("loadworkflow", loadworkflow)
+    //  this.suppliersection = loadworkflow
+    //})
+    this.marketreachload(this.TaskID).subscribe((marketdata1: any) => {
+      console.warn("marketdata1", marketdata1)
+      this.marketresarch = JSON.parse(marketdata1);
+      this.marketresarch = this.marketresarch;
       this.taskname = this.marketresarch[0].TaskName;
       this.TaskID = this.marketresarch[0].TaskID;
     })

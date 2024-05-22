@@ -1,21 +1,19 @@
-
 <div>
 
   <div>
 
-    <h1 class=" layoutHead">Add Supplier</h1>
+    <h1 class=" layoutHead" :style="font-family: Yu Gothic UI; font-weight: 500; font-size: 1.75rem; ">Add Supplier</h1>
 
     <button class="close-button" matDialogClose><mat-icon>close</mat-icon></button>
 
   </div>
 
 
-
   <div>
 
     <div class="data">
 
-      <label class="label">SupplierCode </label><br>
+      <label class="SupplierLabel">SupplierCode </label><br>
 
       <input type="text" name="title" class="input" [(ngModel)]="SupplierCode"><br>
 
@@ -24,7 +22,7 @@
 
     <div class="data">
 
-      <label class="label">Supplier Name</label><br>
+      <label class="SupplierLabel">Supplier Name</label><br>
 
       <input type="text" name="title" class="input" [(ngModel)]="SupplierName">
 
@@ -32,7 +30,7 @@
 
     <div class="data">
 
-      <label class="label">Description</label><br>
+      <label class="SupplierLabel">Description</label><br>
 
       <textarea type="text" name="title" rows="5" class="input" [(ngModel)]="description"></textarea>
 
@@ -44,7 +42,7 @@
 
         <div class="dataSelect brandSelect">
 
-          <label class="SupplierLabel">Brand ID</label><br>
+          <label class="SupplierLabel">Brand </label><br>
 
           <input type="text" class="input" [(ngModel)]="brand_id"><br />
 
@@ -76,7 +74,7 @@
 
         <div class="dataSelect categorySelect">
 
-          <label class="SupplierLabel">Product Category ID</label><br>
+          <label class="SupplierLabel">Product Category </label><br>
 
           <select [(ngModel)]="selectedCategory">
 
@@ -98,12 +96,18 @@
 
         <div class="dataSelect">
 
-          <label class="SupplierLabel">product Code</label><br>
+          <label class="SupplierLabel">Product Name</label><br>
 
           <input type="text" name="Address" class="input" [(ngModel)]="pl"><br />
 
         </div>
+        <div class="dataSelect">
 
+          <label class="SupplierLabel">Supplier Price</label><br>
+
+          <input type="text" name="Address" class="input" [(ngModel)]="Price"><br />
+
+        </div>
 
 
         <div class="dataSelect">
@@ -116,7 +120,7 @@
 
         <div class="dataSelect">
 
-          <label class="SupplierLabel">Status ID</label><br>
+          <label class="SupplierLabel">Status </label><br>
 
           <select [(ngModel)]="selectedStatus">
 
@@ -134,7 +138,7 @@
 
         <div class="dataSelect">
 
-          <label class="SupplierLabel">Location ID</label><br>
+          <label class="SupplierLabel">Location </label><br>
 
           <select [(ngModel)]="selectedLocation">
 
@@ -176,7 +180,6 @@
           <input type="date" name="title" [(ngModel)]="currentDate" class="input">
 
         </div>
-
 
 
         <div class="createtask">

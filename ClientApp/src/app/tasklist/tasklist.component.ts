@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
+import { DataShareServiceService } from 'src/app/data-share-service.service';
 
 declare var webkitSpeechRecognition: any;
 
@@ -24,7 +24,7 @@ export class TasklistComponent {
   clientid: any;
   AssignedTaskList: any;
   item: any;
-  
+  UserList: string[] = [];
   //AssignedTaskList = [
   //  { TaskID: "1", TaskName: "AFRA FOODS APRICOT JAM 375G (GLASS JAR)", Brand: "European Garden", Category: "JAMS", Product: "Food", DueDate: "30-04-2024", Assigenddate: "01-01-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "Praveen", Status: "InProgress", Department: "Clearance", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
   //  { TaskID: "2", TaskName: "AFRA FOODS BAKED BEANS IN TOMATO SAUCE 220G (CANNED)", Brand: "AFRA Foods", Category: "SAUCES", Product: "Food", DueDate: "15-04-2024", Assigenddate: "01-02-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "Lalu", Status: "InProgress", Department: "Orders", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
@@ -75,7 +75,7 @@ export class TasklistComponent {
   binddata: any[] = [];
   results: string="";
   filterdata: any;
-  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, ) {
+  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, private datashare: DataShareServiceService) {
   
 }
   ViewAWSWorkFlow(rowvalue: any) {
@@ -574,7 +574,12 @@ export class TasklistComponent {
       width: '80%', height: '80%', data: { displaydata: this.binddata },disableClose: true
     });
   }
- 
+  opentaskdetails(item: any) {
+    this.taskid = item.TaskID
+    this.UserList.push(this.taskid);
+    this.datashare.sendtaskdetail(this.UserList);
+    this.router.navigate(['/main/TaskdetailpageComponent']);
+  }
 }
 
 
