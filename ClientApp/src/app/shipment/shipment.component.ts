@@ -22,7 +22,8 @@ export class ShipmentComponent implements OnInit {
   taskname: any;
   oderID: any;
   Status: any;
-  EstimatedDeliverytime: any;
+  Estimateddeliverytime: any;
+  product: any;
   TrackingID: any;
   selectedstatus: any;
   trackinghid: boolean = true
@@ -42,8 +43,9 @@ export class ShipmentComponent implements OnInit {
   uploadfilename: any ="";
   fileToUpload: any;
   input: any | undefined;
-
-
+  TaskID: any;
+  Brand: any;
+  Category: any;
   filedrop: boolean = false
   fileshow:boolean =true
   constructor(public dialog: MatDialog, private http: HttpClient, private service: ShipmentService,/* private _snackBar: MatSnackBar*/private blobService: AzureBlobStorageService,) {
@@ -99,11 +101,14 @@ export class ShipmentComponent implements OnInit {
     }
 
     console.log(this.Status)
-    this.TrackingID = rowvalue.TrackingId;
-    this.EstimatedDeliverytime = rowvalue.EstimatedDeliverytime;
+    this.Brand = rowvalue.Brand;
+    this.product = rowvalue.Product;
     this.Description = rowvalue.Description
+    this.Category = rowvalue.Category
 
-    this.shipmentselecteddetails = [rowvalue.Taskname, rowvalue.OrderId, rowvalue.TrackingId, rowvalue.EstimatedDeliverytime, rowvalue.ShipmentId, rowvalue.Location, rowvalue.Status];
+    this.shipmentselecteddetails = [rowvalue.TaskName, rowvalue.OrderId, rowvalue.TaskID, rowvalue.Product, rowvalue.ShipmentId, rowvalue.Category, rowvalue.Status, rowvalue.BrandID, rowvalue.CategoryID, rowvalue.ProductID, rowvalue.SupplierID, rowvalue.
+      AssignedTo
+];
   }
 
 
@@ -151,10 +156,14 @@ export class ShipmentComponent implements OnInit {
 
   //Shipment grid load
   shipmentloaddata() {
-    var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,[Upload file] Uploadfile,* from AWS.tbl_shipment_details";
+    var query: string = "[AWS].[Sp_Select_ShipmentTaskList]";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1, })
+    //var query: string = "SELECT OrderId ,[Shipment Id] ShipmentId,FORMAT (cast ([Estimated delivery time]  as DateTime), 'dd-MM-yy') as EstimatedDeliverytime, TrackingId, [Task Name]  Taskname,[Upload file] Uploadfile,* from AWS.tbl_shipment_details";
+    //var connection: string = "";
+    //let params1 = new HttpParams().set('connection', connection).set('spname', query);
+    //return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
   }
 
 
@@ -179,20 +188,35 @@ export class ShipmentComponent implements OnInit {
       if (this.uploadfilename == "" || this.uploadfilename == null || this.uploadfilename == undefined) {
         this.uploadfilename =" "
       }
-      const shipment = {
-        ShipmentId: this.shipmentselecteddetails[4],
+
+      this.shipmentdetails[0] = ([{
+        TaskID: this.shipmentselecteddetails[2],
         OrderId: this.shipmentselecteddetails[1],
-        TrackingId: this.shipmentselecteddetails[2],
         TaskName: this.shipmentselecteddetails[0],
-        EstimatedDeliveryTime: this.shipmentselecteddetails[3],
-        Location: this.shipmentselecteddetails[5],
+        Estimateddeliverytime: this.Estimateddeliverytime,
+        Location: "",
         Status: this.Status,
         Description: this.Description,
-        BlobPath: "",
-        UploadFile: this.uploadfilename,
-      };
-      console.log(shipment)
-      this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment)
+        Blobpath: "",
+        Uploadfile: this.uploadfilename,
+        TrackingId: this.shipmentselecteddetails[2],
+        SupplierID: this.shipmentselecteddetails[10],
+        ProductID: this.shipmentselecteddetails[9],
+        BrandID: this.shipmentselecteddetails[7],
+        CategoryID: this.shipmentselecteddetails[8],
+        AssignedTo: this.shipmentselecteddetails[11],
+        Comments: "",
+      }]);
+      var JSONFileparams: string = JSON.stringify(this.shipmentdetails);
+      console.log(JSONFileparams)
+      var spname: string = "[AWS].[sp_update_shipmentdetails]";
+
+      const genericspdata = {
+        JSONFileparams: JSONFileparams,
+        spname: spname
+      }
+      console.log(genericspdata)
+      this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', genericspdata, { responseType: 'text' })
         .subscribe(
           (response) => {
             console.log('Data inserted successfully:', response);
@@ -207,10 +231,11 @@ export class ShipmentComponent implements OnInit {
             }
           }
         );
+   
     }
     else {
-      this.blobService.updateshipmentupload(this.fileToUpload, this.uploadfilename, this.shipmentselecteddetails[4], this.shipmentselecteddetails[1], this.shipmentselecteddetails[2], this.shipmentselecteddetails[0], this.shipmentselecteddetails[3], this.shipmentselecteddetails[5], this.Status, this.Description, () => {
-
+    
+      this.blobService.updateshipmentupload(this.fileToUpload, this.uploadfilename, this.shipmentselecteddetails[2], this.shipmentselecteddetails[1], this.shipmentselecteddetails[0], this.Estimateddeliverytime, "", this.Status, this.Description, this.shipmentselecteddetails[10], this.shipmentselecteddetails[9], this.shipmentselecteddetails[7], this.shipmentselecteddetails[8], this.shipmentselecteddetails[11], "",() => {
         this.shipmentloaddata().subscribe((shipmentloaddata) => {
           console.warn("shipmentloaddata", shipmentloaddata)
           this.ShipmentList = shipmentloaddata
@@ -359,27 +384,7 @@ export class ShipmentComponent implements OnInit {
       console.warn("shipmentloaddata", shipmentloaddata)
       this.ShipmentList = shipmentloaddata
     })
-    //    this.ShipmentList = [{ OrderID: "OD75649641", TrackingID: "TD123", TaskName: "Sweets and Salty Savoury", EstimatedDeliverytime: "18/4/2024 ", Location: "India", Sku: "P001", Status: "Ready for shipment" },
-    //      { OrderID: "OD75649652", TrackingID: "TD124", TaskName: "Tea", Supplier: "Chocovic", EstimatedDeliverytime: "19/4/2024 ", Location: "USA", Sku: "P002", Status: "Left from warehouse" },
-    //      {
-    //        OrderID: "OD75649763", TrackingID: "TD125", TaskName: "Dates", Supplier: "Chocovic", EstimatedDeliverytime: "20/4/2024 ", Location: "Moracco", Sku: "P003", Status: "In Transit" },
-    //      { OrderID: "OD756434274", TrackingID: "TD145", TaskName: "Coffee", Supplier: "Chocovic", EstimatedDeliverytime: "21/4/2024 ", Location: "Brazil", Sku: "P004", Status: "Delivered to warehouse" },
-    //      {
-    //        OrderID: "OD756494323", TrackingID: "TD156", TaskName: "Jam", Supplier: "Chocovic", EstimatedDeliverytime: "20/4/2024 ", Location: "Moracco", Sku: "P005", Status: "In Transit"
-    //      },
-    //      { OrderID: "OD75649674", TrackingID: "TD126", TaskName: "Nuts", Supplier: "Chocovic", EstimatedDeliverytime: "30/4/2024 ", Location: "Brazil", Sku: "P006", Status: "Delivered to warehouse" },
-    //      { OrderID: "OD75649685", TrackingID: "TD127", TaskName: "Syrups", Supplier: "Chocovic", EstimatedDeliverytime: "25/4/2024 ", Location: "Mexico", Sku: "P007", Status: "Failed Attempt" }, { OrderID: "OD75649641", TrackingID: "TD123", TaskName: "Sweets and Salty Savoury", EstimatedDeliverytime: "18/4/2024 ", Location: "India", Sku: "P001", Status: "Ready for shipment" },
-    //      { OrderID: "OD75649652", TrackingID: "TD124", TaskName: "Tea", Supplier: "Chocovic", EstimatedDeliverytime: "19/4/2024 ", Location: "USA", Sku: "P002", Status: "Left from warehouse" },
-    //{
-    //  OrderID: "OD75649763", TrackingID: "TD125", TaskName: "Dates", Supplier: "Chocovic", EstimatedDeliverytime: "20/4/2024 ", Location: "Moracco", Sku: "P003", Status: "In Transit"
-    //},
-    //{ OrderID: "OD756434274", TrackingID: "TD145", TaskName: "Coffee", Supplier: "Chocovic", EstimatedDeliverytime: "21/4/2024 ", Location: "Brazil", Sku: "P004", Status: "Delivered to warehouse" },
-    //{
-    //  OrderID: "OD756494323", TrackingID: "TD156", TaskName: "Jam", Supplier: "Chocovic", EstimatedDeliverytime: "20/4/2024 ", Location: "Moracco", Sku: "P005", Status: "In Transit"
-    //},
-    //{ OrderID: "OD75649674", TrackingID: "TD126", TaskName: "Nuts", Supplier: "Chocovic", EstimatedDeliverytime: "30/4/2024 ", Location: "Brazil", Sku: "P006", Status: "Delivered to warehouse" },
-    //{ OrderID: "OD75649685", TrackingID: "TD127", TaskName: "Syrups", Supplier: "Chocovic", EstimatedDeliverytime: "25/4/2024 ", Location: "Mexico", Sku: "P007", Status: "Failed Attempt" }
-    //  ];
+    
   }
 
 }

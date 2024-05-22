@@ -10,11 +10,13 @@ export class AzureBlobStorageService {
   picturesContainer = "awsmisdbx/Branding";   // container name
   token = "sp=racwdli&st=2024-05-15T12:31:50Z&se=2025-05-14T20:31:50Z&sv=2022-11-02&sr=c&sig=xu%2B6bEZzZST8CrJmkBB8eflkHD1ptievkWOZv7RS%2FZM%3D";
   imgedata:string=""
-
+  shipmentdetails: any = [];
+  photodetails: any = [];
   PicContainer: string="";
   constructor(private http: HttpClient) { }
 
-  public updateshipmentupload( content: Blob, name: string, ShipmentId: string, OrderId: string, TrackingId: string, TaskName: string, EstimatedDeliveryTime: string, Location: string, Status: string, Description: string, handler: () => void) {
+  public updateshipmentupload(content: Blob, name: string, TaskID: string, OrderId: string,  TaskName: string, Estimateddeliverytime: string, Location: string, Status: string, Description: string, TrackingId: string,
+    SupplierID: string, ProductID: string, BrandID: string, CategoryID: string,AssignedTo:string,handler: () => void) {
 
     this.PicContainer = "awsmisdbx/Branding";
 
@@ -34,23 +36,40 @@ export class AzureBlobStorageService {
     if (name == "" || name == undefined || name == null) {
       name == ""
     }
-    const shipment = {
-      ShipmentId: ShipmentId,
+
+
+    this.shipmentdetails[0] = ([{
+      TaskID: TaskID,
       OrderId: OrderId,
-      TrackingId: TrackingId,
       TaskName: TaskName,
-      EstimatedDeliveryTime: EstimatedDeliveryTime,
-      Location: Location,
+      Estimateddeliverytime: Estimateddeliverytime,
+      Location: "",
       Status: Status,
       Description: Description,
-      BlobPath: this.imgedata,
-      UploadFile: name,
-    };
-    console.log(shipment)
-    this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment)
+      Blobpath: this.imgedata, 
+      Uploadfile:name,
+      TrackingId: TrackingId,
+      SupplierID: SupplierID,
+      ProductID: ProductID,
+      BrandID: BrandID,
+      CategoryID: CategoryID,
+      AssignedTo: AssignedTo,
+      Comments: "",
+    }]);
+    var JSONFileparams: string = JSON.stringify(this.shipmentdetails);
+    console.log(JSONFileparams)
+    var spname: string = "[AWS].[sp_update_shipmentdetails]";
+
+    const genericspdata = {
+      JSONFileparams: JSONFileparams,
+      spname: spname
+    }
+    console.log(genericspdata)
+    this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', genericspdata, { responseType: 'text' })
       .subscribe(
         (response) => {
           console.log('Data inserted successfully:', response);
+
         },
         (error) => {
           console.error('Error inserting data:', error);
@@ -60,6 +79,32 @@ export class AzureBlobStorageService {
           }
         }
       );
+    //const shipment = {
+    //  ShipmentId: ShipmentId,
+    //  OrderId: OrderId,
+    //  TrackingId: TrackingId,
+    //  TaskName: TaskName,
+    //  EstimatedDeliveryTime: EstimatedDeliveryTime,
+    //  Location: Location,
+    //  Status: Status,
+    //  Description: Description,
+    //  BlobPath: this.imgedata,
+    //  UploadFile: name,
+    //};
+    //console.log(shipment)
+    //this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/Updateshipment', shipment)
+    //  .subscribe(
+    //    (response) => {
+    //      console.log('Data inserted successfully:', response);
+    //    },
+    //    (error) => {
+    //      console.error('Error inserting data:', error);
+    //      if (error && error.error && error.error.errors) {
+    //        const validationErrors = error.error.errors;
+    //        console.log('Validation errors:', validationErrors);
+    //      }
+    //    }
+    //  );
     this.uploadBlob(content, name, this.containerClient2(this.token, this.PicContainer), handler)
     //if (this.dataload == "Success") {
     //  return "Success"
@@ -324,8 +369,109 @@ export class AzureBlobStorageService {
     //}
   }
 
+  public MRimages(content: Blob, name: string, TaskId: string, handler: () => void) {
+
+    this.PicContainer = "awsmisdbx/Branding";
+
+    const blockBlobClient = this.containerClient2(this.token, this.PicContainer).getBlockBlobClient(name);
+    blockBlobClient
+      .uploadData(content, { blobHTTPHeaders: { blobContentType: content.type } })
+      .then(() => handler())
+    blobUrl: blockBlobClient.url
+    let blobimage = blockBlobClient.url
+    console.log(blobimage)
+    var image = blobimage.split("?")
+    this.imgedata = image[0];
+
+    if (this.imgedata == "" || this.imgedata == undefined || this.imgedata == null) {
+      this.imgedata == ""
+    }
+    if (name == "" || name == undefined || name == null) {
+      name == ""
+    }
+
+    this.photodetails[0] = ([{
+      TaskId: TaskId,
+      ImageName: name,
+      ImageUrl: this.imgedata,
+      Description: "",
+    }]);
+    var JSONFileparams: string = JSON.stringify(this.photodetails);
+    console.log(JSONFileparams)
+    var spname: string = "[AWS].[sp_Insert_MarketResearch]";
+
+    const genericspdata = {
+      JSONFileparams: JSONFileparams,
+      spname: spname
+    }
+
+    console.log(genericspdata)
+    this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLEXEC', genericspdata, { responseType: 'text' })
+      .subscribe(
+        (response) => {
+          console.log('Data inserted successfully:', response);
+
+        },
+        (error) => {
+          console.error('Error inserting data:', error);
+          if (error && error.error && error.error.errors) {
+            const validationErrors = error.error.errors;
+            console.log('Validation errors:', validationErrors);
+          }
+        }
+      );
+    this.uploadBlob(content, name, this.containerClient2(this.token, this.PicContainer), handler)
+    //if (this.dataload == "Success") {
+    //  return "Success"
+    //}
+  }
 
 
+  //order blob storage
+  public OrderUpdateimage(content: Blob, name: string, OrderHistoryInsertVal: any, handler: () => void) {
+
+    this.PicContainer = "awsmisdbx/OrderManagement";
+
+    const blockBlobClient = this.containerClient2(this.token, this.PicContainer).getBlockBlobClient(name);
+    blockBlobClient
+      .uploadData(content, { blobHTTPHeaders: { blobContentType: content.type } })
+      .then(() => handler())
+    blobUrl: blockBlobClient.url
+    let blobimage = blockBlobClient.url
+    console.log(blobimage)
+    var image = blobimage.split("?")
+    this.imgedata = image[0];
+
+    if (this.imgedata == "" || this.imgedata == undefined || this.imgedata == null) {
+      this.imgedata == ""
+    }
+    if (name == "" || name == undefined || name == null) {
+      name == ""
+    }
+
+
+    const orderhistoryinsert = {
+      OrderId: OrderHistoryInsertVal.OrderId,
+      Status: OrderHistoryInsertVal.Status,
+      Description: OrderHistoryInsertVal.Description,
+      Filename: OrderHistoryInsertVal.Filename,
+      File_path: this.imgedata,
+      Updatedby: OrderHistoryInsertVal.Updatedby
+    };
+    console.log(orderhistoryinsert)
+
+    this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/InsertOrdeHistory',
+      orderhistoryinsert).subscribe((response) => {
+        console.log('Data Updated successfully:', response);
+      }, (error) => {
+        console.error('Error Updating data:', error);
+        if (error && error.error && error.error.errors) {
+          const validationErrors = error.error.errors;
+          console.log('Validation errors:', validationErrors);
+        }
+      }
+      );
+  }
 
   private uploadBlob(content: Blob, name: string, client: ContainerClient, handler: () => void) {
     let blockBlobClient = client.getBlockBlobClient(name);

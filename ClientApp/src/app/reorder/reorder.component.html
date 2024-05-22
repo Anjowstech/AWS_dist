@@ -1,16 +1,12 @@
 <div style="background-color: whitesmoke; height: 100%;">
-  <h3 style="margin-left: 1%; color: #1f538e; padding-top: 1%">Reorder</h3>
-
   <table class="styled-table" style="margin-left:1%;width:98%;font-family:system-ui;">
     <thead>
       <tr>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">PO No</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Product Name</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Supplier</th>
-        <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">ContactNo</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Location</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Name</th>
-        <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Contact No</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Current Quantity</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Max Qty Level</th>
         <th style="font-weight:500;border: 2px solid lightgrey;font-size: 14px;">Reorder Qty</th>
@@ -20,20 +16,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let a of ReorderData ; let i=index let even=even" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);">
+      <tr *ngFor="let a of ReOrderManagementListData">
 
-        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.PurOrderNo}}</td>
-        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.TaskName}}</td>
+        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.PurchaseOrderNo}}</td>
+        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.ProductName}}</td>
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.Supplier}}</td>
-        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.ContactNo}}</td>
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.Location}}</td>
-        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.Name}}</td>
-        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.ContactNo}}</td>
+        <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.CustomerName}}</td>
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.CurrentQty}}</td>
         <td style="font-size:13px;border: 2px solid lightgrey;font-weight:500;">{{a.OrderLevel}}</td>
         <td style="border: 2px solid lightgrey;">
-          <input type="number" name="quantity" placeholder="Enter Quantity" style="width:60%;border:none;margin-right:2px;"  required (change)="SetCost($event,a.PurOrderNo)">
-          <input type="submit" value="Reorder" class="button">
+          <input type="number" name="quantity" placeholder="Enter Quantity" style="width:60%;border:none;margin-right:2px;" ([ngModel])="Qtyval" required (change)="SetCost($event,a.PurchaseOrderNo)">
+          <input type="submit" value="Reorder" class="button" (click)="RedirectToOrderMng(a.CurrentCost,a)">
         </td>
 
         <td style="font-size: 13px; border: 2px solid lightgrey; font-weight: 500;">{{a.Cost}} $</td>
@@ -46,5 +40,4 @@
     </tbody>
   </table>
 </div>
-
 

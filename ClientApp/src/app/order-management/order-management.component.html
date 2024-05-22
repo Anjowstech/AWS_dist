@@ -1,13 +1,13 @@
 <div style="background-color: whitesmoke; height: 100%;">
 
 
-  <div style="padding-left: 2px; padding-top:30px;">
+  <div hidden style="padding-left: 2px; padding-top:30px;">
 
 
 
     <div class="taskbutton">
-      <h3 style="color: #1f538e; margin-left: 1% ">Order Management</h3>
-      <!--<label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: #1f538e;">Double click on the row to view the details</label>-->
+
+      <label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on Status Column to Update the Current Status</label>
 
       <div class="tasktable">
 
@@ -28,7 +28,7 @@
           </thead>
 
           <tbody>
-            <tr class="active-row" *ngFor="let item of OrderManagementList ; let i=index let even=even" (dblclick)="UpdateOrderStatus(item);changeTableRowColor(i)" [style.background-color]="rowClicked == i ? '#CECECE' : (even ? 'white' : 'white')" (click)="changeTableRowColor(i);" #conten>
+            <tr class="active-row" *ngFor="let item of OrderManagementList" #conten>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align:center; width: auto; color:black;">{{item.TaskID}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.PurOrderNo}}</td>
@@ -53,136 +53,104 @@
 
     </div>
 
-  </div>
-  <div class="row" [hidden]="trackinghid" style="padding:20px">
-    <div style="width:63%;padding-right:2%;">
 
-      <div class="data">
-        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Purchase Order No</label>
-        <label style="width:70%;text-align:left;">{{PurOrdNo}}</label>
-      </div>
-      <div class="data">
-        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Purchase Order Date</label>
-        <label style="width:70%;">{{PurOrdDate}}</label>
-      </div>
-
-
-      <div class="data">
-        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Task Name</label>
-        <label style="width:70%;text-align:left;">{{TaskName}}</label>
-      </div>
-      <div class="data">
-        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Current Status</label>
-        <label style="width:70%;">{{Status}}</label>
-      </div>
-
-
-
-      <div class="data">
-        <label style="width: 30%; color: #5b5b69; font-weight: 500;">Change Status</label>
-        <select style="border: none; width: 70%; color: black; border-left: 3px solid #1f538e">
-          <option disabled hidden selected>{{Status}}</option>
-          <option *ngFor="let a of StatusList">{{a.Status}}</option>
-        </select>
-      </div>
-
-
-
-      <div class="data">
-        <label style="color: #5b5b69; font-weight: 500;">Description</label><br>
-        <textarea type="text" name="title" rows="5"></textarea>
-      </div>
-
-
-      <div class="uploadimage">
-        <input type="file" #fileInput  [multiple]="true" placeholder="Custom Placeholder">
-        <div class="upload-area" (click)="fileInput.click()">
-          <p>Drag & drop media here or click to upload</p>
-        </div>
-      </div>
-
-      <div class="createtask">
-        <button class="save-button1 hover-effect:hover" (click)=" cleardata()">Close</button>
-        <button class="save-button pulse-effect hover-effect:hover">Submit</button>
-      </div>
-
-    </div>
-
-    <div style="width: 35%; height: 31rem; overflow-y: auto; overflow-x: hidden;">
-
-      <table style="width: 100%; color: black; margin-top: 2%;">
-        <thead>
-          <tr>
-            <td style="text-align:center;font-size:large;font-weight:500;">
-              <div class="row" style="display: flex; justify-content: center; color: #9da4a6; ">
-                <mat-icon>history</mat-icon>
-                History
-              </div>
-            </td>
-          </tr>
-        </thead>
-
-
-        <tbody>
-          <tr class="labelhover" *ngFor="let a of OrderManagementhistory">
-            <td style="text-align:left;font-size:small;">
-              <div class="labelshadow">
-                <label style="background-color: #1F528E; color: white; width: 100%; text-align: center;border-radius:0px;margin-top:0.2px;">  {{a.ProductTask}} </label>
-                <div class="InnerLabel">
-
-                  <table width="100%">
-
-                    <tr>
-                      <td style="width: 20%; text-align: left;">
-                        Description
-                      </td>
-                      <td style="width: 2%; text-align: left;">
-                        :
-                      </td>
-                      <td style="text-align:left;width:78%;">
-                        <span style="color:black;text-align:left;">  {{a.ProdcutDescription}}</span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td style="width: 20%; text-align: left;">
-                        <!--{{a.TaskName}}--> Updated on
-                      </td>
-                      <td style="width: 2%; text-align: left;">
-                        :
-                      </td>
-                      <td style="text-align: left; width: 78%;">
-                        <span style="color:black;"> {{a.OnDate}} </span> <br />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="width: 20%; text-align: left;">
-                        Updated  By
-                      </td>
-                      <td style="width: 2%; text-align: left;">
-                        :
-                      </td>
-                      <td style="text-align: left; width: 78%;">
-                        <span style="color:black;"> {{a.ByUser}}</span> <br />
-                      </td>
-                    </tr>
-
-                  </table>
-
-
-
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-
-      </table>
-
-
-    </div>
   </div>
 
 
-</div>
 
+  <div style="padding-left: 2px; padding-top:30px;">
+
+    <div class="taskbutton">
+
+      <label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on Status Column to Update the Current Status</label>
+
+      <div class="tasktable">
+
+        <table id="myTable" class="styled-table" style="width: 98%; border: 2px solid lightgrey; font-family: system-ui; font-size: x-small; margin-left: 1%; overflow-x: auto;">
+          <thead>
+            <tr>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Task ID</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Product Name</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">PO No</th>
+              <!--<th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">customer_id</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Locationid</th>-->
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">order date</th>
+
+
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Invoice No</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto;">Invoice Date</th>
+
+
+
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Cost</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Qty</th>
+
+
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Shipping Address</th>
+
+
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>
+
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Updated Date</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Updated by</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Ordered On</th>
+              <th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Ordered by</th>
+
+
+              <!--<th style="border: 2px solid lightgrey;font-size:14px;font-weight:500;text-align:center;width:auto">Status</th>-->
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="active-row" *ngFor="let item of OrderManagementListData" #conten>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align:center; width: auto; color:black;">{{item.TaskDetailID}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: left; width: auto; color: black; ">{{item.ProductName}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.PurchaseOrderNo}}</td>
+              <!--<td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.customer_id}}</td>-->
+              <!--<td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.LocationCol}}</td>-->
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.order_date | date:'MMM dd yyyy'}}</td>
+
+
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.InvoiceNo}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.InvoiceDt | date:'MMM dd yyyy'}}</td>
+
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.total_amount}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.Quantity}}</td>
+
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.shipping_address}}</td>
+
+
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; "
+                  title="Double Click to Update" (dblclick)="UpdateOrderStatus(item)">
+                {{item.StatusCol}}
+              </td>
+
+
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.updateddatecol}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.Updatedby}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.inserteddatecol}}</td>
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.Insertedby}}</td>
+
+
+
+
+
+              <!--<td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; " title="Double Click to Update" (dblclick)="UpdateOrderStatus(item)">
+    {{item.Status}}
+  </td>-->
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+
+  </div>

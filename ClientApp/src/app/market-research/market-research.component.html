@@ -87,51 +87,51 @@
                             </td>
                             <td style="border: 2px solid lightgrey;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height: 60px; width: 80%"  />
+                                <input class="inputclass" [(ngModel)]="ProductName" type="text" placeholder="Enter here" style="height: 60px; width: 80%"  />
                                 <mat-icon>mic</mat-icon>
                               </div>
 
                             </td>
                             <td style="border: 2px solid lightgrey;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <input class="inputclass" [(ngModel)]="Category" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
                             <td style="border: 2px solid lightgrey;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <input class="inputclass"  [(ngModel)]="COO" type="text" placeholder="Enter here" style="height:60px;width:80%" />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
 
                             <td style="border: 2px solid lightgrey;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <input class="inputclass" [(ngModel)]="MarketName" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
                             <td style="border: 2px solid lightgrey; text-align: center;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <input class="inputclass" [(ngModel)]="AWSName" type="text" placeholder="Enter here" style="height:60px;width:80%" />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
                             <td style="border: 2px solid lightgrey; text-align: center;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <input class="inputclass" [(ngModel)]="Comments" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
                             <td style="border: 2px solid lightgrey; text-align: center;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
+                                <input class="inputclass" [(ngModel)]="MarketPrice" type="text" placeholder="Enter here" style="height:60px;width:80%"  />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
                             <td style="border: 2px solid lightgrey; text-align: center;">
                               <div class="form-inline">
-                                <input class="inputclass" type="text" placeholder="Enter here" style="height:60px;width:80%" />
+                                <input class="inputclass" [(ngModel)]="AWSPrice" type="text" placeholder="Enter here" style="height:60px;width:80%" />
                                 <mat-icon>mic</mat-icon>
                               </div>
                             </td>
@@ -141,7 +141,7 @@
                             </td>
                             <td style="border: 2px solid lightgrey; text-align: center;">
 
-                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;">Submit</button>
+                              <button type="submit" class="save-button pulse-effect hover-effect:hover" style=" margin-top: .5%; width: 100px; font-size: smaller; height: 30px;" (click)="submittaskMR()">Submit</button>
                             </td>
                           </tr>
 

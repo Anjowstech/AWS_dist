@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MsgBoxComponent } from 'src/app/msg-box/msg-box.component';
-/*import { MatSnackBar } from '@angular/material/snack-bar';*/
 import { AzureBlobStorageService } from 'src/app/azure-blob-storage.service';
 import { VoiceRecognitionService } from 'src/app/service/voice-recognition.service'
 
@@ -43,18 +42,18 @@ export class AddComponentComponent {
 
   filedrop: boolean = false
   fileshow: boolean = true
-  constructor(public dialog: MatDialog, private http: HttpClient, /*private _snackBar: MatSnackBar,*/ @Inject(MAT_DIALOG_DATA) public data: any, private blobService: AzureBlobStorageService, public service: VoiceRecognitionService) {
+  constructor(public dialog: MatDialog, private http: HttpClient, @Inject(MAT_DIALOG_DATA) public data: any, private blobService: AzureBlobStorageService, public service: VoiceRecognitionService) {
     this.service.init()
   }
 
 
-  openSnackBar(message: string, action: string,) {
-    //this._snackBar.open(message, action, {
-    //  duration: 2000,
-    //  verticalPosition: 'top',
-    //  horizontalPosition: 'center',
-    //})
-  }
+  //openSnackBar(message: string, action: string,) {
+  //  this._snackBar.open(message, action, {
+  //    duration: 2000,
+  //    verticalPosition: 'top',
+  //    horizontalPosition: 'center',
+  //  })
+  //}
   //Componentsubmitdetails() {
   //  var jsonprams: any = JSON.stringify(this.componentdetails);
   //  console.log(this.componentdetails)

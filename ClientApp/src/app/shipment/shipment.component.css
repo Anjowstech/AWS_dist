@@ -4,7 +4,28 @@
   background-position: center;
   background-size: cover;
 }
+.dataDate input {
+  border-radius: 5px;
+  /*box-shadow: 0 6px 8px #2828284d;*/
+  /*  border: 1px solid #ddd;*/
+  padding: 5px 10px;
+  width: 65%;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+  /*  background-color: #f3f3f3;*/
+}
 
+input date {
+  border-radius: 5px;
+  /*box-shadow: 0 6px 8px #2828284d;*/
+  /*  border: 1px solid #ddd;*/
+  padding: 5px 10px;
+  width: 75%;
+  display: inline-block;
+  vertical-align: top;
+  /*  background-color: #f3f3f3;*/
+}
 
 .tasktable {
   height: 250px;
