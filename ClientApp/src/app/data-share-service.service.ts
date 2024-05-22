@@ -79,7 +79,15 @@ export class DataShareServiceService {
   reportlist: any;
   usr: any;
   activetabmytasklist: any;
-  reportsdsdetail:any
+  reportsdsdetail: any
+  uservalue: any;
+  userID: any;
+  senduser(user: any) {
+    this.uservalue = user;
+  }
+  senduserID(userId: any) {
+    this.userID = userId;
+  }
   sendproductdetails(productvalues: string[]) {
     this.productlist = productvalues
   }
@@ -302,6 +310,12 @@ sendsupplierlist(supplierlistvalues: string[]) {
   }
   sendproductcodeCM(pdctcodedetails: string[]) {
     this.pdctizatndtls = pdctcodedetails;
+  }
+  getuser() {
+    return this.uservalue;
+  }
+  getuserID() {
+    return this.userID;
   }
   getsdsdetailsreport() {
     return this.reportsdsdetail

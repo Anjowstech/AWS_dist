@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { FilterPipe1 } from 'src/filter.pipe';
+import { FilterPipe } from 'src/pipefilter';
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -100,6 +101,10 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     AdminComponent,
     UserManagementComponent,
     UserAddComponent,
+        MsgBoxComponent,
+        FilterPipe1,
+        FilterPipe,
+  
     MsgBoxComponent,
   ],
   imports: [

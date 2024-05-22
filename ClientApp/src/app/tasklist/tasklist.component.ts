@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataShareServiceService } from 'src/app/data-share-service.service';
 
+
 declare var webkitSpeechRecognition: any;
 
 
@@ -24,16 +25,6 @@ export class TasklistComponent {
   clientid: any;
   AssignedTaskList: any;
   item: any;
-  UserList: string[] = [];
-  //AssignedTaskList = [
-  //  { TaskID: "1", TaskName: "AFRA FOODS APRICOT JAM 375G (GLASS JAR)", Brand: "European Garden", Category: "JAMS", Product: "Food", DueDate: "30-04-2024", Assigenddate: "01-01-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "Praveen", Status: "InProgress", Department: "Clearance", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-  //  { TaskID: "2", TaskName: "AFRA FOODS BAKED BEANS IN TOMATO SAUCE 220G (CANNED)", Brand: "AFRA Foods", Category: "SAUCES", Product: "Food", DueDate: "15-04-2024", Assigenddate: "01-02-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "Lalu", Status: "InProgress", Department: "Orders", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-  //  { TaskID: "3", TaskName: "Daily Bite FOODS BAKED BEANS IN TOMATO SAUCE 400G (CANNED)", Brand: "Daily Byte", Category: "SAUCES", Product: "Food", DueDate: "18-04-2024", Assigenddate: "01-03-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "Shekar", Status: "Pending for approval", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "download icon.png" },
-  //  { TaskID: "4", TaskName: "Delita FOODS BBQ SAUCE ORIGINAL 18 OZ (510G)", Brand: "Delita", Category: "SAUCES", Product: "Food", DueDate: "19-04-2024", Assigenddate: "01-01-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "Sharaz", Status: "Pending for approval", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-  //  { TaskID: "5", TaskName: "Oil Tree FOODS BLENDED VEG COOKING OIL PET BOTTLE W/H 1.5L", Brand: "Oil Tree", Category: "Cooking Oil", Product: "Oil", DueDate: "25-04-2024", Assigenddate: "01-04-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "ere", Status: "Not started", Department: "Design", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-  //  { TaskID: "6", TaskName: "Raya FOODS CHICK PEAS 400G (CANNED)", Brand: "RAYA", Category: "Canned", Product: "Food", DueDate: "28-04-2024", Assigenddate: "01-05-2024", InitiallyAssigned: "Mehfooz", CurrentlyAssigned: "yuu", Status: "Completed", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "8ozbottle.webp" },
-  //  { TaskID: "7", TaskName: "Super Tasty FOODS CHICKEN LUNCHEON MEAT 200G", Brand: "SUPER Tasty", Category: "Meat", Product: "Food", DueDate: "30-04-2024", Assigenddate: "01-05-2024", InitiallyAssigned: "Arfat", CurrentlyAssigned: "uoo", Status: "Approved", Department: "Purchaser", Images: "https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/skincare-products.jpg (next) https://umbilerawfiles.blob.core.windows.net/docusav2%2FSF_Documets/8ozbottle.webp", ImageName: "skincare-products.jpg" },
-  //];
   filterMetadata = { count: 0 };
   ngtaskname: string = "";
   ngstatus: string = "";
@@ -45,8 +36,17 @@ export class TasklistComponent {
   ngdepartment: string = "";
   filtdata: any;
   loadtaskdata: any = [];
+  assign_load_data: any = [];
+  loadstatusdata: any = [];
+  loadassigndata: any = [];
+  loaddeptdata: any = [];
+  loaddatedata: any = [];
+  department_tabload_data: any = [];
+  loadstatustasdataLoad: any = [];
+  category_tabload_data: any = [];
+  loadcatdata: any;
   TodayDate: any;
-
+  Status: any;
   i: any;
   j: any;
   uniqueDataProduct: any;
@@ -61,6 +61,7 @@ export class TasklistComponent {
   product_data_load: any;
   category_data_load: any;
   brand_data_load: any;
+  Category: any;
     taskname: any;
     assignto: any;
     description: any;
@@ -70,12 +71,14 @@ export class TasklistComponent {
     department: any;
     duedate: any;
     assigndate: any;
-    createddate: any;
+  createddate: any;
+  Department: any;
     taskid: any;
   binddata: any[] = [];
   results: string="";
   filterdata: any;
-  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, private datashare: DataShareServiceService) {
+  IntiallyAssigned: string = "";
+  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router, ) {
   
 }
   ViewAWSWorkFlow(rowvalue: any) {
@@ -269,124 +272,227 @@ export class TasklistComponent {
       width: '80%', height: '80%', disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      //     console.log('The dialog was closed', result);
+      console.log('The dialog was closed', result);
+      this.alldata().subscribe((loadtask) => {
 
-      if (result != "") {
+        this.loadtaskdata = loadtask
 
-      }
-      
+      })
+
     });
   }
+  assignto_tabload() {
 
+
+    var spname = "[AWS].[Sp_Select_AssignedTo]";
+    
+    let params1 = new HttpParams().set('spname', spname);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+
+
+  }
+  department_Tabload() {
+
+
+    var spname = "[AWS].[Sp_Select_DepartmentList]";
+    
+    let params1 = new HttpParams().set('spname', spname);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+
+
+  }
+  category_Tabload() {
+
+
+    var spname = "[AWS].[Sp_Select_ProductCategory]";
+   
+    let params1 = new HttpParams().set('spname', spname);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+
+
+  }
   ngOnInit() {
   
     this.alldata().subscribe((loadtask) => {
 
-      //   console.warn("loadall", loadequip)
-    //  this.loaddata = [];
       this.loadtaskdata = loadtask
 
     })
-  }
-  statusInProgress(){
-    this.isload = true;
-    /*this.datesearch = '';*/
-    this.InProgress().subscribe((inprogress) => {
+    this.statusTab_LoaDdata().subscribe((loadstatus:any) => {
 
-      //    console.warn("loadgeneral", general)
-      this.loaddata = [];
-      this.loaddata = inprogress
-      this.isload = false;
+      console.warn("loadstatus", loadstatus)
+
+      this.loadstatustasdataLoad = loadstatus;
+
+    })
+    this.assignto_tabload().subscribe((assignto_load) => {
+
+      console.warn("assignto_load", assignto_load)
+
+      this.assign_load_data = assignto_load;
+
+    })
+    this.department_Tabload().subscribe((department_load:any) => {
+
+      console.warn("department_load", department_load)
+
+      this.department_tabload_data = department_load;
+
+    })
+    this.category_Tabload().subscribe((category_tabload) => {
+
+      console.warn("category_load", category_tabload)
+
+      this.category_tabload_data = category_tabload;
+
     })
   }
-  statusPending() {
-    this.isload = true;
-    /*this.datesearch = '';*/
-    this.pending().subscribe((pendingdata) => {
-
-      //    console.warn("loadgeneral", general)
-      this.loaddata = [];
-      this.loaddata = pendingdata
-      this.isload = false;
-    })
-  }
+  
   
   AllTabclickload() {
     this.alldata().subscribe((loadtask) => {
 
-      console.warn("AllLoad", loadtask)
-      this.loaddata = [];
-      this.loaddata = loadtask
+      this.loadtaskdata = loadtask
 
     })
   }
-  statusCompleted() {
-     this.isload = true;
-    /*this.datesearch = '';*/
-    this.completed().subscribe((completeddata) => {
+ 
+  
+ 
+  
+  
+ 
+  
+  status_tabLoad(stat: any) {
+    var data:any = stat;
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_TaskList_Status]",
+      parameter: this.Status,
+      spparameter: "@status"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
+  }
+  StatusTab_Load(event:any) {
+    this.Status =event.target.innerText;
+    this.status_tabLoad(this.Status).subscribe((loadstatus) => {
 
-      //    console.warn("loadgeneral", general)
-      this.loaddata = [];
-      this.loaddata = completeddata
-      this.isload = false;
+      console.warn("loadstatus", loadstatus)
+      this.loadstatusdata = JSON.parse(loadstatus);
+      this.loadtaskdata = this.loadstatusdata;
     })
   }
-    //this.department_load().subscribe((dep_load) => {
-    //  console.warn("department_load", dep_load)
-    //  this.dep_data_load = dep_load;
-    //})
-  categoryLoad() {
-    this.category_load().subscribe((cat_load) => {
-      console.warn("category_load", cat_load)
-      this.category_data_load = cat_load;
-    })
+  category_tabLoad(cat: string) {
+    var data: any = cat;
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_TaskList_Category]",
+      parameter: this.Category,
+      spparameter: "@Category"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
-  brandLoad() {
-    this.category_load().subscribe((brand_load) => {
-      console.warn("brand_load", brand_load)
-      this.brand_data_load = brand_load;
-    })
-  }
-  statusApproved() {
-    this.isload = true;
-    /*this.datesearch = '';*/
-    this.approve().subscribe((approveddata) => {
+  CategoryTab_Load(event: any) {
+    this.Category = event.target.innerText;
+    this.category_tabLoad(this.Category).subscribe((cat) => {
 
-      //    console.warn("loadgeneral", general)
-      this.loaddata = [];
-      this.loaddata = approveddata
-      this.isload = false;
-    })
-  }
-  statusNotstarted(){
-  this.isload = true;
-  /*this.datesearch = '';*/
-  this.Notstarted().subscribe((notstartdata) => {
+      //    console.warn("loadhold", hold)
+      console.warn("cat", cat)
+      this.loadcatdata = JSON.parse(cat);
+      this.loadtaskdata = this.loadcatdata;
 
-    //    console.warn("loadgeneral", general)
-    this.loaddata = [];
-    this.loaddata = notstartdata
-    this.isload = false;
-  })
-  }
-  departmntLoad() {
-    this.department_load().subscribe((dep_load) => {
-      console.warn("department_load", dep_load)
-      this.dep_data_load = dep_load;
     })
   }
-  productLoad() {
-    this.product_load().subscribe((prod_load) => {
-      console.warn("department_load", prod_load)
-      this.product_data_load = prod_load;
+
+
+  AssigedTo_tabLoad(assign: string) {
+    var data: any = assign;
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_TaskList_AssignedTo]",
+      parameter: this.IntiallyAssigned,
+      spparameter: "@AssignedTo"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
+  }
+  AssigedToTab_Load(event: any) {
+    this.IntiallyAssigned = event.target.innerText;
+    this.AssigedTo_tabLoad(this.IntiallyAssigned).subscribe((assinload) => {
+      console.warn("assinload", assinload)
+      this.loadassigndata =JSON.parse(assinload);
+      this.loadtaskdata = this.loadassigndata;
+
     })
   }
+
+
+  Department_ftabLoad(dept: string) {
+    var data: any = dept;
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_TaskList_Department]",
+      parameter: this.Department,
+      spparameter: "@Department"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
+  }
+  DepartmentTab_filterLoad(event: any) {
+    this.Department = event.target.innerText;
+    this.Department_ftabLoad(this.Department).subscribe((deptload) => {
+      console.warn("assinload", deptload)
+      this.loaddeptdata = JSON.parse(deptload);
+      this.loadtaskdata = this.loaddeptdata;
+
+    })
+  }
+
+
+  AssignDateLoad_filterLoad(assigndate: string) {
+    var data: any = assigndate;
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_TaskList_AssignedDate]",
+      parameter: this.ngassigneddate,
+      spparameter: "@AssignedDate"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
+  }
+  AssignDateLoad_inputfilterLoad(event: any) {
+    this.ngassigneddate = event.target.value;
+    this.AssignDateLoad_filterLoad(this.ngassigneddate).subscribe((dateload) => {
+      console.warn("assinload", dateload)
+      this.loaddatedata = JSON.parse(dateload);
+      this.loadtaskdata = this.loaddatedata;
+
+    })
+  }
+  //radioChange(event) {
+  //  this.radiochange = event.value;
+  //  if (this.radiochange == 1) {
+  //    this.percentgrid();
+  //  }
   assignedTo() {
     this.assignperson_load().subscribe((asign_load) => {
       console.warn("department_load", asign_load)
       this.asgn_data_load = asign_load;
     })
   }
+  statusTab_LoaDdata() {
+
+
+    var spname = "[AWS].[Sp_Select_statusList]";
+
+    let params1 = new HttpParams().set('spname', spname);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+
+
+  }
+ 
   startListening() {
     
     // let voiceHandler = this.hiddenSearchHandler?.nativeElement;
@@ -439,23 +545,10 @@ export class TasklistComponent {
     //   console.log(spsname)
     let params1 = new HttpParams().set('spname', spname);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
-    //var fd = new FormData()
-    //fd.set('spname', spname)
-    ///*fd.set('clientid', clientid)*/
-    //return this.http.post("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", fd)
+    
 
   }
-  product_load() {
-    var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
-    var parameter = "@status";
-    var clientid = this.clientid;
-    var fd = new FormData()
-    fd.set('spname', spsname)
-    fd.set('ticketid', "Approved")
-    fd.set('parameter', parameter)
-    fd.set('clientid', clientid)
-    return this.http.post("", fd)
-  }
+  
   assignperson_load() {
     var spsname = "[makpower].[Sp_Select_Ticketheader_Withcategory]"
     var parameter = "@status";
@@ -560,26 +653,32 @@ export class TasklistComponent {
   OpenAddtask(item: any) {
     this.taskid=item.TaskID
     this.taskname = item.TaskName
-    this.assignto = item.assignto
+    this.assignto = item.CurrentlyAssigned
     this.description = item.Description
     this.brand = item.Brand
     this.category = item.Category
     this.status = item.Status
     this.department = item.Department
     this.duedate = item.DueDate
-    this.assigndate = item.AssignDate
+    this.assigndate = item.AssignedDate
     /*this.createddate = item.CreateDate*/
     this.binddata = [this.taskid, this.taskname, this.assignto, this.description, this.brand, this.category, this.status, this.department, this.duedate, this.assigndate]
     const dialogRef = this.dialog.open(CreateTaskComponent, {
       width: '80%', height: '80%', data: { displaydata: this.binddata },disableClose: true
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.alldata().subscribe((loadtask) => {
+
+        //   console.warn("loadall", loadequip)
+        //  this.loaddata = [];
+        this.loadtaskdata = loadtask
+
+      })
+     
+    });
   }
-  opentaskdetails(item: any) {
-    this.taskid = item.TaskID
-    this.UserList.push(this.taskid);
-    this.datashare.sendtaskdetail(this.UserList);
-    this.router.navigate(['/main/TaskdetailpageComponent']);
-  }
+ 
 }
 
 

@@ -1,9 +1,10 @@
 <body>
   <div>
     <div>
-      <h1>Create Task</h1>
+      <h1 [hidden]="iscreatehead">Create Task</h1>
+      <h1 [hidden]="isedithead">Edit Task</h1>
       <div style="display: inline;">
-        <mat-icon class="maticoncolorblue"style="float:right;width:100px">camera_alt</mat-icon>
+        <mat-icon class="maticoncolorblue" style="float:right;width:100px">camera_alt</mat-icon>
         <mat-icon class="maticoncolorblue" style=" float: right; width: 100px">video_call</mat-icon>
       </div>
 
@@ -19,12 +20,9 @@
       <div class="data">
         <label>Assigned To</label><br>
                                   <select id="dropdown" style="width:90%" class="dropdown" [(ngModel)]="IntiallyAssigned" value="" name="list4">
-                                    <option style="color: grey; font-style: italic" selected></option>
-                                    <option>praveen</option>
-                                    <option>john</option>
-                                    <option>steve</option>
-                                    <option>Edward</option>
-                                    <option>Ali</option>
+                                    <option style="color: grey; font-style: italic" selected>{{IntiallyAssigned}}</option>
+
+                                    <option *ngFor="let item of assign_load_data" style="color: grey; font-style: italic">{{item.AssignedTo}}</option>
                                   </select>
          
           <mat-icon>mic</mat-icon>
@@ -40,13 +38,15 @@
 
         
         <label>Brand</label><br>
-                            <select id="dropdown" class="dropdown"  [(ngModel)]="Brand" value="" name="list4">
-                              <option style="color: grey; font-style: italic" selected>Please enter--</option>
-                              <option>MP</option>
-                              <option>European Tourister</option>
-                              <option>Panda Cola</option>
-                              <option>Mont Carlo</option>
-                              <option>Delita</option>
+                            <select id="dropdown" class="dropdown" [(ngModel)]="Brand" value="" name="list4">
+                              <option style="color: grey; font-style: italic" selected>{{Brand}}</option>
+                            
+                              <option *ngFor="let item of brand_load_data" style="color: grey; font-style: italic">{{item.brandName}}</option>
+                              <!--<option>MP</option>
+  <option>European Tourister</option>
+  <option>Panda Cola</option>
+  <option>Mont Carlo</option>
+  <option>Delita</option>-->
                             </select>
        
       </div>
@@ -54,12 +54,11 @@
       <div class="dataSelect">
         <label>Category</label><br>
                                <select id="dropdown" class="dropdown" [(ngModel)]="ProductCategory" value="" name="list3">
-                                 <option style="color: grey; font-style: italic" disabled selected hidden></option>
-                                 <option>Food Item</option>
-                                 <option>Non Food Item</option>
-                                 <option>Carbonated Water</option>
-                                 <option>Spices</option>
-                                 <option>Processed food</option>
+                               
+                                 <option style="color: grey; font-style: italic" selected>{{ProductCategory}}</option>
+
+                                 <option *ngFor="let item of category_load_data" style="color: grey; font-style: italic">{{item.ProductCategoryName}}</option>
+                                 
 
 
                                </select>
@@ -95,23 +94,24 @@
 
       <div class="dataSelect">
         <label>Status</label><br>
-                           <select id="dropdown" class="dropdown" [(ngModel)]="Status"  value="" name="list2">
-                               <option style="color: grey; font-style: italic" selected >Task created</option>
-                               <option>In-Progress</option>
-                               <option>Pending for approval</option>
-                               <option>Not started</option>
+                             <select id="dropdown" class="dropdown" [(ngModel)]="Status" value="" name="list2">
+                               <option selected>{{Status}}</option>
+                               <option *ngFor="let item of loadtaskdata" style="color: grey; font-style: italic">{{item.StatusDescription}}</option>
+                               <!--<option>In-Progress</option>
+  <option>Pending for approval</option>
+  <option>Not started</option>-->
                              </select>
       
       </div>
       <div class="dataSelect">
         <label>Department</label><br>
-        <select id="dropdown" class="dropdown" [(ngModel)]="Department" value="" name="list1">
-          <option style="color: grey; font-style: italic" selected>Purchase department</option>
-          <option>Clearance</option>
-          <option>Orders</option>
-          <option>Purchaser</option>
-          <option>Design</option>
-        </select>
+                                 <select id="dropdown" class="dropdown" [(ngModel)]="Department" value="" name="list1">
+                                  
+                                   <option style="color: grey; font-style: italic" selected>{{Department}}</option>
+
+                                   <option *ngFor="let item of department_load_data" style="color: grey; font-style: italic">{{item.Department}}</option>
+                                   
+                                 </select>
        
       </div>
 
@@ -137,7 +137,8 @@
 
         <div class="createtask">
           <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
-          <button type="submit" class="save-button pulse-effect hover-effect:hover" (click)=" updatetask()" matDialogClose>Save</button>
+          <button type="submit" class="save-button pulse-effect hover-effect:hover"[hidden]="isproductsave"  (click)=" addtask()">Save</button>
+          <button type="submit" class="save-button pulse-effect hover-effect:hover" [hidden]="isproductupdate" (click)=" updatetask()" >Update</button>
           <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-right: 10px" [hidden]="isproductupdate" (click)="savemmain();">Update</button>-->
         </div>
 
