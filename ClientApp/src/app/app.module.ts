@@ -47,6 +47,9 @@ import { AdminComponent } from './admin/admin.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserEditComponent } from '../app/user-edit/user-edit.component';
+import { ReOrderPopUpComponent } from '../app/reorder/re-order-pop-up/re-order-pop-up.component';
+import { OrderStatusUpdateComponent } from '../app/order-management/order-status-update/order-status-update.component';
+
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceAPILogInComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
   path: 'main', component: HomeComponent, children: [{ path: 'TaskList', component: TasklistComponent, pathMatch: 'full' },
@@ -85,6 +88,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     BrandingComponent,
     OrderManagementComponent,
     ReorderComponent,
+    OrderStatusUpdateComponent,
     CameraComponent,
     ViewImagesComponent,
     UserEditComponent,
@@ -105,7 +109,8 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     NgbModule,
     NoopAnimationsModule,
 MatSidenavModule ,
-  FlexLayoutModule ,
+    FlexLayoutModule,
+    ReOrderPopUpComponent,
     FormsModule,
     MatListModule,
     MatIconModule,
@@ -116,7 +121,7 @@ MatSidenavModule ,
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent, AddComponentComponent, MsgBoxComponent, UserEditComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent, UserAddComponent, AddComponentComponent, MsgBoxComponent, UserEditComponent, ReOrderPopUpComponent, OrderStatusUpdateComponent],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]
