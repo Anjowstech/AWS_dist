@@ -2,6 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { DataShareServiceService } from 'src/app/data-share-service.service';
 
 
 @Component({
@@ -19,22 +20,23 @@ export class LoginComponent implements OnInit {
   connection: any;
   connectionstr: any;
   user: any;
-  role!: string;
+  role: any;
   pass: any;
   dataListsave1: login[][] = [];
 
 
-  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver) { }
+  constructor(private router: Router, private http: HttpClient, private bpObserable: BreakpointObserver, private datashare: DataShareServiceService) { }
   userdata(username: string, password: string) {
     var usern: string = username;
     var passw: string = password;
-    this.dataListsave1[0] = ([{
-      Usernam: this.username,
-      Pass: this.password,
+  
+      this.dataListsave1[0] = ([{
+        Usernam: this.username,
+        Pass: this.password,
 
 
-    }]);
-
+      }]);
+    
     var datasaveslist: any = JSON.stringify(this.dataListsave1);
     var query: string = "[AWS].[Sp_Select_Roles]";
     var connection: string = "";
@@ -71,6 +73,10 @@ export class LoginComponent implements OnInit {
 
   }
   login() {
+    if (this.username == "" || this.password == "") {
+      alert("Invalid credentials");
+    }
+    else {
     this.userdata(this.username, this.password).subscribe((userdetails) => {
       console.warn("userdetails", userdetails)
       this.connection = userdetails
@@ -78,17 +84,22 @@ export class LoginComponent implements OnInit {
       /* this.connectionstr = item.databaseconnection;*/
       this.role = this.connection;
       /* this.pass = item.Password;*/
+      for (let item of this.connection) {
+        this.role = item.Rolename;
+         this.user = item.Username;
 
-
-      if (this.role !== null) {
+      }
+    
+      if (this.role != null && this.role !=' ' ) {
+        this.datashare.senduser(this.user);
         this.router.navigate(['/main/Dashboardreport']);
         /* this.Datashare.sendrole(this.role);*/
-
+       
       } else {
         alert("Invalid credentials");
       }
     })
-
+    }
   }
   //login(): void {
 

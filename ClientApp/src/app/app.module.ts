@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe1 } from 'src/filter.pipe';
+import { FilterPipe } from 'src/pipefilter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -35,6 +38,9 @@ import { ViewImagesComponent } from './view-images/view-images.component';
 
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { LuggageReportComponent } from './luggage-report/luggage-report.component';
+
+import { VoiceRecognitionComponent } from './voice-recognition/voice-recognition.component';
+import { MsgBoxComponent } from './msg-box/msg-box.component';
 
 const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, { path: 'Facelogin', component: FaceloginComponent }, { path: 'login', component: LoginLayoutComponent, children: [{ path: '', component: LoginComponent }] },
 {
@@ -77,7 +83,11 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
  
     CreateTaskComponent,
     LuggageReportComponent,
+    FilterPipe1,
+    FilterPipe,
    
+    VoiceRecognitionComponent,
+    MsgBoxComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -94,7 +104,7 @@ const appRoutes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     MatDialogModule,
         BrowserAnimationsModule,
   ],
-  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent,ViewImagesComponent],
+  entryComponents: [TasklistComponent, ShipmentComponent, CameraComponent, ViewImagesComponent , VoiceRecognitionComponent,],
   providers: [],
   bootstrap: [AppComponent],
    schemas: [CUSTOM_ELEMENTS_SCHEMA]

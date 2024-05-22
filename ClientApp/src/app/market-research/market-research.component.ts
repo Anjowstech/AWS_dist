@@ -23,6 +23,8 @@ export class MarketResearchComponent implements OnInit  {
   picturefile1: any;
   ngcategory: any;
   ngstatus: any;
+  item: any;
+  ngassigneddate: any;
   constructor(public dialog: MatDialog) { }
   opencamera() {
     const dialogRef = this.dialog.open(CameraComponent, {
@@ -83,7 +85,7 @@ export class MarketResearchComponent implements OnInit  {
 
     ];
 
-
+    
     this.Auditlist = [
       { Date: "17/4/2024", TaskName: "TaskName: Sweets and Salty Savoury Branding is InProgress", Username: "Admin" },
       { Date: "16/4/2024", TaskName: "TaskName: Tea Branding is InProgress", Username: "Admin" },
