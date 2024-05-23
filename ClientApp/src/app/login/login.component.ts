@@ -83,7 +83,9 @@ export class LoginComponent implements OnInit {
       this.userdata(this.username, this.password).subscribe((userdetails) => {
         console.warn("userdetails", userdetails)
         this.connection = userdetails
-
+        this.UserList.push(this.username);
+        this.UserList.push(this.password);
+        this.datashare.sendpdrlist(this.UserList);
       /* this.connectionstr = item.databaseconnection;*/
       this.role = this.connection;
       /* this.pass = item.Password;*/
@@ -95,9 +97,10 @@ export class LoginComponent implements OnInit {
     
       if (this.role != null && this.role !=' ' ) {
         this.datashare.senduser(this.user);
+        this.datashare.senduserID(this.userid);
         this.router.navigate(['/main/Dashboardreport']);
         /* this.Datashare.sendrole(this.role);*/
-       
+      /*  this.router.navigate(['/Facelogin']);*/
       } else {
         alert("Invalid credentials");
       }
