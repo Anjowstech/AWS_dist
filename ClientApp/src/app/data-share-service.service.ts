@@ -9,7 +9,7 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataShareServiceService {
-  Url: string;
+  Url: string = '';
   unapproverawmat: any;
   // private _items: IItem[] = [1];
   pdctizatndtls: string[]=[];
@@ -82,7 +82,8 @@ export class DataShareServiceService {
   reportsdsdetail: any
   uservalue: any;
   louser: any;
-  clientid: any;
+  userlist: any = [];
+
   reid: any;
   report_type: any;
   maintenancedate: any;
@@ -93,7 +94,7 @@ export class DataShareServiceService {
   repname: any;
   ticket: any;
   userID: any;
-  
+  taskdetail:any=[]
   sendlogin(loginuser: string) {
     this.louser = loginuser
   }
@@ -101,11 +102,18 @@ export class DataShareServiceService {
     this.stabtestlist = testvalues
 
   }
- 
+  senduser(userid:any) {
+    this.uservalue = userid
+  }
+  sendtaskdetail(testvalues: string[]) {
+    this.taskdetail = testvalues
+  }
   senduserID(userId: any) {
     this.userID = userId;
   }
-
+  sendpdrlist(testvalues: any) {
+    this.userlist = testvalues
+  }
   
   getlogin() {
     return this.louser;
@@ -116,7 +124,12 @@ export class DataShareServiceService {
   getuserID() {
     return this.userID;
   }
-
+  gettasidfrmtasklist() {
+    return this.taskdetail
+  }
+  getpdrlist() {
+    return this.userlist;
+  }
   constructor(private http: HttpClient) {
 
   }

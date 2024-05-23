@@ -181,7 +181,7 @@ export class FaceAPILogInComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.Userlist = this.datashare.getpdrlist();
+    this.Userlist =  this.datashare.getpdrlist();
     this.Username = this.Userlist[0];
     this.Password = this.Userlist[1];
 
