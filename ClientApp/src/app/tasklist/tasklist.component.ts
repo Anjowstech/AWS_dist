@@ -124,7 +124,9 @@ export class TasklistComponent {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  opentaskdetail() {
+  opentaskdetail(item: any) {
+    var taskid = item.TaskID;
+    this.datashare.sendtaskdetail(taskid);
     this.router.navigate(['/main/TaskdetailpageComponent']);
   }
 

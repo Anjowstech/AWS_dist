@@ -348,7 +348,7 @@ export class TaskdetailpageComponent {
 
   ngOnInit() {
     var taskdata = this.datashare.gettasidfrmtasklist();
-    this.TaskID = taskdata[0];
+    this.TaskID = taskdata;
     this.datashare.sendtaskdetail([]);
     //this.suppolierload().subscribe((loadworkflow: any) => {
     //  console.warn("loadworkflow", loadworkflow)

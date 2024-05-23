@@ -166,7 +166,7 @@
           </thead>
 
           <tbody>
-            <tr class="active-row" *ngFor="let item of loadtaskdata|filter:filterdata:filterMetadata ; let i=index;" #conten (dblclick)=" opentaskdetail()">
+            <tr class="active-row" *ngFor="let item of loadtaskdata|filter:filterdata:filterMetadata ; let i=index;" #conten (dblclick)=" opentaskdetail(item)">
               <!--*ngFor="let item of loadtaskdata"-->
               <!--<td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><button mat-button class="buttonicon"> <mat-icon class="maticoncolorblue">camera_alt</mat-icon></button></td>
   <td style="border: 2px solid lightgrey; text-align:center; width: 4%; color:black;"><mat-icon class="maticoncolorblue">video_call</mat-icon></td>-->
