@@ -45,10 +45,10 @@ interface UpdateTask {
 })
 export class CreateTaskComponent {
   TaskName: any;
-  IntiallyAssigned: any="Choose--";
+  IntiallyAssigned: any="";
   Description: string="";
-  Brand: string="Please enter--";
-  ProductCategory: any="Please-select---";
+  Brand: string ="--Please enter---";
+  ProductCategory: any ="--Please enter---";
   Status: string="Task created";
   Department: string="Purchase department";
   Duedate: any="";
@@ -57,6 +57,7 @@ export class CreateTaskComponent {
   isproductupdate: boolean = true;
   iscreatehead: boolean = false;
   isedithead: boolean = true;
+  istaskname: boolean=false;
   loadtaskdata: any = [];
   brand_load_data: any = [];
   category_load_data: any = [];
@@ -337,6 +338,10 @@ assignto_dropdownload() {
     };
     if (this.TaskName == null) {
       alert("please enter the task name")
+    } else if (this.Brand == '--Please enter---') {
+      this.Brand = "";
+    } else if (this.ProductCategory == '--Please enter---') {
+      this.ProductCategory = "";
     } else
         {
                 this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/AddTask', entity)
@@ -459,7 +464,7 @@ assignto_dropdownload() {
       this.Duedate = new Date().toISOString().split('T')[0];
 }
     else {
-      
+      this.istaskname = true;
       this.iscreatehead = true;
       this.isedithead = false;
       this.isproductsave = true;

@@ -1,13 +1,13 @@
 <div style="background-color: whitesmoke; height: 100%;">
-
+  <h3>Order Management</h3>
 
   <div hidden style="padding-left: 2px; padding-top:30px;">
 
-
+     
 
     <div class="taskbutton">
 
-      <label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on Status Column to Update the Current Status</label>
+      <!--<label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on Status Column to Update the Current Status</label>-->
 
       <div class="tasktable">
 
@@ -28,7 +28,7 @@
           </thead>
 
           <tbody>
-            <tr class="active-row" *ngFor="let item of OrderManagementList" #conten>
+            <tr class="active-row" *ngFor="let item of OrderManagementList" (dblclick)="UpdateOrderStatus(item)" #conten>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align:center; width: auto; color:black;">{{item.TaskID}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: left; width: auto; color: black; ">{{item.TaskName}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.PurOrderNo}}</td>
@@ -38,7 +38,7 @@
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.Name}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.Designation}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.ContactNo}}</td>
-              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; " title="Double Click to Update" (dblclick)="UpdateOrderStatus(item)">
+              <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; " title="Double Click to Update" >
                 {{item.Status}}
               </td>
 
@@ -62,7 +62,7 @@
 
     <div class="taskbutton">
 
-      <label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on Status Column to Update the Current Status</label>
+      <label style="margin-left: 1%; font-weight: 600; font-family: Arial; color: darkblue;">Double Click on row to Update the Current Status</label>
 
       <div class="tasktable">
 
@@ -102,7 +102,7 @@
           </thead>
 
           <tbody>
-            <tr class="active-row" *ngFor="let item of OrderManagementListData" #conten>
+            <tr class="active-row" *ngFor="let item of OrderManagementListData" #conten (dblclick)="UpdateOrderStatus(item)">
               <td style="border: 2px solid lightgrey;font-size:12px; text-align:center; width: auto; color:black;">{{item.TaskDetailID}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: left; width: auto; color: black; ">{{item.ProductName}}</td>
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; ">{{item.PurchaseOrderNo}}</td>
@@ -121,7 +121,7 @@
 
 
               <td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; "
-                  title="Double Click to Update" (dblclick)="UpdateOrderStatus(item)">
+                  title="Double Click to Update">
                 {{item.StatusCol}}
               </td>
 
@@ -136,8 +136,8 @@
 
 
               <!--<td style="border: 2px solid lightgrey;font-size:12px; text-align: center; width: auto; color: black; " title="Double Click to Update" (dblclick)="UpdateOrderStatus(item)">
-    {{item.Status}}
-  </td>-->
+                {{item.Status}}
+              </td>-->
 
             </tr>
           </tbody>
@@ -153,4 +153,4 @@
 
   </div>
 
-  </div>
+</div>

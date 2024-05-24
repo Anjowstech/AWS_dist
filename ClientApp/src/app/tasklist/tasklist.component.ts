@@ -321,6 +321,16 @@ export class TasklistComponent {
 
 
   }
+  clear() {
+    this.ngassigneddate = "";
+    this.filterdata = "";
+    this.alldata().subscribe((loadtask) => {
+      this.loadtaskdata = loadtask
+      this.loadtaskdata = JSON.parse(loadtask);
+
+
+    })
+  }
   ngOnInit() {
     this.userId = this.datashare.getuserID();
     this.alldata().subscribe((loadtask) => {

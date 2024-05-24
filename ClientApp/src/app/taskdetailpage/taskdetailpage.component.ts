@@ -19,7 +19,6 @@ export class TaskdetailpageComponent {
   searchband: string = '';
   Searchcategory: string = '';
   Searchproduct: string = '';
-
   //OrderManagementList = [
   //  { ProductTask: "Task List", TaskID: "1", TaskName: "Date", Supplier: "Chocovic", Location: "India", PMI: "Chocovic", Name: "Sahil Gupta", Designation: "GM", ContactNo: "9876543210", Status: "Branding Completed", PurOrderNo: "PO00N001", ProdcutDescription: "Saji" },
   //  { ProductTask: "Marketing Research", TaskID: "2", TaskName: "Date", Supplier: "Chocovic", Location: "USA", PMI: "Esah(Rulio Tea Company)", Name: "Bijit Sharma", Designation: "CEO", ContactNo: "9876543210", Status: "Order Completed", PurOrderNo: "PO00N002", ProdcutDescription: "Anjo" },
@@ -96,7 +95,11 @@ export class TaskdetailpageComponent {
   j: number = 0;
   TaskID: string = '';
   taskmaindescription: string = '';
-
+  qaassignment: string = '';
+  qadescription: string = '';
+  qasavedetilsadd: any;
+  bloburlqa: string = '';
+  selectedSuppliers1: { TaskID: string, SupplierID: string, ProductID: string, Status: string, AssignedTo: string, Comments: string }[] = [];
   //marketresarch = [
   //  { Productimage: "https://firebasestorage.googleapis.com/v0/b/fifth-compiler-381605.appspot.com/o/beatuytdf.webp?alt=media&token=aff396d1-b371-45f4-a891-634c47a86ab8", ProductName: "Shampoo", Category: "Cosmetics", COO: "Nil", MarketName: "Shampoo", AwsName: "Shampoo", Comments: "Comments", MarketPrice: "$10", AWSPrice: "$7", Select: "" },
   //  { Productimage: "https://firebasestorage.googleapis.com/v0/b/fifth-compiler-381605.appspot.com/o/grocery1.jpg?alt=media&token=32592f0c-f98e-4b25-ae7c-f54a9fd32b6d", ProductName: "Coffe", Category: "Coffe", COO: "Nil", MarketName: "Coffepowder", AwsName: "Coffe", Comments: "Comments", MarketPrice: "$4", AWSPrice: "$2", Select: "" },
@@ -163,7 +166,52 @@ export class TaskdetailpageComponent {
   //    }
   //  }
   //}
+  qasave() {
+    if (this.taskmainstatus == '' || this.qaassignment == '') {
+      var messagebox = "validations";
+    } else {
+      this.qasavedata().subscribe((qadatdetails: any) => {
+        console.warn("qadatdetails", qadatdetails)
+        this.qasavedetilsadd = qadatdetails
+        if (this.qasavedetilsadd == "saved") {
+          this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Qa Submitted sucessfully' } });
+        }
+      })
+    }
+  }
+  handleFileInput(event: any) {
+    const files: FileList = event.target.files;
+    this.uploadFiles(files);
+  }
 
+  handleDrop(event: any) {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    this.uploadFiles(files);
+  }
+
+  allowDrop(event: any) {
+    event.preventDefault();
+  }
+  assignedchangeqa(event: any) {
+    this.qaassignment = event.target.value;
+  }
+  uploadFiles(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      // Here you can implement your logic to upload each file
+      console.log('Uploading file:', file);
+    }
+  }
+  qasavedata() {
+    const qaadddata = JSON.stringify(this.selectedSuppliers1);
+    const formData = new FormData();
+    formData.append('qaadddatadetails', qaadddata);
+
+    return this.http.post("", formData, {
+      responseType: 'text'
+    });
+  }
   onCheckboxChange(item: any, event: any) {
     // Automatically uncheck the checkbox if taskmainstatus is empty
     if (item.SupplierPrice === null || item.SupplierPrice === undefined) {
@@ -199,9 +247,42 @@ export class TaskdetailpageComponent {
       item.checked = false; // Reflect this change in the data model
     }
   }
+  onCheckboxChangeqa(item: any, event: any) {
+    // Automatically uncheck the checkbox if taskmainstatus is empty
+    if (item.Price === null || item.Price === undefined) {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Please Add SupplierPrice  before sumbmitting the product' } });
+      event.target.checked = false; // Uncheck the checkbox
+      item.checked = false; // Reflect this change in the data model
+      return; // Exit the function
+    }
+    if (this.taskmainstatus == '' || this.qaassignment == '') {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Please select qA assignedperson   before sumbmitting the qa' } });
+      event.target.checked = false; // Uncheck the checkbox
+      item.checked = false; // Reflect this change in the data model
+      return; // Exit the function
+    }
 
+    const supplierProduct1 = {
+      TaskID: this.TaskID.toString(),
+      SupplierID: item.SupplierID.toString(),
+      ProductID: item.ProductID.toString(),
+      Status: this.taskmainstatus,
+      AssignedTo: this.qaassignment,
+      Comments: this.qadescription,
+    };
+
+    if (event.target.checked) {
+      if (!this.selectedSuppliers1.some(sp => sp.TaskID === supplierProduct1.TaskID && sp.SupplierID === supplierProduct1.SupplierID && sp.ProductID === supplierProduct1.ProductID && sp.Status === supplierProduct1.Status && sp.AssignedTo === supplierProduct1.AssignedTo && sp.Comments === supplierProduct1.Comments)) {
+        this.selectedSuppliers1.push(supplierProduct1);
+        item.checked = true; // Reflect this change in the data model
+      }
+    } else {
+      this.selectedSuppliers1 = this.selectedSuppliers1.filter(sp => !(sp.TaskID === supplierProduct1.TaskID && sp.SupplierID === supplierProduct1.SupplierID && sp.ProductID === supplierProduct1.ProductID));
+      item.checked = false; // Reflect this change in the data model
+    }
+  }
   supplierloadcategory() {
-    var spsname = "[AWS].[Sp_Select_MRTaskList]"
+    var spsname = "[AWS].[Sp_Select_TaskDetailTaskList]"
     var parameter = this.Category;
     var clientid = '';
     var fd = new FormData()
@@ -268,18 +349,29 @@ export class TaskdetailpageComponent {
     var taskidetail = taskid.toString();
     const selectspparam = {
       connection: "",
-      spname: "[AWS].[Sp_Select_MRTaskList]",
+      spname: "[AWS].[Sp_Select_TaskDetailTaskList]",
       parameter: taskidetail,
       spparameter: "@TaskId"
     }
     console.log(selectspparam)
     return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
-  qaload() {
-    var spname = "[AWS].[Sp_Select_SupplierSelectedList]";
-    let params1 = new HttpParams().set('spname', spname);
-    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
+  //qaload() {
+  //  var spname = "[AWS].[Sp_Select_SupplierSelectedList]";
+  //  let params1 = new HttpParams().set('spname', spname);
+  //  return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/SQLLOADEXEC", { params: params1 })
 
+  //}
+  qaload() {
+    var taskidetail = this.TaskID.toString();
+    const selectspparam = {
+      connection: "",
+      spname: "[AWS].[Sp_Select_SupplierSelectedList]",
+      parameter: taskidetail,
+      spparameter: "@TaskId"
+    }
+    console.log(selectspparam)
+    return this.http.post('https://awsgenericwebservice.azurewebsites.net/api/Service/SelectSpwithparam', selectspparam, { responseType: 'text' })
   }
   taskhistorydata() {
     var query: string = "SELECT Date,ActivityDetails,a.Updatedby LastUpdatedby,b.ModuleName from aws.tbl_Workflow a join aws.tbl_Modules b on a.ModuleID = b.ModuleID";
@@ -334,13 +426,18 @@ export class TaskdetailpageComponent {
   }
   suppliersave() {
     if (this.taskmainstatus == '' || this.supplierassignment == '') {
-      var messagebox = "validations";
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'validation error' } });
     } else {
       this.suppplierselctiondata().subscribe((suppliersave: any) => {
         console.warn("suppliersave", suppliersave)
         this.supplerselectidetil = suppliersave
         if (this.supplerselectidetil == "saved") {
           this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Product Submitted sucessfully' } });
+          this.qaload().subscribe((qadata) => {
+            console.warn("qadata", qadata)
+            this.QA = JSON.parse(qadata);
+            this.QA = this.QA;
+          })
         }
       })
     }
@@ -367,7 +464,8 @@ export class TaskdetailpageComponent {
     })
     this.qaload().subscribe((qadata) => {
       console.warn("qadata", qadata)
-      this.QA = qadata
+      this.QA = JSON.parse(qadata);
+      this.QA = this.QA;
     })
   }
 }

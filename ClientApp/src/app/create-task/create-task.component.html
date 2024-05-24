@@ -15,134 +15,132 @@
       <div class="data">
         <label>Task Name</label><br>
 
-        <input type="text" name="title"placeholder="Plese enter---" style="width:90%"[(ngModel)]="TaskName"><mat-icon (click)="startListening()">mic</mat-icon><br>
+        <input type="text" name="title" placeholder="--Please enter---" style="width:90%" [disabled]="istaskname" [(ngModel)]="TaskName"><mat-icon (click)="startListening()">mic</mat-icon><br>
       </div>
       <div class="data">
         <label>Assigned To</label><br>
-                                  <select id="dropdown" style="width:90%" class="dropdown" [(ngModel)]="IntiallyAssigned" value="" name="list4">
-                                    <option style="color: grey; font-style: italic" selected>{{IntiallyAssigned}}</option>
+        <select id="dropdown" style="width:90%" class="dropdown" [(ngModel)]="IntiallyAssigned" value="" name="list4">
+          <option style="color: grey; font-style: italic" selected>{{IntiallyAssigned}}</option>
 
-                                    <option *ngFor="let item of assign_load_data" style="color: grey; font-style: italic">{{item.AssignedTo}}</option>
-                                  </select>
-         
-          <mat-icon>mic</mat-icon>
-          <br>
-      </div>
+          <option *ngFor="let item of assign_load_data" style="color: grey; font-style: italic">{{item.AssignedTo}}</option>
+        </select>
+
+        <mat-icon>mic</mat-icon>
+        <br>
+      </div> 
       <div class="data">
         <label>Description</label><br>
-<textarea type="text" name="title" rows="5" placeholder="Plese enter---" style=" width:90%"[(ngModel)]="Description"></textarea><mat-icon>mic</mat-icon>
+<textarea type="text" name="title" rows="5" placeholder="--Please enter---" style=" width:90%" [(ngModel)]="Description"></textarea><mat-icon>mic</mat-icon>
       </div>
 
-      
+
       <div class="dataSelect">
 
-        
+
         <label>Brand</label><br>
-                            <select id="dropdown" class="dropdown" [(ngModel)]="Brand" value="" name="list4">
-                              <option style="color: grey; font-style: italic" selected>{{Brand}}</option>
-                            
-                              <option *ngFor="let item of brand_load_data" style="color: grey; font-style: italic">{{item.brandName}}</option>
-                              <!--<option>MP</option>
-  <option>European Tourister</option>
-  <option>Panda Cola</option>
-  <option>Mont Carlo</option>
-  <option>Delita</option>-->
-                            </select>
-       
+        <select id="dropdown" class="dropdown" [(ngModel)]="Brand" value="" name="list4">
+          <option style="color: grey; font-style: italic" selected>{{Brand}}</option>
+
+          <option *ngFor="let item of brand_load_data" style="color: grey; font-style: italic">{{item.brandName}}</option>
+          <!--<option>MP</option>
+      <option>European Tourister</option>
+      <option>Panda Cola</option>
+      <option>Mont Carlo</option>
+      <option>Delita</option>-->
+        </select>
+
       </div>
-        
+
       <div class="dataSelect">
         <label>Category</label><br>
-                               <select id="dropdown" class="dropdown" [(ngModel)]="ProductCategory" value="" name="list3">
-                               
-                                 <option style="color: grey; font-style: italic" selected>{{ProductCategory}}</option>
+        <select id="dropdown" class="dropdown" [(ngModel)]="ProductCategory" value="" name="list3">
 
-                                 <option *ngFor="let item of category_load_data" style="color: grey; font-style: italic">{{item.ProductCategoryName}}</option>
-                                 
+          <option style="color: grey; font-style: italic" selected>{{ProductCategory}}</option>
+
+          <option *ngFor="let item of category_load_data" style="color: grey; font-style: italic">{{item.ProductCategoryName}}</option>
 
 
-                               </select>
+
+        </select>
         <!--<button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover"(click)="Addcategory()">+</button>-->
       </div>
       <!--<div class="dataSelect">
-        <label>Product</label><br>
-        <select>
-          <option style="color: grey; font-style: italic" disabled selected hidden></option>
-          <option>Sweet and sault Savoury</option>
-          <option>Fruits and Vegetables, Frozen</option>
-          <option>Sauce</option>
-          <option>Honey</option>
-          <option>Dates</option>
-          <option>Pastry</option>
-        </select>
-        <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
-      </div>-->
+    <label>Product</label><br>
+    <select>
+      <option style="color: grey; font-style: italic" disabled selected hidden></option>
+      <option>Sweet and sault Savoury</option>
+      <option>Fruits and Vegetables, Frozen</option>
+      <option>Sauce</option>
+      <option>Honey</option>
+      <option>Dates</option>
+      <option>Pastry</option>
+    </select>
+    <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
+  </div>-->
       <!--<div class="dataSelect">
-        <label>Supplier</label><br>
-        <select>
-          <option style="color: grey; font-style: italic" disabled selected hidden></option>
-          <option>Juuicy</option>
-          <option>Fillimi</option>
-          <option>Bambino</option>
-          <option>Flowlite</option>
-          <option>Daily Bite</option>
+    <label>Supplier</label><br>
+    <select>
+      <option style="color: grey; font-style: italic" disabled selected hidden></option>
+      <option>Juuicy</option>
+      <option>Fillimi</option>
+      <option>Bambino</option>
+      <option>Flowlite</option>
+      <option>Daily Bite</option>
 
 
-        </select>
-        <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
-      </div>-->
+    </select>
+    <button style="width:15%;margin-left:24%" class="save-button pulse-effect hover-effect:hover">+</button>
+  </div>-->
 
       <div class="dataSelect">
         <label>Status</label><br>
-                             <select id="dropdown" class="dropdown" [(ngModel)]="Status" value="" name="list2">
-                               <option selected>{{Status}}</option>
-                               <option *ngFor="let item of loadtaskdata" style="color: grey; font-style: italic">{{item.StatusDescription}}</option>
-                               <!--<option>In-Progress</option>
-  <option>Pending for approval</option>
-  <option>Not started</option>-->
-                             </select>
-      
+        <select id="dropdown" class="dropdown" [(ngModel)]="Status" value="" name="list2">
+          <option selected>{{Status}}</option>
+          <option *ngFor="let item of loadtaskdata" style="color: grey; font-style: italic">{{item.StatusDescription}}</option>
+          <!--<option>In-Progress</option>
+      <option>Pending for approval</option>
+      <option>Not started</option>-->
+        </select>
+
       </div>
       <div class="dataSelect">
         <label>Department</label><br>
-                                 <select id="dropdown" class="dropdown" [(ngModel)]="Department" value="" name="list1">
-                                  
-                                   <option style="color: grey; font-style: italic" selected>{{Department}}</option>
+        <select id="dropdown" class="dropdown" [(ngModel)]="Department" value="" name="list1">
 
-                                   <option *ngFor="let item of department_load_data" style="color: grey; font-style: italic">{{item.Department}}</option>
-                                   
-                                 </select>
-       
-      </div>
+          <option style="color: grey; font-style: italic" selected>{{Department}}</option>
 
+          <option *ngFor="let item of department_load_data" style="color: grey; font-style: italic">{{item.Department}}</option>
 
-        <div class="dataDate">
-          <label>Due Date : </label><br>
-          <input type="date" name="title"[(ngModel)]="Duedate"><br />
-        </div>
-        <div class="dataDate">
-          <label>Assigned Date : </label><br>
-          <input type="date" name="title"[(ngModel)]="Assigneddate">
-        </div>
-        <!--<div class="dataDate">
-          <label>Created Date : </label><br>
-          <input type="date" name="title" [(ngModel)]="createddate">
-        </div>-->
-        <div class="uploadimage">
-          <input type="file" #fileInput (change)="handleFileInput($event)" [(ngModel)]="DocURL" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
-          <div class="upload-area" (click)="fileInput.click()">
-            <p>Drag & drop media here or click to upload</p>
-          </div>
-        </div>
-
-        <div class="createtask">
-          <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
-          <button type="submit" class="save-button pulse-effect hover-effect:hover"[hidden]="isproductsave"  (click)=" addtask()">Save</button>
-          <button type="submit" class="save-button pulse-effect hover-effect:hover" [hidden]="isproductupdate" (click)=" updatetask()" >Update</button>
-          <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-right: 10px" [hidden]="isproductupdate" (click)="savemmain();">Update</button>-->
-        </div>
+        </select>
 
       </div>
+      <div class="dataDate">
+        <label>Assigned Date : </label><br>
+        <input type="date" name="title" [(ngModel)]="Assigneddate">
+      </div>
+      <div class="dataDate">
+        <label>Due Date : </label><br>
+        <input type="date" name="title" [(ngModel)]="Duedate"><br />
+      </div>
+      <!--<div class="dataDate">
+    <label>Created Date : </label><br>
+    <input type="date" name="title" [(ngModel)]="createddate">
+  </div>-->
+      <div class="uploadimage">
+        <input type="file" #fileInput (change)="handleFileInput($event)" [(ngModel)]="DocURL" (drop)="handleDrop($event)" (dragover)="allowDrop($event)" [multiple]="true" placeholder="Custom Placeholder">
+        <div class="upload-area" (click)="fileInput.click()">
+          <p>Drag & drop media here or click to upload</p>
+        </div>
+      </div>
+
+      <div class="createtask">
+        <button class="save-button1 hover-effect:hover" matDialogClose>Close</button>
+        <button type="submit" class="save-button pulse-effect hover-effect:hover" [hidden]="isproductsave" (click)=" addtask()">Save</button>
+        <button type="submit" class="save-button pulse-effect hover-effect:hover" [hidden]="isproductupdate" (click)=" updatetask()">Update</button>
+        <!--<button type="submit" class="save-button pulse-effect hover-effect:hover" style="float: right; margin-right: 10px" [hidden]="isproductupdate" (click)="savemmain();">Update</button>-->
+      </div>
+
+    </div>
     </div>
 </body>
 

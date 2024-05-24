@@ -12,7 +12,7 @@
       <table style="margin-left:1%;width:90%;">
         <tr>
           <td width="4%">
-            <button type="submit" class="btn btn-primary" style="margin-right: 10px; box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 41px; border-radius: 2px; color: black; background-color: #98ad8e; font-size: large; font-family: Calibri; padding: 0px 28px; font-weight: 600; border: none; " (click)="AllTabclickload()">All</button>
+            <button type="submit" class="btn btn-primary" style="margin-right: 10px; box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); width: auto; height: 36px; border-radius: 2px; color: black; background-color: #98ad8e; font-size: large; font-family: Calibri; padding: 0px 28px; font-weight: 600; border: none; " (click)="AllTabclickload()">All</button>
           </td>
           <td>
             <div class="dropdown hover">
@@ -76,7 +76,7 @@
           </td>-->
           <td>
             <div class="dropdown hover">
-              <a style="background-color: #c2a98d; color: black;" [(ngModel)]="IntiallyAssigned"  mat-stroked-button [matMenuTriggerFor]="menu2">AssignedTo</a>
+              <a style="background-color: #c2a98d; color: black;" [(ngModel)]="IntiallyAssigned"  mat-stroked-button [matMenuTriggerFor]="menu2">Assigned To</a>
               <mat-menu #menu2="matMenu" style=" width:fit-content;overflow-x:hidden">
                 <div style="height: 200px; width: 200px; overflow-x: hidden;">
                   <button mat-menu-item style="margin-left:.5%;color:dodgerblue;" *ngFor="let item of assign_load_data" (click)=" AssigedToTab_Load($event)">{{item.AssignedTo}}</button>
@@ -121,7 +121,9 @@
             <input type="date" id="prodfrm" class="form-control inputtextbox" style="height:28px;background-color: white; width: 90%;margin-left:7%; border: none; font-family: Calibri; font-size: large;display:inline; border-radius: 5px;" [(ngModel)]="ngassigneddate" (change)="AssignDateLoad_inputfilterLoad($event)" name="prddatefrm" value="" />
           </td>
           <td width="5%">
-            <mat-icon style="font-size:x-large;margin-left:1%;" (click)="assigndatefilter(ngassigneddate)">mic</mat-icon>
+            <button type="submit" class="save-button" style="font-family: Calibri;font-size:large;width:100px"
+                    (click)="clear()">Clear</button>
+            <!--<mat-icon style="font-size:x-large;margin-left:1%;" (click)="assigndatefilter(ngassigneddate)">mic</mat-icon>-->
           </td>
 
         </tr>

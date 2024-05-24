@@ -74,6 +74,7 @@ export class OrderStatusUpdateComponent implements OnInit {
   ReOrderhistorydata: any = "";
   FileUpload: any;
   StatusListData: any;
+  OldPurOrdNo: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public datepipe: DatePipe, public dialogRef: MatDialog, private http: HttpClient, private blobService: AzureBlobStorageService) {}
 
 
@@ -115,96 +116,204 @@ export class OrderStatusUpdateComponent implements OnInit {
     this.FileUpload = files[0];
   }
 
+  CHKpono() {
+    var query: string = "SELECT count(*) AS countcol,PurchaseOrderNo from AWS.tbl_order where PurchaseOrderNo='" + this.PurOrdNo + "' group by PurchaseOrderNo";
+    var connection: string = "";
+    let params1 = new HttpParams().set('connection', connection).set('spname', query);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
+  }
 
   OrderSubmit() {
     //this.dialogRef.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Updated Successfully' } });
     // this.dialogRef.closeAll();
 
+    this.CHKpono().subscribe((CHKpono) => {
+      console.warn("CHKpono", CHKpono)
+      var data: any = CHKpono
+
+      if (data.length > 0) {
+        var count = data[0].countcol;
+        var PurORcurNo = data[0].PurchaseOrderNo;
+        if (Number(count) > 0) {
+          if (this.PurOrdNo == this.OldPurOrdNo) {
+            var Description = this.Description;
+            var customer_id = this.customer_id;
+            var Location = this.Location;
+            var order_date = this.PurOrdDate;
+            var total_amount = this.total_amount;
+            var shipping_address = this.shipping_address;
+            var Quantity = this.Quantity;
+            var Updatedby = this.Updatedby;
+            var PurchaseOrderNo = this.PurOrdNo;
+            var Status = this.Status;
+            var Productname = this.Productname;
+            var InvoiceNo = this.InvoiceNo;
+            var InvoiceDt = this.InvoiceDt;
+            var OrderId = this.OrderID;
 
 
-
-    var Description = this.Description;
-    var customer_id = this.customer_id;
-    var Location = this.Location;
-    var order_date = this.PurOrdDate;
-    var total_amount = this.total_amount;
-    var shipping_address = this.shipping_address;
-    var Quantity = this.Quantity;
-    var Updatedby = this.Updatedby;
-    var PurchaseOrderNo = this.PurOrdNo;
-    var Status = this.Status;
-    var Productname = this.Productname;
-    var InvoiceNo = this.InvoiceNo;
-    var InvoiceDt = this.InvoiceDt;
-    var OrderId = this.OrderID;
+            var TaskID = this.TaskID;
+            var SupplierID = this.SupplierID;
+            var ProductID = this.ProductID;
+            var BrandID = this.BrandID;
+            var CategoryID = this.CategoryID;
+            var AssignedTo = this.AssignedTo;
+            var TaskDescription = this.TaskDescription;
 
 
-    var TaskID = this.TaskID;
-    var SupplierID = this.SupplierID;
-    var ProductID = this.ProductID;
-    var BrandID = this.BrandID;
-    var CategoryID = this.CategoryID;
-    var AssignedTo = this.AssignedTo;
-    var TaskDescription = this.TaskDescription;
+            const orderUpdate = {
+              Description: Description,
+              customer_id: customer_id,
+              Location: Location,
+              order_date: order_date,
+              total_amount: total_amount.toString(),
+              shipping_address: shipping_address,
+              Quantity: Quantity,
+
+              PurchaseOrderNo: PurchaseOrderNo,
+              Status: Status,
+              InvoiceNo: InvoiceNo,
+              InvoiceDt: InvoiceDt,
+              Productname: Productname,
+              OrderId: OrderId,
+
+              TaskID: TaskID,
+              SupplierID: SupplierID,
+              ProductID: ProductID,
+              BrandID: BrandID,
+              CategoryID: CategoryID,
+              AssignedTo: AssignedTo,
+              Comments: TaskDescription,
+            };
+            console.log(orderUpdate);
 
 
-    const orderUpdate = {
-      Description: Description,
-      customer_id: customer_id,
-      Location: Location,
-      order_date: order_date,
-      total_amount: total_amount.toString(),
-      shipping_address: shipping_address,
-      Quantity: Quantity,
-      
-      PurchaseOrderNo: PurchaseOrderNo,
-      Status: Status,
-      InvoiceNo: InvoiceNo,
-      InvoiceDt: InvoiceDt,
-      Productname: Productname,
-      OrderId: OrderId,
-
-      TaskID :TaskID,
-      SupplierID :SupplierID,
-      ProductID :ProductID,
-      BrandID :BrandID,
-      CategoryID :CategoryID,
-      AssignedTo :AssignedTo,
-      Comments :TaskDescription,
-    };
-    console.log(orderUpdate);
+            var Filename = this.OrderFiles;
+            var File_path = "https://assets.unileversolutions.com/v1/2237144.png?im=Resize,width=540,height=540";
 
 
-    var Filename = this.OrderFiles;
-    var File_path = "https://assets.unileversolutions.com/v1/2237144.png?im=Resize,width=540,height=540";
+            const orderhistoryinsert = {
+              OrderId: OrderId,
+              Status: Status,
+              Description: Description,
+              Filename: Filename,
+              File_path: File_path,
+              Updatedby: Updatedby
+            };
 
 
-    const orderhistoryinsert = {
-      OrderId: OrderId,
-      Status: Status,
-      Description: Description,
-      Filename: Filename,
-      File_path: File_path,
-      Updatedby: Updatedby
-    };
+            this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/OrderUpdate', orderUpdate).subscribe((response) => {
+              console.log('Data Updated successfully:', response);
+
+              this.blobService.OrderUpdateimage(this.FileUpload, this.OrderFiles, orderhistoryinsert, () => { })
+              this.dialogRef.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Updated Successfully' } });
 
 
-    this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/OrderUpdate',orderUpdate).subscribe((response) => {
-        console.log('Data Updated successfully:', response);
-
-      this.blobService.OrderUpdateimage(this.FileUpload, this.OrderFiles, orderhistoryinsert, () => { })
-      this.dialogRef.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Updated Successfully' } });
-
-
-      },
-        (error) => {
-          console.error('Error Updating data:', error);
-          if (error && error.error && error.error.errors) {
-            const validationErrors = error.error.errors;
-            console.log('Validation errors:', validationErrors);
+            },
+              (error) => {
+                console.error('Error Updating data:', error);
+                if (error && error.error && error.error.errors) {
+                  const validationErrors = error.error.errors;
+                  console.log('Validation errors:', validationErrors);
+                }
+              }
+            );
+          }
+          else {
+            this.dialogRef.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Purchase Order No already exist, Please change it' } });
           }
         }
-    );
+      }
+      else {
+        var Description = this.Description;
+        var customer_id = this.customer_id;
+        var Location = this.Location;
+        var order_date = this.PurOrdDate;
+        var total_amount = this.total_amount;
+        var shipping_address = this.shipping_address;
+        var Quantity = this.Quantity;
+        var Updatedby = this.Updatedby;
+        var PurchaseOrderNo = this.PurOrdNo;
+        var Status = this.Status;
+        var Productname = this.Productname;
+        var InvoiceNo = this.InvoiceNo;
+        var InvoiceDt = this.InvoiceDt;
+        var OrderId = this.OrderID;
+
+
+        var TaskID = this.TaskID;
+        var SupplierID = this.SupplierID;
+        var ProductID = this.ProductID;
+        var BrandID = this.BrandID;
+        var CategoryID = this.CategoryID;
+        var AssignedTo = this.AssignedTo;
+        var TaskDescription = this.TaskDescription;
+
+
+        const orderUpdate = {
+          Description: Description,
+          customer_id: customer_id,
+          Location: Location,
+          order_date: order_date,
+          total_amount: total_amount.toString(),
+          shipping_address: shipping_address,
+          Quantity: Quantity,
+
+          PurchaseOrderNo: PurchaseOrderNo,
+          Status: Status,
+          InvoiceNo: InvoiceNo,
+          InvoiceDt: InvoiceDt,
+          Productname: Productname,
+          OrderId: OrderId,
+
+          TaskID: TaskID,
+          SupplierID: SupplierID,
+          ProductID: ProductID,
+          BrandID: BrandID,
+          CategoryID: CategoryID,
+          AssignedTo: AssignedTo,
+          Comments: TaskDescription,
+        };
+        console.log(orderUpdate);
+
+
+        var Filename = this.OrderFiles;
+        var File_path = "https://assets.unileversolutions.com/v1/2237144.png?im=Resize,width=540,height=540";
+
+
+        const orderhistoryinsert = {
+          OrderId: OrderId,
+          Status: Status,
+          Description: Description,
+          Filename: Filename,
+          File_path: File_path,
+          Updatedby: Updatedby
+        };
+
+
+        this.http.post<any>('https://awsgenericwebservice.azurewebsites.net/api/Service/OrderUpdate', orderUpdate).subscribe((response) => {
+          console.log('Data Updated successfully:', response);
+
+          this.blobService.OrderUpdateimage(this.FileUpload, this.OrderFiles, orderhistoryinsert, () => { })
+          this.dialogRef.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Updated Successfully' } });
+
+
+        },
+          (error) => {
+            console.error('Error Updating data:', error);
+            if (error && error.error && error.error.errors) {
+              const validationErrors = error.error.errors;
+              console.log('Validation errors:', validationErrors);
+            }
+          }
+        );
+      }
+      
+     
+    })
+
+
+    
 
   }
 
@@ -215,7 +324,7 @@ export class OrderStatusUpdateComponent implements OnInit {
 
 
   ReOrderdata() {
-    var query: string = "SELECT Status as ProductTask,Description as ProdcutDescription,cast( Updated_date as varchar) as OnDate,Updatedby as ByUser,Filename,File_path from aws.tbl_order_history where OrderID='" + this.OrderID +"'";
+    var query: string = "SELECT Status as ProductTask,Description as ProdcutDescription,cast( Updated_date as varchar) as OnDate,Updatedby as ByUser,Filename,File_path from aws.tbl_order_history where OrderID='" + this.OrderID +"' order by OnDate desc";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
@@ -227,11 +336,17 @@ export class OrderStatusUpdateComponent implements OnInit {
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
   }
-
+  ReOrderStatusList() {
+    var query: string = "SELECT StatusDescription as Status from AWS.tbl_Status where StatusType='ReOrder'";
+    var connection: string = "";
+    let params1 = new HttpParams().set('connection', connection).set('spname', query);
+    return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })
+  }
 
 
 
   ngOnInit() {
+
 
     var AWSOrderMngData: any = this.data.displaydata
 
@@ -263,7 +378,7 @@ export class OrderStatusUpdateComponent implements OnInit {
     this.AssignedTo = AWSOrderMngData[0].AssignedTo;
     this.TaskDescription = AWSOrderMngData[0].TaskDescription;
 
-
+    this.OldPurOrdNo = this.PurOrdNo;
 
 
     var year = new Date().getFullYear().toString();
@@ -298,7 +413,22 @@ export class OrderStatusUpdateComponent implements OnInit {
     this.StatusList().subscribe((StatusList) => {
       console.warn("StatusList", StatusList)
       this.StatusListData = StatusList
+
+      var StatusVal = this.Status.toString();
+      const value = StatusVal.split(' ');
+      var value1 = value[0];
+      var value2 = value[1];
+
+      if (value1 == 'Reorder') {
+        this.ReOrderStatusList().subscribe((ReOrderStatusList) => {
+          console.warn("ReOrderStatusList", ReOrderStatusList)
+          this.StatusListData = ReOrderStatusList
+        })
+      }
     })
+
+    
+    
 
   }
 

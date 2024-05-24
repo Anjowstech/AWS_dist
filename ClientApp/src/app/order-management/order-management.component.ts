@@ -29,8 +29,8 @@ export class OrderManagementComponent implements OnInit {
   UpdateOrderStatus(rowvalue:any) {
     var data = [rowvalue]
 
-    if (data[0].StatusCol == "Order Completed") {
-      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Completed Orders cannot be edited' } });
+    if (data[0].StatusCol == "Order Approved") {
+      this.dialog.open(MsgBoxComponent, { width: 'auto', height: 'auto', data: { displaydata: 'Approved Orders cannot be edited' } });
     }
     else{
       const dialogRef = this.dialog.open(OrderStatusUpdateComponent, {
@@ -51,7 +51,7 @@ export class OrderManagementComponent implements OnInit {
 
 
   Orderdata() {
-    var query: string = "SELECT a.*, cast(a.updateddate as varchar) as updateddatecol, c.StatusDescription StatusCol, Name LocationCol, cast(a.inserteddate as varchar) as inserteddatecol , d.SupplierID,d.ProductID,d.BrandID,d.CategoryID,d.AssignedTo,d.Description as TaskDescription from aws.tbl_Order a join  aws.tbl_location b on b.LocationID = a.Locationid join  aws.tbl_Status c on c.StatusID = a.StatusID join aws.tbl_TaskDetails d on a.TaskDetailID = d.TaskDetailID where c.StatusType = 'Order Management'";
+    var query: string = "SELECT a.*, cast(a.updateddate as varchar) as updateddatecol, c.StatusDescription StatusCol, Name LocationCol, cast(a.inserteddate as varchar) as inserteddatecol , d.SupplierID,d.ProductID,d.BrandID,d.CategoryID,d.AssignedTo,d.Description as TaskDescription from aws.tbl_Order a join  aws.tbl_location b on b.LocationID = a.Locationid join  aws.tbl_Status c on c.StatusID = a.StatusID join aws.tbl_TaskDetails d on a.TaskDetailID = d.TaskDetailID where c.StatusType in ( 'Order Management' ,'ReOrder') or  c.StatusDescription = 'Branding Approved'";
     var connection: string = "";
     let params1 = new HttpParams().set('connection', connection).set('spname', query);
     return this.http.get("https://awsgenericwebservice.azurewebsites.net/api/Service/GENERICSQLLOADEXEC", { params: params1, })

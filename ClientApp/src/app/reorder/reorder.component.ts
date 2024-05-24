@@ -11,7 +11,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   styleUrls: ['./reorder.component.css']
 })
 export class ReorderComponent implements OnInit {
-
   i: number = 0;
   j: number = 0;
   Qtyval: any = "0";
